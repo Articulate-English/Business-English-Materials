@@ -405,6 +405,30 @@ function toggleSlideAnswers(btn){
   btn.textContent=allOpen?'Reveal answers':'Hide answers';
 }
 var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
 function matchClick(el,side){
   if(el.classList.contains('matched')) return;
   var grid=el.closest('.match-grid');
