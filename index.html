@@ -72,9 +72,19 @@ h1,h2,h3{font-family:'Montserrat',sans-serif}
         <div class="done">&#10003; In progress</div>
       </div>
     </a>
+    <a class="deck-card glass" href="business-presentations.html" data-lesson="business-presentations">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=80')">
+        <span class="num">02</span>
+      </div>
+      <div class="body">
+        <div class="title">Business Presentations</div>
+        <div class="meta">Planning, structuring and delivering talks — opening, signposting, slides, voice, nerves and Q&amp;A. B2 · 14 slides · model answers.</div>
+        <div class="done">&#10003; In progress</div>
+      </div>
+    </a>
   </nav>
 
-  <div class="placeholder">More lessons coming soon — presentations, negotiations, meetings and email writing.</div>
+  <div class="placeholder">More lessons coming soon — negotiations, meetings and email writing.</div>
 </main>
 
 <div class="footer">Business English Materials · Articulate</div>
@@ -125,8 +135,11 @@ applyTheme(localStorage.getItem('fce-theme')||'classic');
 (function(){
   try{
     var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
-    var card=document.querySelector('a[data-lesson="professional-proposals"]');
-    if(card && typeof progress['professional-proposals']==='number' && progress['professional-proposals']>0) card.classList.add('completed');
+    var cards=document.querySelectorAll('a[data-lesson]');
+    for(var i=0;i<cards.length;i++){
+      var key=cards[i].getAttribute('data-lesson');
+      if(typeof progress[key]==='number' && progress[key]>0) cards[i].classList.add('completed');
+    }
   }catch(e){}
 })();
 (function(){
