@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#191207">
+<title>Business English Materials — Articulate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#191207;--cs-text:#f2f0f8;--cs-bg-card:#191207;
+  --cs-border:#4a3a1e;--cs-text-muted:#b0bec5;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh}
+h1,h2,h3{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,color-mix(in srgb,var(--cs-bg) 72%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 40%,transparent) 100%);pointer-events:none}
+#wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:60px 16px 90px}
+.hero{text-align:center;padding:34px 26px;margin-bottom:28px}
+.hero .part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:14px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.hero h1{font-size:2.1rem;margin-bottom:12px}
+.hero p{color:var(--cs-text-muted);font-size:.98rem;max-width:540px;margin:0 auto}
+.lessons{display:grid;gap:18px}
+.deck-card{display:block;text-decoration:none;color:inherit;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.deck-card:hover{transform:translateY(-3px);box-shadow:0 0 35px var(--cs-accent-glow),0 0 70px rgba(0,0,0,.35)}
+.deck-card .thumb{height:150px;background-size:cover;background-position:center;position:relative}
+.deck-card .thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,color-mix(in srgb,var(--cs-bg) 88%,transparent) 100%)}
+.deck-card .num{position:absolute;top:12px;left:12px;z-index:2;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--cs-accent);color:var(--cs-bg);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;box-shadow:0 0 12px var(--cs-accent-glow)}
+.deck-card .body{padding:18px 20px 20px}
+.deck-card .title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.15rem;letter-spacing:.02em;margin-bottom:6px}
+.deck-card .meta{font-size:.85rem;color:var(--cs-text-muted)}
+.deck-card .done{display:none;margin-top:10px;font-size:.75rem;font-weight:700;color:var(--cs-green,#34d399);text-transform:uppercase;letter-spacing:.06em}
+.deck-card.completed .done{display:block}
+.placeholder{border:1.5px dashed var(--cs-border);background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border-radius:16px;padding:26px;text-align:center;color:var(--cs-text-muted);font-size:.9rem}
+.footer{position:fixed;left:0;right:0;bottom:0;z-index:200;text-align:center;padding:12px;font-size:.75rem;color:var(--cs-text-muted);background:color-mix(in srgb,var(--cs-bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--cs-border)}
+@media(max-width:640px){.hero h1{font-size:1.6rem}.hero{padding:26px 18px}.deck-card .thumb{height:120px}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&q=80')"></div>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+
+<main id="wrap">
+  <section class="hero glass">
+    <div class="part-badge">Articulate · Business English</div>
+    <h1 class="glow-text">Business English Materials</h1>
+    <p>Professional communication skills for working adults — proposals, presentations, negotiations and more. Work through the materials in any order.</p>
+  </section>
+
+  <nav class="lessons" aria-label="Materials">
+    <a class="deck-card glass" href="professional-proposals.html" data-lesson="professional-proposals">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80')">
+        <span class="num">01</span>
+      </div>
+      <div class="body">
+        <div class="title">Professional Proposals</div>
+        <div class="meta">Writing persuasive proposals — executive summary, problem, solution, timeline, budget and call to action. B2 · 14 slides · model answers.</div>
+        <div class="done">&#10003; In progress</div>
+      </div>
+    </a>
+  </nav>
+
+  <div class="placeholder">More lessons coming soon — presentations, negotiations, meetings and email writing.</div>
+</main>
+
+<div class="footer">Business English Materials · Articulate</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var card=document.querySelector('a[data-lesson="professional-proposals"]');
+    if(card && typeof progress['professional-proposals']==='number' && progress['professional-proposals']>0) card.classList.add('completed');
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m) return;
+  var img=new Image();
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
