@@ -45,6 +45,8 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 .question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
 .reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
 .reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
 .hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
 .hidden-answer.open{display:block}
 .phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
@@ -283,14 +285,12 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
     <h2 class="glow-text">Weak vs Strong</h2>
 <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Improve these weak proposal sentences.</p>
 <div class="question">1. Weak: "We offer good training at fair prices. Please contact us." — What makes this weak?</div>
-<button class="reveal-btn">Show answer</button>
 <div class="hidden-answer">It is generic (anyone could say it), it has no audience, no evidence, no measurable outcome, and no clear next step. It answers neither "so what?" nor "why should I believe you?".</div>
 <div class="question">2. Rewrite: "We can help you improve your English."</div>
-<button class="reveal-btn">Show model answer</button>
 <div class="hidden-answer">"We will help your sales team negotiate international contracts with more confidence through two structured lessons per week, with measurable progress reported after week 12."</div>
 <div class="question">3. Which components are missing here? "We propose a programme. It will cost 4,800 EUR."</div>
-<button class="reveal-btn">Show answer</button>
 <div class="hidden-answer">The problem, the solution details, the timeline, the qualifications and the call to action are all missing. The reader has no reason to say yes and no instruction on what to do.</div>
+<button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
 
   </div>
 </section>
@@ -396,6 +396,14 @@ document.addEventListener('click',function(e){
     if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
   }
 });
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
 var matchA=null;
 function matchClick(el,side){
   if(el.classList.contains('matched')) return;
