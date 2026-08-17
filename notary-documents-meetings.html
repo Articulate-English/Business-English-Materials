@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Notary Documents & Client Meetings — Articulate Professional English B2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+  --cs-red:#f87171;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:8px 16px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.75rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.proposal{background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:16px 18px;font-size:.95rem;line-height:1.65}
+.proposal-head{border-bottom:1px solid var(--cs-border);padding-bottom:10px;margin-bottom:12px}
+.proposal-head .p-title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;letter-spacing:.02em}
+.proposal-head .p-meta{font-size:.78rem;color:var(--cs-text-muted);margin-top:4px}
+.proposal .sec{margin-bottom:10px}
+.proposal .sec b{color:var(--cs-accent);font-weight:700}
+.proposal ul{margin:4px 0 4px 18px;padding:0;list-style:none}
+.proposal ul li::before{content:'— ';color:var(--cs-accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.95rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.85rem;color:var(--cs-text-muted)}
+.dont-do{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.4);border-radius:8px;padding:12px 14px;margin:10px 0;font-size:.9rem}
+.do-this{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.4);border-radius:8px;padding:12px 14px;margin:10px 0;font-size:.9rem}
+.dont-do strong{color:var(--cs-red)}
+.do-this strong{color:var(--cs-green)}
+.doc-icon{display:inline-block;width:28px;height:28px;border-radius:6px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);text-align:center;line-height:28px;font-size:.7rem;font-weight:700;color:var(--cs-accent);margin-right:8px;vertical-align:middle}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}.nav-btns button{padding:6px 12px;font-size:.95rem}.model-answers-btn{bottom:5.5em;right:.5em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Professional English · B2</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Notary Documents &amp; Client Meetings</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Explain French notarial documents to international clients — in plain English, at the office or over lunch.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+  <div class="card glass">
+    <div class="part-badge">Warm-Up</div>
+    <h2 class="glow-text">Warm-Up — The Notary and the Client</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
+<div class="question">1. Have you ever met a client outside the office — for lunch or dinner? How was it?</div>
+<div class="hidden-answer">Many notaries prefer the formality of the office, but restaurant meetings can put international clients at ease. The key is knowing when to switch between social conversation and professional explanation.</div>
+<div class="question">2. What is the hardest part of explaining a French legal document to an English speaker?</div>
+<div class="hidden-answer">French legal concepts like the <span class='tooltip' data-def='authentic instrument; a deed signed before a notary'>authentic act</span> or <span class='tooltip' data-def='matrimial property regime'>régime matrimonial</span> don't have direct English equivalents. You need to explain the purpose — not just translate the term.</div>
+<div class="question">3. What mistakes do French notaries make when speaking English with international clients?</div>
+<div class="hidden-answer">Common mistakes include saying "rendez-vous" instead of "appointment", "notary public" instead of "notary", and using French legal terms without explaining them. This plan addresses all three.</div>
+<div class="question">4. How do you decide what to say in a restaurant meeting versus an office meeting?</div>
+<div class="hidden-answer">In a restaurant, start with small talk, read the client's comfort level, and transition to business gradually. In the office, you can be more direct — but still explain clearly and check understanding.</div>
+<div style="margin-top:18px"><strong style="color:var(--cs-accent)">Useful phrases:</strong><br><span class="phrase-chip">Shall we get down to business?</span><span class="phrase-chip">Let me walk you through this.</span><span class="phrase-chip">I'd like to arrange a follow-up.</span><span class="phrase-chip">Would you mind if I take notes?</span><span class="phrase-chip">We take great care with every document.</span></div>
+
+  </div>
+</section>
+<section class="slide" data-slide="2">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 1</div>
+    <h2 class="glow-text">Match the Word — Notary Documents</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">authentic act</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">a deed signed before a notary, with full legal authority</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">deed</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">a legal document that transfers ownership</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">testament</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">a formal will, signed before witnesses</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">estate</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">everything a person leaves behind when they die</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">power of attorney</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">a document giving someone authority to act for you</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">heir</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">a person legally entitled to inherit</div>
+    </div>
+    <div class="match-status" id="matchStatus1">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns1">1 authentic act — a deed signed before a notary, with full legal authority · 2 deed — a legal document that transfers ownership · 3 testament — a formal will, signed before witnesses · 4 estate — everything a person leaves behind when they die · 5 power of attorney — a document giving someone authority to act for you · 6 heir — a person legally entitled to inherit</div>
+  </div>
+</section>
+<section class="slide" data-slide="3">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 2</div>
+    <h2 class="glow-text">Match the Phrase — Restaurant Meetings</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">Shall we order first?</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">Polite way to suggest eating before business</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">I thought we'd meet at the office</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">Correcting a location misunderstanding</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">Shall we get down to business?</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">Transitioning from small talk to the topic</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">Would you mind if I take notes?</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">Asking permission before writing</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">Let me walk you through this.</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">Explaining a document step by step</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">Shall we arrange a follow-up?</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">Scheduling the next meeting politely</div>
+    </div>
+    <div class="match-status" id="matchStatus2">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns2">1 Shall we order first? — polite way to suggest eating before business · 2 I thought we'd meet at the office — correcting a location misunderstanding · 3 Shall we get down to business? — transitioning from small talk to the topic · 4 Would you mind if I take notes? — asking permission before writing · 5 Let me walk you through this — explaining a document step by step · 6 Shall we arrange a follow-up? — scheduling the next meeting politely</div>
+  </div>
+</section>
+<section class="slide" data-slide="4">
+  <div class="card glass">
+    <div class="part-badge">Reading</div>
+    <h2 class="glow-text">A Restaurant Meeting Script</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Read this script. Notice how the notaire moves from small talk to explaining a document — and back to social conversation.</p>
+<div class="proposal">
+  <div class="proposal-head">
+    <div class="p-title">Maison Duval Notaires — Restaurant Meeting</div>
+    <div class="p-meta">Notaire: Claire Duval &nbsp;·&nbsp; Client: Mr James Carter (British) &nbsp;·&nbsp: Meeting: Le Petit Bistro, 1st arrondissement</div>
+  </div>
+  <div class="sec"><b>1. Greeting &amp; Small Talk</b> — "Mr Carter, lovely to see you. How was your flight from London? ... I ordered you a sparkling water — is that alright? ... The weather has been wonderful this week, hasn't it?"</div>
+  <div class="sec"><b>2. Ordering</b> — "Shall we order first? I find it's easier to talk once we have our food. Do you have any dietary requirements I should know about? ... The duck here is excellent, and the fish is always fresh."</div>
+  <div class="sec"><b>3. Transitioning to Business</b> — "Now, shall we get down to business? I thought it would be nice to meet somewhere less formal than the office. I have the draft of your marriage contract here."</div>
+  <div class="sec"><b>4. Explaining the Document</b> — "This is what we call a <span class='tooltip' data-def='matrimial property regime'>régime matrimonial</span> — a marriage contract that defines how property is managed between you and your wife. In France, this is very common. Let me walk you through the key clauses: first, the property you bring into the marriage stays yours; second, property you acquire together is shared equally..."</div>
+  <div class="sec"><b>5. Addressing Concerns</b> — "I understand your concern about the inheritance clause. The good news is that French law protects your children's right to inherit — we cannot override that. Would you like me to add a specific provision for your London flat?"</div>
+  <div class="sec"><b>6. Closing &amp; Follow-Up</b> — "I think that covers everything for today. Shall we arrange a follow-up at the office next Tuesday to sign the final version? In the meantime, I'll send you the English summary we discussed. Thank you for lunch, Mr Carter — it was a pleasure."</div>
+</div>
+<button class="reveal-btn">Show answer</button>
+<div class="hidden-answer">The script follows a clear structure: greet and make small talk first, order food, then transition gently to business. The notaire explains the French legal concept (<em>régime matrimonial</em>) in plain English, addresses concerns without jargon, and closes with a clear next step. Notice: no "rendez-vous", no "notary public", no unexplained French terms.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="5">
+  <div class="card glass">
+    <div class="part-badge">Document 1</div>
+    <h2 class="glow-text">Property Deeds &amp; Real Estate Sales</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> The <span class='tooltip' data-def='authentic instrument; deed signed before a notary'>authentic act</span> that transfers ownership of property from seller to buyer. In France, only a notary can prepare and sign this document.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key phrases:</strong></p>
+<ul>
+<li>"This is the final deed of sale — we call it an <span class='tooltip' data-def='authentic instrument'>acte authentique</span>."</li>
+<li>"Before we sign, I need to confirm the property title is clear."</li>
+<li>"I've checked the <span class='tooltip' data-def='land registry'>cadastre</span> — there are no legal disputes on this property."</li>
+<li>"The buyer will pay the transfer taxes, which are approximately 5.8% of the purchase price."</li>
+<li>"Once signed, this deed has the same authority as a court judgment."</li>
+</ul>
+<div class="dont-do"><strong>DON'T:</strong> Say "I'll make a contract for the house."<br><strong>DO:</strong> Say "I'll prepare the authentic deed of sale."</div>
+<div class="do-this"><strong>International client tip:</strong> Explain that French notaries have a monopoly on real estate transfers — the notary acts for both parties, not just one.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="6">
+  <div class="card glass">
+    <div class="part-badge">Document 2</div>
+    <h2 class="glow-text">Wills &amp; Trusts</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> A <span class='tooltip' data-def='formal will signed before a notary'>testament authentique</span> — a will prepared and signed before a notary, with full legal authority. In France, <span class='tooltip' data-def='trust; a common law concept'>trusts</span> are not a traditional legal tool, but they are increasingly used in international estate planning.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key phrases:</strong></p>
+<ul>
+<li>"This is your testament — the French equivalent of a formal will."</li>
+<li>"French law protects your children's <span class='tooltip' data-def='the portion of an estate reserved for heirs'>reserved portion</span> — you cannot disinherit them."</li>
+<li>"If you have assets in multiple countries, we need to consider which law applies."</li>
+<li>"A trust can be useful for international estate planning — let me explain how it works."</li>
+<li>"You can modify this testament at any time by signing a new one."</li>
+</ul>
+<div class="dont-do"><strong>DON'T:</strong> Say "This is a will" and leave it at that.<br><strong>DO:</strong> Say "This is a testament — the French equivalent of a will. It has the same effect, but the formalities are different."</div>
+<div class="do-this"><strong>International client tip:</strong> Explain that French inheritance law is more restrictive than English law — children have automatic rights as heirs.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="7">
+  <div class="card glass">
+    <div class="part-badge">Document 3</div>
+    <h2 class="glow-text">Powers of Attorney</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> A document that gives another person the legal authority to act on your behalf. In France, this is called a <span class='tooltip' data-def='mandate; power of attorney'>mandat</span> or <span class='tooltip' data-def='future protection mandate'>mandat de protection future</span>.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key phrases:</strong></p>
+<ul>
+<li>"This is a power of attorney — we call it a <span class='tooltip' data-def='mandate'>mandat</span>."</li>
+<li>"You're giving your wife the authority to sign documents on your behalf."</li>
+<li>"The scope of this power is limited to property transactions — it doesn't cover medical decisions."</li>
+<li>"This document must be signed before a notary to be valid in France."</li>
+<li>"You can revoke this power of attorney at any time."</li>
+</ul>
+<div class="dont-do"><strong>DON'T:</strong> Say "You sign this paper and she can do everything."<br><strong>DO:</strong> Say "This document grants specific authority — let me explain exactly what it covers."</div>
+<div class="do-this"><strong>International client tip:</strong> Explain that powers of attorney from other countries may need an <span class='tooltip' data-def='international certification of a document'>apostille</span> to be recognised in France.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="8">
+  <div class="card glass">
+    <div class="part-badge">Document 4</div>
+    <h2 class="glow-text">Antenuptial (Marriage) Contracts</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> A contract signed before marriage that defines how property is managed between spouses. In France, this is called a <span class='tooltip' data-def='matrimial property regime'>contrat de mariage</span> or <span class='tooltip' data-def='matrimial property regime'>régime matrimonial</span>.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key phrases:</strong></p>
+<ul>
+<li>"This is a marriage contract — in France, we call it a <span class='tooltip' data-def='matrimial property regime'>contrat de mariage</span>."</li>
+<li>"The most common regime is <span class='tooltip' data-def='community of property'>communauté universelle</span> — all property is shared equally."</li>
+<li>"An alternative is <span class='tooltip' data-def='separation of property'>séparation de biens</span> — each spouse keeps their own property."</li>
+<li>"This contract protects both of you — and your future children."</li>
+<li>"You can modify your regime matrimonial after two years of marriage."</li>
+</ul>
+<div class="dont-do"><strong>DON'T:</strong> Say "This is a prenup" — it sounds informal and slightly negative in English.<br><strong>DO:</strong> Say "This is a marriage contract — a standard legal document in France that protects both spouses."</div>
+<div class="do-this"><strong>International client tip:</strong> Explain that French law has a default regime if no contract is signed — but international couples benefit from choosing one explicitly.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="9">
+  <div class="card glass">
+    <div class="part-badge">Document 5</div>
+    <h2 class="glow-text">Business Agreements for Other Countries</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Documents that must be valid in other countries — company formation papers, international contracts, or legalised signatures. The notary's role is to certify the document and arrange <span class='tooltip' data-def='international certification'>legalisation</span> or an <span class='tooltip' data-def='international certification of a document'>apostille</span>.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key phrases:</strong></p>
+<ul>
+<li>"This document needs an <span class='tooltip' data-def='international certification'>apostille</span> to be valid in the United States."</li>
+<li>"I'll certify your signature and arrange the legalisation through the Ministry of Foreign Affairs."</li>
+<li>"The apostille confirms that my signature and stamp are genuine."</li>
+<li>"This document will be recognised in all countries that signed the Hague Convention."</li>
+<li>"If your country didn't sign the convention, we'll need full consular legalisation instead."</li>
+</ul>
+<div class="dont-do"><strong>DON'T:</strong> Say "I'll sign it and it's done."<br><strong>DO:</strong> Say "I'll certify the document and arrange the apostille — this ensures it will be accepted in your country."</div>
+<div class="do-this"><strong>International client tip:</strong> Always ask which country the document is for — the process differs depending on whether the destination country signed the Hague Convention.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="10">
+  <div class="card glass">
+    <div class="part-badge">Meeting Skills</div>
+    <h2 class="glow-text">Restaurant Meeting Phrases</h2>
+<p><strong style="color:var(--cs-arrival)">Arrival:</strong></p>
+<ul>
+<li>"Lovely to see you — how was your journey?"</li>
+<li>"I've booked a table by the window — I hope that's alright."</li>
+<li>"Would you like to start with a drink?"</li>
+</ul>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Small talk topics (safe):</strong> travel, weather, food, Paris, your client's home country, culture, sport.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Small talk topics (avoid):</strong> politics, religion, personal money matters, other clients.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Transitioning to business:</strong></p>
+<ul>
+<li>"Shall we order first, and then talk about the contract?"</li>
+<li>"I thought we'd enjoy lunch first — shall we get down to business afterwards?"</li>
+<li>"Now that we've eaten, let me walk you through the document."</li>
+</ul>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Closing:</strong></p>
+<ul>
+<li>"Thank you for a lovely lunch — shall we arrange a follow-up at the office?"</li>
+<li>"I'll send you the summary by Thursday. Does that work for you?"</li>
+</ul>
+
+  </div>
+</section>
+<section class="slide" data-slide="11">
+  <div class="card glass">
+    <div class="part-badge">International Clients</div>
+    <h2 class="glow-text">Dealing with International Clients</h2>
+<p><strong style="color:var(--cs-accent)">Cultural awareness:</strong></p>
+<ul>
+<li><strong>British clients:</strong> Prefer formality, understatement, and clear explanations of French differences. Avoid overly direct language.</li>
+<li><strong>American clients:</strong> May be more casual — but still expect professional expertise. They may use "notary public" loosely — gently correct them.</li>
+<li><strong>Other EU clients:</strong> May know some French law — ask what they already understand before explaining.</li>
+<li><strong>Non-European clients:</strong> French inheritance law may be completely unfamiliar — explain the basics first.</li>
+</ul>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Clarifying without being condescending:</strong></p>
+<ul>
+<li>"In French law, this works slightly differently — let me explain."</li>
+<li>"I want to make sure this is clear — would you like me to go over that again?"</li>
+<li>"That's a good question — many of our international clients ask the same thing."</li>
+</ul>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">When to slow down:</strong></p>
+<ul>
+<li>When explaining inheritance rules</li>
+<li>When discussing tax obligations</li>
+<li>When the document has multiple parties</li>
+<li>When the client looks uncertain — always check</li>
+</ul>
+
+  </div>
+</section>
+<section class="slide" data-slide="12">
+  <div class="card glass">
+    <div class="part-badge">Common Mistakes</div>
+    <h2 class="glow-text">What NOT to Say</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">These are the most common mistakes French notaries make. Learn them — and avoid them.</p>
+
+<div class="dont-do"><strong>DON'T:</strong> "We have a <span class='tooltip' data-def='appointment — NOT rendez-vous in English'>rendez-vous</span> at the restaurant."<br><strong>DO:</strong> "We have an appointment at the restaurant." or "We're meeting at the restaurant."</div>
+
+<div class="dont-do"><strong>DON'T:</strong> "I am a <span class='tooltip' data-def='a very different role — not the same as a French notaire'>notary public</span>."<br><strong>DO:</strong> "I am a notaire — a French public officer. It's a different role from a notary public in your country."</div>
+
+<div class="dont-do"><strong>DON'T:</strong> "I'll prepare the <span class='tooltip' data-def='wrong term — use deed or authentic act'>contract</span> for the house."<br><strong>DO:</strong> "I'll prepare the authentic deed of sale for the property."</div>
+
+<div class="dont-do"><strong>DON'T:</strong> "This is a <span class='tooltip' data-def='use testament or explain will'>testament</span> — it's a will."<br><strong>DO:</strong> "This is a testament — the French equivalent of a formal will."</div>
+
+<div class="dont-do"><strong>DON'T:</strong> "We'll have a <span class='tooltip' data-def='use meeting or appointment'>meeting</span> — no, a rendez-vous."<br><strong>DO:</strong> "We'll have an appointment at 10am." or "We're meeting at 10am."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="13">
+  <div class="card glass">
+    <div class="part-badge">Practice</div>
+    <h2 class="glow-text">Weak vs Strong</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Fix these common mistakes.</p>
+<div class="question">1. "I am a notary public in France." — What's wrong?</div>
+<div class="hidden-answer">A "notary public" in the UK or US is a very different role — they witness signatures but don't draft legal documents or give legal advice. A French notaire is a public officer with far more authority. Say: "I am a notaire — a French public officer. It's not exactly the same as a notary public in your country."</div>
+<div class="question">2. Rewrite: "We have a rendez-vous at the restaurant to sign the contract for the house."</div>
+<div class="hidden-answer">"We have an appointment at the restaurant to sign the authentic deed for the property."</div>
+<div class="question">3. What's missing here? "This is your testament — it's the same as a will. Sign here."</div>
+<div class="hidden-answer">The explanation is too brief, and French testament formalities are different from English wills. The notaire should explain: what a testament authentique is, how it differs from a simple will, the formal requirements (notary + 2 witnesses), and the client's right to modify it later.</div>
+<button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+
+  </div>
+</section>
+<section class="slide" data-slide="14">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary &amp; Homework</div>
+    <h2 class="glow-text">Key Vocabulary &amp; Homework</h2>
+<p><strong style="color:var(--cs-accent)">authentic act</strong> — a deed signed before a notary, with full legal authority</p>
+<p><strong style="color:var(--cs-accent)">deed</strong> — a legal document that transfers ownership</p>
+<p><strong style="color:var(--cs-accent)">testament</strong> — a formal will, signed before witnesses</p>
+<p><strong style="color:var(--cs-accent)">power of attorney</strong> — a document giving someone authority to act for you</p>
+<p><strong style="color:var(--cs-accent)">estate</strong> — everything a person leaves behind when they die</p>
+<p><strong style="color:var(--cs-accent)">apostille</strong> — an international certification that makes a document valid in another country</p>
+<p><strong style="color:var(--cs-accent)">heir</strong> — a person legally entitled to inherit</p>
+<div class="question" style="margin-top:14px">Homework</div>
+<p>Write a 5-section restaurant meeting script for a testament discussion with an English-speaking client. Include: (1) arrival and small talk, (2) ordering, (3) transitioning to business, (4) explaining the testament in plain English, (5) closing and follow-up. Use at least 8 phrases from this deck. Practise aloud three times.</p>
+
+  </div>
+</section>
+</main>
+
+<div class="nav-btns">
+  <button onclick="prev()" id="prevBtn">← Back</button>
+  <span class="timer" id="slideCounter">1 / 15</span>
+  <button onclick="next()" id="nextBtn">Next →</button>
+</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1 -9.473 -9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+
+var current=0, slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){
+  if(n<0||n>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('modelAnswersBtn').classList.toggle('show',n===1);
+  document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;
+  document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('nextBtn').disabled=current===slides.length-1;
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    progress['notary-documents-meetings']=current;
+    localStorage.setItem('fce-progress',JSON.stringify(progress));
+  }catch(e){}
+}
+function next(){goTo(current+1);}
+function prev(){goTo(current-1);}
+document.getElementById('modelAnswersBtn').addEventListener('click',function(){
+  var slide=slides[current]; if(!slide) return;
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  this.textContent=allOpen?'Reveal model answers':'Hide model answers';
+});
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.reveal-btn');
+  if(btn){
+    var ans=btn.parentElement.querySelector('.hidden-answer');
+    if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
+  }
+});
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
+var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
+function matchClick(el,side){
+  if(el.classList.contains('matched')) return;
+  var grid=el.closest('.match-grid');
+  grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+  if(matchA && matchA!==el){
+    var aSide=matchA.dataset.side, bSide=el.dataset.side;
+    if(aSide!==bSide && matchA.dataset.pair===el.dataset.pair){
+      matchA.classList.remove('selected'); matchA.classList.add('matched');
+      el.classList.remove('selected'); el.classList.add('matched');
+      matchA=null;
+      var total=grid.querySelectorAll('.match-cell').length;
+      var done=grid.querySelectorAll('.match-cell.matched').length;
+      var st=grid.parentElement.querySelector('.match-status');
+      if(st) st.textContent='Matched '+done+' / '+(total/2)+' pairs';
+      if(done>=total && st){ st.innerHTML='<strong>All matched!</strong> Well done.'; }
+    }else{
+      matchA.classList.add('wrong'); el.classList.add('wrong');
+      var prev=matchA;
+      setTimeout(function(){ prev.classList.remove('wrong','selected'); el.classList.remove('wrong','selected'); matchA=null; },500);
+    }
+  }else{ matchA=el; }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var saved=progress['notary-documents-meetings'];
+    if(typeof saved==='number' && saved>=0) goTo(saved);
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m){ document.getElementById('loadingScreen').classList.add('hidden'); document.getElementById('slides').classList.remove('hidden'); return; }
+  var img=new Image();
+  img.onload=img.onerror=function(){
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('slides').classList.remove('hidden');
+  };
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
