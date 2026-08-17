@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Plant Tour Ambassador — Articulate Professional English B2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:8px 16px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.75rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.proposal{background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:16px 18px;font-size:.95rem;line-height:1.65}
+.proposal-head{border-bottom:1px solid var(--cs-border);padding-bottom:10px;margin-bottom:12px}
+.proposal-head .p-title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;letter-spacing:.02em}
+.proposal-head .p-meta{font-size:.78rem;color:var(--cs-text-muted);margin-top:4px}
+.proposal .sec{margin-bottom:10px}
+.proposal .sec b{color:var(--cs-accent);font-weight:700}
+.proposal ul{margin:4px 0 4px 18px;padding:0;list-style:none}
+.proposal ul li::before{content:'— ';color:var(--cs-accent)}
+.proposal .p-cost{display:inline-block;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);border-radius:8px;padding:1px 8px;font-weight:700;color:var(--cs-accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.95rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.85rem;color:var(--cs-text-muted)}
+.diagram-box{background:color-mix(in srgb,var(--cs-bg) 50%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:18px;margin:14px 0;overflow-x:auto}
+.diagram-box svg{max-width:100%;height:auto}
+.diagram-caption{font-size:.8rem;color:var(--cs-text-muted);margin-top:10px;font-style:italic}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}.nav-btns button{padding:6px 12px;font-size:.95rem}.model-answers-btn{bottom:5.5em;right:.5em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Professional English · B2</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Plant Tour Ambassador</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Confidently guide international partners through your chemical plant — from the first welcome to the final handshake.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+  <div class="card glass">
+    <div class="part-badge">Warm-Up</div>
+    <h2 class="glow-text">Warm-Up — The Plant Tour</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
+<div class="question">1. Have you ever given a tour of your workplace to a visitor? How did it feel?</div>
+<div class="hidden-answer">Many people feel nervous at first — especially when the visitors are senior partners from another country. The key is preparation: know your process, plan your route, and practise your key phrases until they feel natural.</div>
+<div class="question">2. What makes visitors feel welcome during a plant tour?</div>
+<div class="hidden-answer">A warm greeting, clear explanations, attention to safety, and genuine enthusiasm for the work. Visitors remember how you made them feel — not just what they saw.</div>
+<div class="question">3. Why is safety language important when guiding non-experts?</div>
+<div class="hidden-answer">Visitors may not know the hazards. Clear, confident safety instructions protect them and show that your company takes responsibility seriously. It builds trust.</div>
+<div class="question">4. How do you explain a technical process to someone who is not an engineer?</div>
+<div class="hidden-answer">Use simple comparisons, avoid jargon, focus on the purpose and the result, and check understanding. A good tour guide makes complex processes feel accessible — not overwhelming.</div>
+<div style="margin-top:18px"><strong style="color:var(--cs-accent)">Useful phrases:</strong><br><span class="phrase-chip">Welcome to our facility.</span><span class="phrase-chip">If you'd like to follow me…</span><span class="phrase-chip">The key thing to notice here is…</span><span class="phrase-chip">I'd like to draw your attention to…</span><span class="phrase-chip">We take great pride in…</span></div>
+
+  </div>
+</section>
+<section class="slide" data-slide="2">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 1</div>
+    <h2 class="glow-text">Match the Word — Plant Processes</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">electrolysis</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">splitting water into hydrogen and oxygen using electricity</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">liquefaction</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">cooling a gas until it becomes a liquid</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">cathode</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">the negative electrode where hydrogen collects</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">anode</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">the positive electrode where oxygen collects</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">cryogenic</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">relating to very low temperatures</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">feedstock</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">the raw material supplied to a process</div>
+    </div>
+    <div class="match-status" id="matchStatus1">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns1">1 electrolysis — splitting water into hydrogen and oxygen using electricity · 2 liquefaction — cooling a gas until it becomes a liquid · 3 cathode — the negative electrode where hydrogen collects · 4 anode — the positive electrode where oxygen collects · 5 cryogenic — relating to very low temperatures · 6 feedstock — the raw material supplied to a process</div>
+  </div>
+</section>
+<section class="slide" data-slide="3">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 2</div>
+    <h2 class="glow-text">Match the Phrase — Tour Language</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">Welcome aboard.</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">A warm greeting to start the tour</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">If you'd like to follow me…</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">Polite way to invite visitors to walk with you</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">The key thing to notice here is…</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">Directing attention to an important detail</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">I'd like to draw your attention to…</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">Formal way to highlight something specific</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">Rest assured that…</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">Reassuring a visitor about safety or quality</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">We take great pride in…</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">Expressing genuine company pride</div>
+    </div>
+    <div class="match-status" id="matchStatus2">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns2">1 Welcome aboard — a warm greeting to start the tour · 2 If you'd like to follow me — polite way to invite visitors to walk with you · 3 The key thing to notice here is — directing attention to an important detail · 4 I'd like to draw your attention to — formal way to highlight something specific · 5 Rest assured that — reassuring a visitor about safety or quality · 6 We take great pride in — expressing genuine company pride</div>
+  </div>
+</section>
+<section class="slide" data-slide="4">
+  <div class="card glass">
+    <div class="part-badge">Reading</div>
+    <h2 class="glow-text">A Real Plant Tour Script</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Read this tour script from ItalChimica S.p.A. Notice how the guide moves from welcome to closing — and how each section has a clear purpose.</p>
+<div class="proposal">
+  <div class="proposal-head">
+    <div class="p-title">ItalChimica S.p.A. — Hydrogen Production Plant Tour</div>
+    <div class="p-meta">Guide: Plant Tour Ambassador &nbsp;·&nbsp; Visitors: US &amp; UK Partners &nbsp;·&nbsp; Duration: 45 minutes</div>
+  </div>
+  <div class="sec"><b>1. Welcome &amp; Safety Briefing</b> — "Welcome to ItalChimica. My name is [Name], and I'll be your guide today. Before we begin, please ensure your safety glasses and helmets are secured. The tour will take approximately 45 minutes, and I'll explain each stage of our hydrogen production process. If you have any questions at any point, please don't hesitate to ask."</div>
+  <div class="sec"><b>2. Electrolysis Hall</b> — "This is our electrolysis hall. We split water into hydrogen and oxygen using a controlled electric current. The hydrogen gas you see collecting at the cathode is 99.9% pure. We process 500 cubic metres per hour. The key thing to notice here is the membrane in the centre — it allows ions to pass through but keeps the two gases completely separate."</div>
+  <div class="sec"><b>3. Purification &amp; Compression</b> — "The hydrogen then passes through our purification unit, where any remaining moisture and oxygen are removed. After purification, the gas is compressed to 20 bar for the next stage. I'd like to draw your attention to the pressure gauges on the left — they're monitored continuously by our control room."</div>
+  <div class="sec"><b>4. Liquefaction Cold Box</b> — "This is our cold box, where hydrogen gas is cooled from ambient temperature down to minus 253 degrees Celsius — that's just 20 degrees above absolute zero. At this temperature, hydrogen condenses into a liquid. The process uses liquid nitrogen for precooling to 80 Kelvin, and expansion turbines for the final cooling stage. Rest assured that the entire system is vacuum-insulated for safety and efficiency."</div>
+  <div class="sec"><b>5. Storage &amp; Loading</b> — "The liquid hydrogen is stored in vacuum-insulated tanks at atmospheric pressure. From here, it's loaded onto cryogenic tankers for transport. Our storage capacity is 200 tonnes. We take great pride in our safety record — we've had zero incidents in over 10 years of operation."</div>
+  <div class="sec"><b>6. Closing &amp; Q&amp;A</b> — "Thank you for visiting ItalChimica today. I hope this tour has given you a clear understanding of our production capabilities and our commitment to safety. I'd be happy to answer any questions you may have about our processes, our standards, or our future projects. Before you leave, please help yourselves to refreshments in the reception area."</div>
+</div>
+<button class="reveal-btn">Show answer</button>
+<div class="hidden-answer">The script follows a clear structure: welcome and safety first, then each production stage in order (electrolysis → purification → liquefaction → storage), and a warm closing with Q&A. Each section has a purpose: inform, demonstrate expertise, reassure about safety, and build trust. The guide uses confident, professional language throughout — and always directs attention to what matters most.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="5">
+  <div class="card glass">
+    <div class="part-badge">Key Component 1</div>
+    <h2 class="glow-text">Opening the Tour</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> The first two minutes of your tour — greeting visitors, setting the agenda, and establishing your credibility as a guide.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> First impressions are powerful. A confident opening tells visitors they are in safe hands and that the tour will be worth their time.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "Welcome to ItalChimica. My name is [Name], and I'll be your guide today. We'll visit four areas of the plant, and I'll explain each stage of the process. The tour takes about 45 minutes."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Always open with three things: your name, the tour route, and the time. This gives visitors a mental map and reduces anxiety. Smile, make eye contact, and speak slightly slower than normal — especially with international guests who may need a moment to process.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="6">
+  <div class="card glass">
+    <div class="part-badge">Key Component 2</div>
+    <h2 class="glow-text">Describing Processes</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Explaining how a process works — step by step — in clear, accessible language that non-experts can follow.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Visitors remember the story of the process, not the technical details. A clear explanation shows mastery and builds confidence in your operation.</p>
+<p style="margin-top:10px"><strong style="color="color:var(--cs-accent)"">Example:</strong> "First, water enters the electrolyser. Then, an electric current splits it into hydrogen and oxygen. The hydrogen collects at the cathode, and the oxygen collects at the anode. Once this is complete, the hydrogen moves to the purification unit."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use sequencing phrases: <em>first, then, next, once this is complete, the next stage is, finally</em>. Avoid jargon — or if you must use a technical term, explain it immediately. "This is the cathode — the negative electrode where hydrogen gas collects."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="7">
+  <div class="card glass">
+    <div class="part-badge">Key Component 3</div>
+    <h2 class="glow-text">Safety &amp; Compliance Language</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> The phrases you use to keep visitors safe, reassure them, and show that your company meets international standards.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Safety language is not optional — it is a legal and moral requirement. Clear, confident safety instructions protect visitors and demonstrate professionalism.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "Please keep to the marked walkway at all times. If you hear the alarm, follow me immediately to the assembly point. Rest assured that this is a standard procedure — we practise it every month."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use <em>please</em> and <em>rest assured</em> to sound firm but polite. Never joke about safety — visitors need to trust that you take it seriously. Mention your safety record if it is strong: "We've operated without incident for over 10 years."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="8">
+  <div class="card glass">
+    <div class="part-badge">Key Component 4</div>
+    <h2 class="glow-text">Being a Company Ambassador</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Representing your company with pride, handling difficult questions, and building trust with international partners.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> You are not just explaining a process — you are showing visitors that your company is professional, reliable, and worth doing business with.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "We take great pride in our environmental standards. Our electrolysis process produces zero carbon emissions — the only byproduct is oxygen, which we capture and supply to local hospitals."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Pride is professional. Saying "we take great pride in" is stronger than "we are proud of" — it sounds more formal and more confident. If you don't know the answer to a question, say: "That's an excellent question — let me find the right person to answer that for you."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="9">
+  <div class="card glass">
+    <div class="part-badge">Key Component 5</div>
+    <h2 class="glow-text">The Diagram Slides</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Use these diagrams to help visitors visualise the processes you are describing. Point to each stage as you explain it.</p>
+
+<div class="diagram-box">
+<svg viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:500px">
+  <!-- Cell body -->
+  <rect x="100" y="40" width="300" height="200" rx="12" fill="none" stroke="var(--cs-accent)" stroke-width="2" opacity=".6"/>
+  <!-- Membrane -->
+  <line x1="250" y1="50" x2="250" y2="230" stroke="var(--cs-accent)" stroke-width="3" stroke-dasharray="6,4"/>
+  <text x="250" y="35" text-anchor="middle" fill="var(--cs-accent)" font-size="11" font-family="Inter,sans-serif">Membrane</text>
+  <!-- Anode (left) -->
+  <rect x="120" y="100" width="20" height="80" rx="4" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="130" y="195" text-anchor="middle" fill="var(--cs-accent)" font-size="11" font-family="Inter,sans-serif">Anode (+)</text>
+  <!-- Cathode (right) -->
+  <rect x="360" y="100" width="20" height="80" rx="4" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="370" y="195" text-anchor="middle" fill="var(--cs-accent)" font-size="11" font-family="Inter,sans-serif">Cathode (-)</text>
+  <!-- O2 bubbles left -->
+  <circle cx="155" cy="90" r="6" fill="none" stroke="var(--cs-green)" stroke-width="1.5"/>
+  <circle cx="170" cy="75" r="5" fill="none" stroke="var(--cs-green)" stroke-width="1.5"/>
+  <circle cx="148" cy="70" r="4" fill="none" stroke="var(--cs-green)" stroke-width="1.5"/>
+  <text x="160" y="55" text-anchor="middle" fill="var(--cs-green)" font-size="10" font-family="Inter,sans-serif">O2</text>
+  <!-- H2 bubbles right -->
+  <circle cx="345" cy="85" r="6" fill="none" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <circle cx="330" cy="70" r="5" fill="none" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <circle cx="355" cy="65" r="4" fill="none" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="340" y="50" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">H2</text>
+  <!-- Power supply -->
+  <rect x="215" y="245" width="70" height="25" rx="4" fill="var(--cs-bg-card)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="250" y="262" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">DC Power</text>
+  <!-- Wires -->
+  <line x1="250" y1="245" x2="130" y2="140" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <line x1="250" y1="245" x2="370" y2="140" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <!-- Water inlet -->
+  <text x="250" y="225" text-anchor="middle" fill="var(--cs-text-muted)" font-size="10" font-family="Inter,sans-serif">H2O in</text>
+  <!-- Labels -->
+  <text x="200" y="150" text-anchor="middle" fill="var(--cs-text-muted)" font-size="10" font-family="Inter,sans-serif">Alkaline</text>
+  <text x="300" y="150" text-anchor="middle" fill="var(--cs-text-muted)" font-size="10" font-family="Inter,sans-serif">Solution</text>
+</svg>
+<div class="diagram-caption">Diagram A: Electrolysis Cell — Water (H2O) is split by an electric current. Hydrogen (H2) collects at the cathode (-), oxygen (O2) at the anode (+). The membrane keeps the gases separate.</div>
+</div>
+
+<div class="diagram-box">
+<svg viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:600px">
+  <!-- Flow boxes -->
+  <rect x="10" y="60" width="90" height="60" rx="8" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="55" y="85" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Feed Gas</text>
+  <text x="55" y="100" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">H2 in</text>
+
+  <rect x="120" y="60" width="90" height="60" rx="8" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="165" y="85" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Purifier</text>
+  <text x="165" y="100" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">remove H2O, O2</text>
+
+  <rect x="230" y="60" width="90" height="60" rx="8" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="275" y="85" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Compressor</text>
+  <text x="275" y="100" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">20 bar</text>
+
+  <rect x="340" y="60" width="90" height="60" rx="8" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="385" y="85" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Cold Box</text>
+  <text x="385" y="100" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">80K precool</text>
+
+  <rect x="450" y="60" width="90" height="60" rx="8" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="495" y="85" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Cold Box</text>
+  <text x="495" y="100" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">20K deep cool</text>
+
+  <!-- Arrows -->
+  <line x1="100" y1="90" x2="118" y2="90" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="210" y1="90" x2="228" y2="90" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="320" y1="90" x2="338" y2="90" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="430" y1="90" x2="448" y2="90" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- J-T Valve and tank -->
+  <rect x="560" y="75" width="35" height="30" rx="4" fill="var(--cs-bg-card)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="577" y="94" text-anchor="middle" fill="var(--cs-accent)" font-size="8" font-family="Inter,sans-serif">J-T</text>
+
+  <!-- Storage tank -->
+  <ellipse cx="400" cy="180" rx="80" ry="25" fill="var(--cs-accent-dim)" stroke="var(--cs-accent)" stroke-width="1.5"/>
+  <text x="400" y="175" text-anchor="middle" fill="var(--cs-accent)" font-size="10" font-family="Inter,sans-serif">Storage Tank</text>
+  <text x="400" y="190" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">Liquid H2 — 200 tonnes</text>
+
+  <!-- Arrow from cold box 2 to tank -->
+  <path d="M495 120 Q495 150 480 170" fill="none" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Arrow from cold box 1 to cold box 2 -->
+  <line x1="430" y1="90" x2="448" y2="90" stroke="var(--cs-accent)" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Temperature labels -->
+  <text x="55" y="140" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">25°C</text>
+  <text x="165" y="140" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">25°C</text>
+  <text x="275" y="140" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">20 bar</text>
+  <text x="385" y="140" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">-193°C</text>
+  <text x="495" y="140" text-anchor="middle" fill="var(--cs-text-muted)" font-size="9" font-family="Inter,sans-serif">-253°C</text>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="none" stroke="var(--cs-accent)" stroke-width="1.5"/>
+    </marker>
+  </defs>
+</svg>
+<div class="diagram-caption">Diagram B: Hydrogen Liquefaction Process — Feed gas is purified, compressed, then cooled in two stages (80K precool, 20K deep cool) before passing through a Joule-Thomson valve into the storage tank as liquid hydrogen.</div>
+</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="10">
+  <div class="card glass">
+    <div class="part-badge">Key Component 6</div>
+    <h2 class="glow-text">Closing &amp; Follow-Up</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> The final minutes of your tour — summarising the visit, thanking partners, and setting up the next step.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> A strong closing leaves visitors feeling positive and professional. It is also the perfect moment to reinforce your key message and agree on next steps.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "Thank you for visiting ItalChimica today. I hope this tour has given you confidence in our production capabilities. I'll send you the technical specifications by Thursday, and we can schedule a follow-up call whenever suits you."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Always end with three things: a thank-you, a summary of what they saw, and a clear next step. Follow up within 24 hours with a brief email — it shows professionalism and keeps the relationship warm.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="11">
+  <div class="card glass">
+    <div class="part-badge">Analysis</div>
+    <h2 class="glow-text">What Makes a Plant Tour Great?</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">A great plant tour passes these six tests. Which ones would your tour pass?</p>
+<div class="question">Prepared — you know the route, the key points, and the answers to likely questions.</div>
+<div class="question">Safe — visitors are protected, informed, and confident throughout.</div>
+<div class="question">Clear — every process is explained in accessible language, with no unexplained jargon.</div>
+<div class="question">Confident — you speak with authority and genuine pride in your work.</div>
+<div class="question">Professional — you represent your company with warmth and competence.</div>
+<div class="question">Memorable — visitors leave with a clear story they can tell others.</div>
+<button class="reveal-btn">Show checklist</button>
+<div class="hidden-answer">Test your tour with one question: "If I were a visitor from another country, would I feel welcome, safe, and impressed?" If the answer is yes, you are ready. Practise aloud at least three times before the real tour — confidence comes from repetition.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="12">
+  <div class="card glass">
+    <div class="part-badge">Practice</div>
+    <h2 class="glow-text">Weak vs Strong</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Improve these weak tour phrases.</p>
+<div class="question">1. Weak: "This is a machine. It does stuff." — What makes this weak?</div>
+<div class="hidden-answer">It is vague, unprofessional, and gives the visitor no useful information. It suggests the guide does not understand the process — or does not care to explain it.</div>
+<div class="question">2. Rewrite: "This is the cold box. It's very cold." — Make this stronger.</div>
+<div class="hidden-answer">"This is our cold box, where hydrogen gas is cooled to minus 253 degrees Celsius — just 20 degrees above absolute zero. At this temperature, the gas condenses into a liquid, which is far easier to store and transport."</div>
+<div class="question">3. Which elements are missing here? "That's the storage area. Any questions?"</div>
+<div class="hidden-answer">The capacity, the safety features, the purpose, and the pride are all missing. The visitor learns nothing and the guide misses an opportunity to demonstrate expertise. A strong closing adds value: "Our storage capacity is 200 tonnes, and we've maintained zero incidents in over 10 years of operation."</div>
+<button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+
+  </div>
+</section>
+<section class="slide" data-slide="13">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary &amp; Homework</div>
+    <h2 class="glow-text">Key Vocabulary &amp; Homework</h2>
+<p><strong style="color:var(--cs-accent)">electrolysis</strong> — the process of splitting water into hydrogen and oxygen using an electric current</p>
+<p><strong style="color:var(--cs-accent)">liquefaction</strong> — the process of cooling a gas until it becomes a liquid</p>
+<p><strong style="color:var(--cs-accent)">cathode</strong> — the negative electrode in an electrolytic cell</p>
+<p><strong style="color:var(--cs-accent)">anode</strong> — the positive electrode in an electrolytic cell</p>
+<p><strong style="color:var(--cs-accent)">cryogenic</strong> — relating to very low temperatures, typically below -150°C</p>
+<p><strong style="color:var(--cs-accent)">feedstock</strong> — the raw material supplied to a process</div>
+<p><strong style="color:var(--cs-accent)">compliance</strong> — the act of following rules, standards, or laws</p>
+<div class="question" style="margin-top:14px">Homework</div>
+<p>Write a 6-section tour script for one process at your plant. Include: (1) a welcome and safety briefing, (2) an opening that sets the agenda, (3) a clear description of the process using sequencing phrases, (4) a diagram with labels, (5) a section showing company pride, and (6) a closing with next steps. Practise aloud at least three times. Bring the script to class ready to present in five minutes.</p>
+
+  </div>
+</section>
+</main>
+
+<div class="nav-btns">
+  <button onclick="prev()" id="prevBtn">← Back</button>
+  <span class="timer" id="slideCounter">1 / 14</span>
+  <button onclick="next()" id="nextBtn">Next →</button>
+</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+
+var current=0, slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){
+  if(n<0||n>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('modelAnswersBtn').classList.toggle('show',n===1);
+  document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;
+  document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('nextBtn').disabled=current===slides.length-1;
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    progress['plant-tour-ambassador']=current;
+    localStorage.setItem('fce-progress',JSON.stringify(progress));
+  }catch(e){}
+}
+function next(){goTo(current+1);}
+function prev(){goTo(current-1);}
+document.getElementById('modelAnswersBtn').addEventListener('click',function(){
+  var slide=slides[current]; if(!slide) return;
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  this.textContent=allOpen?'Reveal model answers':'Hide model answers';
+});
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.reveal-btn');
+  if(btn){
+    var ans=btn.parentElement.querySelector('.hidden-answer');
+    if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
+  }
+});
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
+var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
+function matchClick(el,side){
+  if(el.classList.contains('matched')) return;
+  var grid=el.closest('.match-grid');
+  grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+  if(matchA && matchA!==el){
+    var aSide=matchA.dataset.side, bSide=el.dataset.side;
+    if(aSide!==bSide && matchA.dataset.pair===el.dataset.pair){
+      matchA.classList.remove('selected'); matchA.classList.add('matched');
+      el.classList.remove('selected'); el.classList.add('matched');
+      matchA=null;
+      var total=grid.querySelectorAll('.match-cell').length;
+      var done=grid.querySelectorAll('.match-cell.matched').length;
+      var st=grid.parentElement.querySelector('.match-status');
+      if(st) st.textContent='Matched '+done+' / '+(total/2)+' pairs';
+      if(done>=total && st){ st.innerHTML='<strong>All matched!</strong> Well done.'; }
+    }else{
+      matchA.classList.add('wrong'); el.classList.add('wrong');
+      var prev=matchA;
+      setTimeout(function(){ prev.classList.remove('wrong','selected'); el.classList.remove('wrong','selected'); matchA=null; },500);
+    }
+  }else{ matchA=el; }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var saved=progress['plant-tour-ambassador'];
+    if(typeof saved==='number' && saved>=0) goTo(saved);
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m){ document.getElementById('loadingScreen').classList.add('hidden'); document.getElementById('slides').classList.remove('hidden'); return; }
+  var img=new Image();
+  img.onload=img.onerror=function(){
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('slides').classList.remove('hidden');
+  };
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
