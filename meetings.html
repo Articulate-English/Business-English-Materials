@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Business Meetings — Articulate English B2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;--cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;--cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);}
+*{margin:0;padding:0;box-sizing:border-box}html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden;font-size:2rem}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;color:var(--cs-accent);transition:transform .15s;display:flex;align-items:center;justify-content:center}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%)}
+.slide{display:none}.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.92rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,var(--cs-bg) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px}
+.nav-btns button:disabled{opacity:.4;cursor:default}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s}
+.formula-box{background:linear-gradient(135deg,var(--cs-accent-dim),var(--cs-bg));border:2px solid var(--cs-accent-glow);border-radius:14px;padding:1.2em 1.6em;margin:1em 0;text-align:center}
+.formula-main{font-weight:700;color:var(--cs-accent);font-size:1.2rem}
+.formula-note{font-size:.85rem;color:var(--cs-text-muted);margin-top:.4em}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1em 0}
+.pv-card{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:1em}
+.pv-word{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;margin-bottom:4px}
+.pv-def{font-size:.92rem;color:var(--cs-text);margin-bottom:6px}
+.pv-ex{font-size:.85rem;color:var(--cs-text-muted);font-style:italic}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid,.pv-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" aria-label="Cycle theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2m-7.07-7.07l1.41 1.41m12.2 1.41l1.41 1.41M2 12h2m16 0h2m-7.07 7.07l-1.41 1.41M4.93 4.93l1.41 1.41"/></svg></button>
+<main id="slides" class="hidden">
+
+<section class="slide active" data-slide="0">
+  <div class="card glass" style="text-align:center;margin-top:10vh">
+    <div class="part-badge">Business English B2</div>
+    <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Business Meetings</h1>
+    <p style="color:var(--cs-text-muted);font-size:1rem;max-width:560px;margin:0 auto 24px">Run and participate in meetings with confidence. Learn the language for opening, managing discussion, asking for clarification, and agreeing actions — plus the cultural rules international students often miss.</p>
+    <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+  </div>
+</section>
+
+<section class="slide" data-slide="1">
+  <div class="card glass">
+    <div class="part-badge">Warm-Up</div>
+    <h2 class="glow-text">Why Do Meetings Matter?</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the answers.</p>
+    <div class="formula-box"><div class="formula-main">A Meeting = Purposeful Conversation</div><div class="formula-note">A meeting is a structured discussion with a goal: to share information, make a decision, or solve a problem. The key skill is not speaking — it is knowing when and how to speak.</div></div>
+    <div class="question">1. Why do international professionals find English meetings difficult, even with good English?</div>
+    <div class="hidden-answer">Because meetings are not just about language — they are about cultural rules. Who speaks first, how to disagree, when to interrupt, and what "interesting" really means vary by culture.</div>
+    <div class="question">2. What is the most common mistake non-native speakers make in meetings?</div>
+    <div class="hidden-answer">Staying silent. Many wait until they can say something perfect — but the meeting moves on. Short, clear contributions are better than long, perfect ones.</div>
+    <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+  </div>
+</section>
+
+<section class="slide" data-slide="2">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game</div>
+    <h2 class="glow-text">Match the Word — Meeting Basics</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap a word on the left, then its definition on the right. These B2 words appear in the questions on the next slides.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">agenda</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">the list of topics to discuss</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">action item</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">a task someone will do after the meeting</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">to chair</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">to lead or run a meeting</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">consensus</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">general agreement by the group</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">adjourn</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">to end a meeting officially</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">quorum</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">the minimum number of people needed to decide</div>
+    </div>
+    <div class="match-status">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer">1 agenda = list of topics. 2 action item = task after meeting. 3 to chair = lead a meeting. 4 consensus = general agreement. 5 adjourn = end a meeting. 6 quorum = minimum people needed.</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="3">
+  <div class="card glass">
+    <div class="part-badge">Key Phrases</div>
+    <h2 class="glow-text">Opening a Meeting</h2>
+    <div class="pv-grid">
+      <div class="pv-card"><div class="pv-word">Welcome</div><div class="pv-def">"Thank you all for being here today."</div><div class="pv-ex">Simple, warm, sets a positive tone.</div></div>
+      <div class="pv-card"><div class="pv-word">State purpose</div><div class="pv-def">"The purpose of this meeting is to..."</div><div class="pv-ex">Everyone knows why they are here.</div></div>
+      <div class="pv-card"><div class="pv-word">Review agenda</div><div class="pv-def">"On the agenda today, we have..."</div><div class="pv-ex">Gives structure, manages expectations.</div></div>
+      <div class="pv-card"><div class="pv-word">Set time</div><div class="pv-def">"We have 45 minutes, so let us stay focused."</div><div class="pv-ex">Respects everyone's time.</div></div>
+    </div>
+    <button class="reveal-btn">Show tip</button>
+    <div class="hidden-answer">The first two minutes set the tone for the whole meeting. Always state the purpose and the agenda — without this, people wonder why they are there and the meeting drifts.</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="4">
+  <div class="card glass">
+    <div class="part-badge">Key Phrases</div>
+    <h2 class="glow-text">Managing Discussion</h2>
+    <div class="pv-grid">
+      <div class="pv-card"><div class="pv-word">Invite input</div><div class="pv-def">"What are your thoughts on this, Maria?"</div><div class="pv-ex">Draws quieter people in by name.</div></div>
+      <div class="pv-card"><div class="pv-word">Keep on track</div><div class="pv-def">"That is an important point — can we come back to the agenda?"</div><div class="pv-ex">Respectful redirection.</div></div>
+      <div class="pv-card"><div class="pv-word">Summarise</div><div class="pv-def">"So what I am hearing is..."</div><div class="pv-ex">Shows you were listening, clarifies.</div></div>
+      <div class="pv-card"><div class="pv-word">Parking lot</div><div class="pv-def">"Let us put that in the parking lot for now."</div><div class="pv-ex">Acknowledges without derailing.</div></div>
+    </div>
+    <button class="reveal-btn">Show tip</button>
+    <div class="hidden-answer">The biggest meeting killer is the person who talks too much. If someone is going long, interrupt politely: "Sorry to interrupt — can we capture that and come back to the main point?"</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="5">
+  <div class="card glass">
+    <div class="part-badge">Key Phrases</div>
+    <h2 class="glow-text">Asking for Clarification</h2>
+    <div class="pv-grid">
+      <div class="pv-card"><div class="pv-word">Check understanding</div><div class="pv-def">"Do you mean that...?"</div><div class="pv-ex">Paraphrases to confirm.</div></div>
+      <div class="pv-card"><div class="pv-word">Ask for example</div><div class="pv-def">"Could you give us a concrete example?"</div><div class="pv-ex">Moves from abstract to specific.</div></div>
+      <div class="pv-card"><div class="pv-word">Slow down</div><div class="pv-def">"Sorry, could you go over that last point again?"</div><div class="pv-ex">Everyone needs to catch up sometimes.</div></div>
+      <div class="pv-card"><div class="pv-word">Admit confusion</div><div class="pv-def">"I am not sure I follow — could you clarify?"</div><div class="pv-ex">Better to ask than to guess.</div></div>
+    </div>
+    <button class="reveal-btn">Show tip</button>
+    <div class="hidden-answer">Non-native speakers often stay silent when they do not understand — then struggle later. Asking "Could you clarify?" or "Do you mean that...?" is professional, not weak. Native speakers do it constantly.</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="6">
+  <div class="card glass">
+    <div class="part-badge">Exercise</div>
+    <h2 class="glow-text">Choose the Right Phrase</h2>
+    <div class="question">1. You are chairing and need to start. Which phrase from slide 3 fits?</div>
+    <div class="hidden-answer">"Thank you all for being here. The purpose of this meeting is to review Q3 results, and on the agenda today we have three items. We have 40 minutes, so let us stay focused."</div>
+    <div class="question">2. A colleague is talking too long. Use a phrase from slide 4.</div>
+    <div class="hidden-answer">"Sorry to interrupt — that is an important point. Can we put it in the parking lot and come back to it?"</div>
+    <div class="question">3. You did not understand what someone meant. Use a phrase from slide 5.</div>
+    <div class="hidden-answer">"Sorry, could you go over that last point again? I want to make sure I understand correctly."</div>
+    <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+  </div>
+</section>
+
+<section class="slide" data-slide="7">
+  <div class="card glass">
+    <div class="part-badge">Key Phrases</div>
+    <h2 class="glow-text">Closing a Meeting</h2>
+    <div class="pv-grid">
+      <div class="pv-card"><div class="pv-word">Summarise decisions</div><div class="pv-def">"To summarise: we have decided on X, Y, and Z."</div><div class="pv-ex">Everyone leaves with the same understanding.</div></div>
+      <div class="pv-card"><div class="pv-word">Assign actions</div><div class="pv-def">"Maria, could you take the lead on that?"</div><div class="pv-ex">Clear ownership, clear deadlines.</div></div>
+      <div class="pv-card"><div class="pv-word">Confirm next steps</div><div class="pv-def">"We will reconvene next Tuesday at 10."</div><div class="pv-ex">Keeps momentum between meetings.</div></div>
+      <div class="pv-card"><div class="pv-word">Close</div><div class="pv-def">"Thank you all. That concludes today's meeting."</div><div class="pv-ex">Signals the meeting is over.</div></div>
+    </div>
+    <button class="reveal-btn">Show tip</button>
+    <div class="hidden-answer">Always end with three things: what was decided, who will do what by when, and when you meet next. Without this, the meeting was just a conversation — nothing happens afterward.</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="8">
+  <div class="card glass">
+    <div class="part-badge">Homework</div>
+    <h2 class="glow-text">Practice Tasks</h2>
+    <div class="question">1. Write the opening of a meeting where your team is deciding whether to launch a new product. Use at least four phrases from this deck.</div>
+    <div class="question">2. Write the closing of the same meeting. Include decisions, action items, and next steps.</div>
+    <div class="question">3. Record yourself saying the four clarification phrases out loud. Listen back — do you sound confident or hesitant?</div>
+    <button class="reveal-btn">Show model opening</button>
+    <div class="hidden-answer">"Thank you all for joining. The purpose of this meeting is to decide whether we should launch the new product in Q2. On the agenda today we have three items: market readiness, budget, and timeline. We have 30 minutes. Let us start with market readiness — Maria, could you take us through your findings?"</div>
+  </div>
+</section>
+
+</main>
+<div class="nav-btns"><button onclick="prev()" id="prevBtn">Back</button><span class="timer" id="slideCounter">1 / 9</span><button onclick="next()" id="nextBtn">Next</button></div>
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}};
+function applyTheme(n){var t=THEMES[n];if(!t)return;var r=document.documentElement;r.style.setProperty('--cs-accent',t.accent);r.style.setProperty('--cs-bg',t.bg);r.style.setProperty('--cs-text',t.text);r.style.setProperty('--cs-bg-card',t.card);r.style.setProperty('--cs-border',t.border);r.style.setProperty('--cs-text-muted',t.text+'99');r.style.setProperty('--cs-accent-glow',t.accent+'38');r.style.setProperty('--cs-accent-dim',t.accent+'1a');try{localStorage.setItem('fce-theme',n);}catch(e){}}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){var s=localStorage.getItem('fce-theme')||'classic';var i=THEME_ORDER.indexOf(s);if(i<0)i=0;applyTheme(THEME_ORDER[(i+1)%THEME_ORDER.length]);});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+var current=0,slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){if(n<0||n>=slides.length)return;slides[current].classList.remove('active');current=n;slides[current].classList.add('active');document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';document.getElementById('prevBtn').disabled=current===0;document.getElementById('nextBtn').disabled=current===slides.length-1;try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');p['meetings']=current;localStorage.setItem('fce-progress',JSON.stringify(p));}catch(e){}}
+function next(){goTo(current+1);}function prev(){goTo(current-1);}
+document.addEventListener('click',function(e){var b=e.target.closest('.reveal-btn');if(b){var a=b.parentElement.querySelector('.hidden-answer');if(a){a.classList.toggle('open');b.textContent=a.classList.contains('open')?'Hide answer':'Show answer';}}});
+function toggleSlideAnswers(btn){var s=btn.closest('.slide');var a=s.querySelectorAll('.hidden-answer');var o=true;for(var i=0;i<a.length;i++){if(!a[i].classList.contains('open')){o=false;break;}}for(var i=0;i<a.length;i++){a[i].classList.toggle('open',!o);}btn.textContent=o?'Reveal answers':'Hide answers';}
+var matchA=null;function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+(function(){var g=document.querySelectorAll('.match-grid');for(var i=0;i<g.length;i++){var grid=g[i];var L=[],R=[];var c=grid.querySelectorAll('.match-cell');for(var j=0;j<c.length;j++){if(c[j].dataset.side==='L')L.push(c[j]);else R.push(c[j]);}shuffleArray(L);shuffleArray(R);for(var k=0;k<L.length;k++){grid.appendChild(L[k]);grid.appendChild(R[k]);}}})();
+function matchClick(el,side){if(el.classList.contains('matched'))return;var grid=el.closest('.match-grid');grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});el.classList.add('selected');if(matchA&&matchA!==el){var a=matchA.dataset.side,b=el.dataset.side;if(a!==b&&matchA.dataset.pair===el.dataset.pair){matchA.classList.remove('selected');matchA.classList.add('matched');el.classList.remove('selected');el.classList.add('matched');matchA=null;var total=grid.querySelectorAll('.match-cell').length;var done=grid.querySelectorAll('.match-cell.matched').length;var st=grid.parentElement.querySelector('.match-status');if(st)st.textContent='Matched '+done+' / '+(total/2)+' pairs';if(done>=total&&st)st.innerHTML='<strong>All matched!</strong> Well done.';}else{matchA.classList.add('wrong');el.classList.add('wrong');var prev=matchA;setTimeout(function(){prev.classList.remove('wrong','selected');el.classList.remove('wrong','selected');matchA=null;},500);}}else{matchA=el;}}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}if(e.key==='ArrowLeft'){e.preventDefault();prev();}});
+(function(){try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');var s=p['meetings'];if(typeof s==='number'&&s>=0)goTo(s);}catch(e){}})();
+(function(){var style=document.getElementById('bgLayer').getAttribute('style')||'';var m=style.match(/background-image:\s*url\(([^)]+)\)/);if(!m){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');return;}var img=new Image();img.onload=img.onerror=function(){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');};img.src=m[1].replace(/["']/g,'');})();
+</script>
+</body>
+</html>
