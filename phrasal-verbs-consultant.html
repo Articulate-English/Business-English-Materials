@@ -393,9 +393,19 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
     <div class="part-badge">Homework and Next Steps</div>
     <h2 class="glow-text">Homework</h2>
     <div class="question">1. Choose five phrasal verbs from different groups. Write one original sentence for each — a sentence you could realistically say at work next week.</div>
+    <div class="pv-grid" style="margin-top:14px">
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">set up</span><span class="pv-def">to establish, arrange, or prepare</span><span class="pv-ex" style="display:none">"We set up the project team in two weeks."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">carry out</span><span class="pv-def">to execute, conduct, perform</span><span class="pv-ex" style="display:none">"We carried out a full process audit."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">figure out</span><span class="pv-def">to understand, solve, or discover</span><span class="pv-ex" style="display:none">"We need to figure out why sales dropped."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">rule out</span><span class="pv-def">to eliminate as a possibility</span><span class="pv-ex" style="display:none">"We cannot rule out further restructuring."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">bring up</span><span class="pv-def">to mention, raise a topic</span><span class="pv-ex" style="display:none">"Can I bring up the budget issue?"</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">lay out</span><span class="pv-def">to present clearly in order</span><span class="pv-ex" style="display:none">"She laid out the proposal in ten slides."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">wind down</span><span class="pv-def">to reduce activity gradually</span><span class="pv-ex" style="display:none">"We wind down the project in December."</span></div>
+      <div class="pv-card" style="cursor:pointer" onclick="toggleEx(this)"><span class="pv-word">catch up</span><span class="pv-def">to talk with someone you haven't seen recently</span><span class="pv-ex" style="display:none">"Let us catch up after the conference."</span></div>
+    </div>
+    <p style="color:var(--cs-text-muted);font-size:.8rem;margin-top:10px">Tap a phrasal verb to see an example sentence.</p>
     <div class="question">2. Formal audit: take a recent email or report you wrote. Highlight any informal phrasal verbs. Where appropriate, replace them with their formal single-word equivalents.</div>
     <div class="question">3. Small talk practice: the next time you speak English socially, try to use at least two phrasal verbs from Group 5 (small talk). Notice how the other person reacts.</div>
-    <div class="question">4. Flashcard set: add all 40 phrasal verbs to your flashcard app — one group per week. Review for five minutes every day.</div>
     <button class="reveal-btn">Show formal equivalents cheat sheet</button>
     <div class="hidden-answer">figure out = determine / ascertain. sort out = resolve / rectify. work out = calculate / determine. come up with = devise / formulate. turn around = transform / restructure. bring up = raise / introduce. spell out = specify / clarify. call off = cancel. put off = postpone / defer. go over = review / examine. wind down = reduce / scale back. ramp up = increase / accelerate. catch up = realign / reconvene. pull off = achieve / accomplish. hang out = socialise. drop by = visit informally.</div>
   </div>
@@ -440,6 +450,7 @@ function initQuiz(){var c=document.getElementById("quizContainer");if(!c)return;
 function spawnSparkles(el){var rect=el.getBoundingClientRect();var cx=rect.left+rect.width/2;var cy=rect.top+rect.height/2;var colors=["#34d399","#fbbf24","#22d3ee","#a78bfa"];for(var i=0;i<8;i++){var s=document.createElement("div");s.className="sparkle-particle";s.style.left=cx+"px";s.style.top=cy+"px";s.style.background=colors[Math.floor(Math.random()*colors.length)];var ang=Math.random()*Math.PI*2;var dist=40+Math.random()*60;s.style.setProperty("--dx",Math.cos(ang)*dist+"px");s.style.setProperty("--dy",Math.sin(ang)*dist+"px");document.body.appendChild(s);setTimeout(function(){s.remove();},700);}}
 function showFeedback(scope,txt,ok){var fb=scope.querySelector(".quiz-feedback");if(!fb)return;fb.textContent=(ok?"Correct! ":"Not quite. ")+txt;fb.className="quiz-feedback "+(ok?"ok":"no");}
 function checkQuizDone(){if(quizAnswered>=QUIZ.length){document.getElementById("quizScore").textContent="Score: "+quizCorrect+" / "+QUIZ.length+(quizCorrect===QUIZ.length?" - Perfect!":".");}}
+function toggleEx(el){var ex=el.querySelector(".pv-ex");if(!ex)return;var isOpen=ex.style.display!=="none";ex.style.display=isOpen?"none":"";if(!isOpen){el.style.borderColor="var(--cs-green)";el.style.boxShadow="0 0 15px rgba(52,211,153,.3)";}else{el.style.borderColor="";el.style.boxShadow="";}}
 var _goTo=goTo;goTo=function(n){_goTo(n);var sl=slides[n];if(sl&&sl.getAttribute("data-slide")==="19")setTimeout(initQuiz,300);};
 setTimeout(function(){if(document.querySelector('.slide.active[data-slide="19"]'))initQuiz();},500);
 </script>
