@@ -163,6 +163,27 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 
 <section class="slide" data-slide="6">
   <div class="card glass">
+    <div class="part-badge">Vocabulary Game 2</div>
+    <h2 class="glow-text">Match the Word — Meeting Roles</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap a word on the left, then its definition on the right.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">facilitator</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">the person who guides the discussion</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">minutes</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">the written record of what was said</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">objection</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">a reason why something should not happen</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">motion</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">a formal proposal for the group to decide</div>
+    </div>
+    <div class="match-status">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer">1. facilitator = guides the discussion. 2. minutes = written record. 3. objection = reason against. 4. motion = formal proposal for the group.</div>
+  </div>
+</section>
+
+<section class="slide" data-slide="7">
+  <div class="card glass">
     <div class="part-badge">Exercise</div>
     <h2 class="glow-text">Choose the Right Phrase</h2>
     <div class="question">1. You are chairing and need to start. Which phrase from slide 3 fits?</div>
@@ -175,7 +196,7 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
   </div>
 </section>
 
-<section class="slide" data-slide="7">
+<section class="slide" data-slide="8">
   <div class="card glass">
     <div class="part-badge">Key Phrases</div>
     <h2 class="glow-text">Closing a Meeting</h2>
@@ -190,7 +211,7 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
   </div>
 </section>
 
-<section class="slide" data-slide="8">
+<section class="slide" data-slide="9">
   <div class="card glass">
     <div class="part-badge">Homework</div>
     <h2 class="glow-text">Practice Tasks</h2>
@@ -203,7 +224,7 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 </section>
 
 </main>
-<div class="nav-btns"><button onclick="prev()" id="prevBtn">Back</button><span class="timer" id="slideCounter">1 / 9</span><button onclick="next()" id="nextBtn">Next</button></div>
+<div class="nav-btns"><button onclick="prev()" id="prevBtn">Back</button><span class="timer" id="slideCounter">1 / 10</span><button onclick="next()" id="nextBtn">Next</button></div>
 <script>
 var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
 var THEMES={classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}};
