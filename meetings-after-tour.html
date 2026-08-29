@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Meetings After the Tour — Articulate Professional English C1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:8px 16px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.75rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.proposal{background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:16px 18px;font-size:.95rem;line-height:1.65}
+.proposal-head{border-bottom:1px solid var(--cs-border);padding-bottom:10px;margin-bottom:12px}
+.proposal-head .p-title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;letter-spacing:.02em}
+.proposal-head .p-meta{font-size:.78rem;color:var(--cs-text-muted);margin-top:4px}
+.proposal .sec{margin-bottom:10px}
+.proposal .sec b{color:var(--cs-accent);font-weight:700}
+.proposal ul{margin:4px 0 4px 18px;padding:0;list-style:none}
+.proposal ul li::before{content:'— ';color:var(--cs-accent)}
+.proposal .p-cost{display:inline-block;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);border-radius:8px;padding:1px 8px;font-weight:700;color:var(--cs-accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.95rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.85rem;color:var(--cs-text-muted)}
+.diagram-box{background:color-mix(in srgb,var(--cs-bg) 50%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:18px;margin:14px 0;overflow-x:auto}
+.diagram-box svg{max-width:100%;height:auto}
+.diagram-caption{font-size:.8rem;color:var(--cs-text-muted);margin-top:10px;font-style:italic}
+.email-box{background:color-mix(in srgb,var(--cs-bg) 55%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:18px 20px;font-family:'Inter',monospace;font-size:.92rem;line-height:1.7;margin:12px 0}
+.email-box .email-from{color:var(--cs-accent);font-weight:600}
+.email-box .email-subject{color:var(--cs-green);font-weight:600}
+.email-box .email-body{color:var(--cs-text)}
+.email-box .email-body em{color:var(--cs-accent)}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}.nav-btns button{padding:6px 12px;font-size:.95rem}.model-answers-btn{bottom:5.5em;right:.5em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+
+  <!-- SLIDE 0: TITLE -->
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Professional English · C1</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Meetings After the Tour</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Take what you learned from the plant tour and turn it into productive meetings — with the language of agenda-setting, diplomatic disagreement, and follow-through.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <!-- SLIDE 1: WARM-UP -->
+  <section class="slide" data-slide="1">
+    <div class="card glass">
+      <div class="part-badge">Warm-Up</div>
+      <h2 class="glow-text">Warm-Up — From Tour to Meeting</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
+
+      <div class="question">1. After giving a successful plant tour, what should happen in the follow-up meeting?</div>
+      <div class="hidden-answer">The follow-up meeting should move the conversation from exploration to decision. You have already built rapport and demonstrated capability — now you need to align on specifics: timelines, quantities, pricing, and next steps. The meeting should feel like a natural continuation, not a new beginning.</div>
+
+      <div class="question">2. What is the difference between a tour and a meeting in terms of your role?</div>
+      <div class="hidden-answer">On a tour, you are an ambassador — showing, explaining, and building trust. In a meeting, you are a negotiator and problem-solver — discussing terms, addressing concerns, and working toward agreement. The same confidence and preparation matter, but the language shifts from descriptive to transactional.</div>
+
+      <div class="question">3. How do you open a meeting when you have already met the participants during the tour?</div>
+      <div class="hidden-answer">Acknowledge the connection: "It was a pleasure showing you around the plant last week. I hope the tour gave you a clear picture of our capabilities." This bridges the two events and reminds everyone why they are in the room. Then move directly to the agenda.</div>
+
+      <div class="question">4. What does it mean to disagree diplomatically in a business meeting?</div>
+      <div class="hidden-answer">It means expressing disagreement without damaging the relationship. You acknowledge the other party's position before stating your own: "I understand your concern about the timeline, and I agree that speed matters. However, cutting corners on safety would compromise the very standards that drew you to our facility in the first place."</div>
+
+      <div style="margin-top:18px"><strong style="color:var(--cs-accent)">Useful phrases:</strong><br>
+        <span class="phrase-chip">It was a pleasure showing you around.</span>
+        <span class="phrase-chip">Shall we begin by…?</span>
+        <span class="phrase-chip">I take your point, however…</span>
+        <span class="phrase-chip">If I may push back gently on that…</span>
+        <span class="phrase-chip">Let's park that for the moment.</span>
+        <span class="phrase-chip">To summarise where we stand…</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2: VOCABULARY GAME 1 -->
+  <section class="slide" data-slide="2">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game 1</div>
+      <h2 class="glow-text">Match the Word — Meeting Language</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">to benchmark</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">to compare your standards against industry leaders</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">leverage</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">to use an advantage to gain a better outcome</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">to expedite</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">to speed up a process without compromising quality</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">a sticking point</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">an issue that is preventing agreement</div>
+        <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">to concede</div>
+        <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">to admit that the other side has a valid point</div>
+        <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">actionable</div>
+        <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">specific enough to act on immediately</div>
+      </div>
+      <div class="match-status" id="matchStatus1">Tap a word, then its matching definition.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer" id="matchAns1">1 to benchmark — to compare your standards against industry leaders · 2 leverage — to use an advantage to gain a better outcome · 3 to expedite — to speed up a process without compromising quality · 4 a sticking point — an issue that is preventing agreement · 5 to concede — to admit that the other side has a valid point · 6 actionable — specific enough to act on immediately</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3: VOCABULARY GAME 2 -->
+  <section class="slide" data-slide="3">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game 2</div>
+      <h2 class="glow-text">Match the Phrase — Diplomatic Language</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">I take your point, however…</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">Acknowledging a point before disagreeing</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">If I may push back gently…</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">Softening a disagreement to preserve rapport</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">Let's park that for the moment.</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">Setting aside a minor issue to keep the meeting moving</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">We're somewhat constrained by…</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">Explaining a limitation without sounding defensive</div>
+        <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">To play devil's advocate…</div>
+        <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">Raising an opposing view to test an argument</div>
+        <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">If I could turn to the matter of…</div>
+        <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">Smoothly transitioning to a new agenda item</div>
+      </div>
+      <div class="match-status" id="matchStatus2">Tap a phrase, then its matching purpose.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer" id="matchAns2">1 I take your point, however — acknowledging a point before disagreeing · 2 If I may push back gently — softening a disagreement to preserve rapport · 3 Let's park that for the moment — setting aside a minor issue to keep the meeting moving · 4 We're somewhat constrained by — explaining a limitation without sounding defensive · 5 To play devil's advocate — raising an opposing view to test an argument · 6 If I could turn to the matter of — smoothly transitioning to a new agenda item</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4: READING — MEETING SCRIPT -->
+  <section class="slide" data-slide="4">
+    <div class="card glass">
+      <div class="part-badge">Reading</div>
+      <h2 class="glow-text">A Follow-Up Meeting Script</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Read this excerpt from a follow-up meeting at ItalChimica S.p.A. The plant tour has just finished, and the US and UK partners are back for a commercial discussion. Notice the language of transition, diplomacy, and commitment.</p>
+
+      <div class="proposal">
+        <div class="proposal-head">
+          <div class="p-title">ItalChimica S.p.A. — Follow-Up Meeting After Plant Tour</div>
+          <div class="p-meta">Participants: Plant Tour Ambassador (you) · US Procurement Director · UK Operations Manager &nbsp;·&nbsp; Duration: 60 minutes</div>
+        </div>
+        <div class="sec"><b>Opening (2 min)</b> — "Good morning, and thank you both for coming back. It was a pleasure showing you around the facility last Thursday. I hope the tour gave you a clear picture of what we can deliver. Today, I'd like to move from the general to the specific — to talk about quantities, lead times, and how we can structure a supply agreement that works for everyone. If we could start with the agenda, I've put six items on the table. Shall I take them in order, or is there anything you'd like to add?"</div>
+        <div class="sec"><b>Addressing a concern (8 min)</b> — US Procurement Director: "We're impressed with your production capacity, but our colleagues in Chicago are pushing for a 12-week delivery window. That's tight for you, isn't it?" You: "I take your point — twelve weeks is ambitious. Let me be transparent: our standard lead time is fifteen weeks from order to dispatch. However, if we could lock in a firm order this week, I believe we can <em>expedite</em> the first batch to thirteen weeks by running a dedicated shift. That would still give you a buffer. Would that be acceptable, or do we need to discuss what's driving the twelve-week target?"</div>
+        <div class="sec"><b>Disagreement (5 min)</b> — UK Operations Manager: "We'd prefer to benchmark against Linde's pricing. They've offered us 4% below your quote." You: "If I may push back gently on that comparison — Linde's quote may look competitive at first glance, but it doesn't include the logistical support we've built into our proposal. Our price includes dedicated transport, a guaranteed purity certificate with every batch, and a 48-hour response time if anything falls outside specification. So the question isn't just what the number is — it's what you're getting for it. That said, I understand the pressure to deliver value. Let's look at the total cost of ownership rather than the unit price in isolation."</div>
+        <div class="sec"><b>Moving forward (5 min)</b> — "To summarise where we stand: we've agreed on a target delivery window of thirteen weeks, subject to a firm order this week. The remaining sticking point appears to be the quarterly volume commitment. I'd like to propose we set that at 200 tonnes per quarter for the first year, with a review at month nine. If the volumes hold, we can revisit pricing at that point. Does that framework work for both of you?"</div>
+      </div>
+
+      <button class="reveal-btn">Show analysis</button>
+      <div class="hidden-answer">Notice how the guide uses three diplomatic moves: (1) <em>acknowledgment before disagreement</em> — "I take your point" and "If I may push back gently" — which keeps the relationship intact; (2) <em>reframing the comparison</em> — shifting from unit price to total cost of ownership; and (3) <em>summarising before proposing</em> — "To summarise where we stand" gives everyone a chance to confirm alignment before a new offer lands. The meeting ends with a concrete proposal, not an open-ended discussion.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5: OPENING A MEETING -->
+  <section class="slide" data-slide="5">
+    <div class="card glass">
+      <div class="part-badge">Key Component 1</div>
+      <h2 class="glow-text">Opening the Meeting — Bridging from the Tour</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">The first five minutes set the tone. Your job is to connect the tour to the meeting and establish the agenda.</p>
+
+      <p><strong style="color:var(--cs-accent)">Why the opening matters:</strong> The tour created goodwill. The meeting must honour that goodwill while shifting into business mode. If the opening is too abrupt, the relationship feels transactional. If it is too vague, the meeting drifts.</p>
+
+      <p><strong style="color:var(--cs-accent)">The three-step opening:</strong></p>
+      <div class="proposal">
+        <div class="sec"><b>1. Acknowledge the connection.</b> "It was a pleasure showing you around the plant last week. I hope the tour gave you a clear picture of our hydrogen production capabilities."</div>
+        <div class="sec"><b>2. State the purpose.</b> "Today, I'd like to move from what we can produce to how we can structure a supply agreement that meets your needs."</div>
+        <div class="sec"><b>3. Set the agenda and invite input.</b> "I've prepared six items. Shall I take them in order, or is there anything you'd like to add before we begin?"</div>
+      </div>
+
+      <p style="margin-top:14px"><strong style="color:var(--cs-accent)">Example comparison:</strong></p>
+      <div class="email-box">
+        <div class="email-body">
+          <em>Weak:</em> "OK, so we're here to talk business. Let's look at the numbers."<br><br>
+          <em>Strong:</em> "Thank you both for coming back. The tour last week gave us a chance to show you the plant — today is about translating what you saw into a practical agreement. I've put together an agenda, and I'd welcome your input before we begin."
+        </div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The strong opening does three things the weak one misses: it <em>recognises the relationship</em> (the tour), it <em>frames the purpose positively</em> ("translating what you saw" rather than "talking business"), and it <em>invites participation</em> rather than imposing a structure. At C1 level, every word should work — not just convey information, but also shape how the other party feels about the conversation.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 6: DESCRIBING CAPABILITIES WITH CONFIDENCE -->
+  <section class="slide" data-slide="6">
+    <div class="card glass">
+      <div class="part-badge">Key Component 2</div>
+      <h2 class="glow-text">Presenting Your Capabilities — Beyond the Tour</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">On the tour, you showed what the plant can do. In the meeting, you must state it with the precision that justifies a commercial commitment.</p>
+
+      <p><strong style="color:var(--cs-accent)">From description to specification:</strong> The tour answers "what do you do?" The meeting answers "can you do it for us, at the scale and standard we need, by the time we need it?" Your language must be specific enough to inspire confidence and flexible enough to negotiate.</p>
+
+      <p><strong style="color:var(--cs-accent)">Phrases for confident capability statements:</strong></p>
+      <div class="proposal">
+        <div class="sec"><b>When you can commit:</b> "Our facility is configured to deliver 500 cubic metres per hour of 99.9% pure hydrogen — and that figure is verified by our control room, which monitors every stage continuously."</div>
+        <div class="sec"><b>When you need to qualify:</b> "Under normal operating conditions, we can commit to a fifteen-week lead time. I want to be transparent that during peak demand periods, we would need to discuss a buffer. I'd rather flag that now than overpromise."</div>
+        <div class="sec"><b>When you want to add value:</b> "What distinguishes our offering is not just the product — it's the support structure around it. Every batch comes with a purity certificate, and our technical team is available within 48 hours if anything falls outside specification."</div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">Confidence at C1 level is not about sounding certain of everything — it is about being precise about what you know and honest about what you don't. Phrases like "I want to be transparent" and "I'd rather flag that now" signal integrity, which builds more trust than overconfidence ever could. The visitors from the tour already saw the plant — now they need to trust the person representing it.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 7: DIIPLOMATIC DISAGREEMENT -->
+  <section class="slide" data-slide="7">
+    <div class="card glass">
+      <div class="part-badge">Key Component 3</div>
+      <h2 class="glow-text">Disagreeing Without Damaging the Relationship</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">A commercial meeting will involve disagreement. The C1 skill is not avoiding disagreement — it is handling it in a way that deepens trust rather than eroding it.</p>
+
+      <p><strong style="color:var(--cs-accent)">Three levels of diplomatic disagreement:</strong></p>
+
+      <div class="proposal">
+        <div class="sec"><b>Level 1 — Acknowledge then differ:</b> "I take your point about the timeline being tight. At the same time, the quality standards we demonstrated on the tour are non-negotiable — they're what brought you here in the first place. So the question is how we can meet your timeline without compromising what you value."</div>
+        <div class="sec"><b>Level 2 — Reframe the comparison:</b> "If I may push back gently on the Linde comparison — their unit price is indeed lower. However, their proposal doesn't include the logistical support and purity certification that are built into ours. I'd encourage us to compare total cost of ownership rather than headline price."</div>
+        <div class="sec"><b>Level 3 — Challenge the premise constructively:</b> "To play devil's advocate for a moment — is the twelve-week target driven by an internal deadline, or by a customer commitment? If it's the latter, we may need to discuss whether a phased delivery could meet the need without requiring the full quantity at once."</div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The weakest disagreement is a flat "no" or "that's not possible." The strongest is a question that invites the other party to reconsider their position without feeling attacked. At C1 level, your disagreement should make the other person feel understood, not defeated. The goal is not to win the point — it is to reach the best agreement together.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 8: HANDLING DIFFICULT QUESTIONS -->
+  <section class="slide" data-slide="8">
+    <div class="card glass">
+      <div class="part-badge">Key Component 4</div>
+      <h2 class="glow-text">Handling Difficult Questions</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">After the tour, visitors may ask harder questions — about pricing, safety records, environmental impact, or what happens when things go wrong. Your answers define whether the meeting builds or breaks trust.</p>
+
+      <div class="proposal">
+        <div class="sec"><b>The question:</b> "Your safety record is impressive, but what happens when there <em>is</em> an incident?"</div>
+        <div class="sec"><b>A weak answer:</b> "That hardly ever happens. We're very safe." (Dismissive, vague, does not inspire confidence.)</div>
+        <div class="sec"><b>A strong answer:</b> "That's an important question, and I'm glad you asked it. We have had minor incidents — as any operation of this scale will. What matters is our response. Every incident, no matter how small, triggers a root-cause analysis within 24 hours. We document findings, implement corrective actions, and review them at our monthly safety committee. That's why our record has improved every year for the past decade — we treat every incident as a learning opportunity, not a secret to keep."</div>
+      </div>
+
+      <p style="margin-top:14px"><strong style="color:var(--cs-accent)">The four-part response structure:</strong></p>
+      <div class="proposal">
+        <div class="sec"><b>1. Validate the question.</b> "That's an important question, and I'm glad you raised it."</div>
+        <div class="sec"><b>2. Answer directly.</b> Do not dodge — if you don't know, say so and commit to finding out.</div>
+        <div class="sec"><b>3. Add context that reframes.</b> Connect the answer to your values or your systems.</div>
+        <div class="sec"><b>4. Bring it back to the relationship.</b> "I hope that gives you a clear picture. Would you like me to walk you through our incident response procedure in more detail?"</div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">Difficult questions are not threats — they are opportunities. A visitor who asks a hard question is engaged. They are testing whether you are trustworthy. The answer that acknowledges the difficulty, gives a straight response, and adds genuine value will build more trust than any scripted sales pitch. At C1 level, your tone matters as much as your words — measured, honest, and unhurried.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 9: PROPOSING NEXT STEPS -->
+  <section class="slide" data-slide="9">
+    <div class="card glass">
+      <div class="part-badge">Key Component 5</div>
+      <h2 class="glow-text">Proposing Next Steps — The Closing Pitch</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">A meeting that ends without clear next steps is a meeting that will need to happen again. Your closing should leave everyone knowing what happens next, who is responsible, and by when.</p>
+
+      <p><strong style="color:var(--cs-accent)">The three-part closing:</strong></p>
+      <div class="proposal">
+        <div class="sec"><b>1. Summarise what was agreed.</b> "To summarise where we stand: we've agreed on a target delivery window of thirteen weeks, subject to a firm order this week. The remaining sticking point is the quarterly volume commitment."</div>
+        <div class="sec"><b>2. Propose a concrete next step.</b> "I'd like to propose we set the volume at 200 tonnes per quarter for the first year, with a review at month nine. If the volumes hold, we can revisit pricing at that point."</div>
+        <div class="sec"><b>3. Assign ownership and a deadline.</b> "I'll send you a revised proposal by Thursday afternoon. If you could share it with your colleagues and come back to me by next Tuesday, we can schedule a decision call for the following week."</div>
+      </div>
+
+      <p style="margin-top:14px"><strong style="color:var(--cs-accent)">The language of commitment:</strong></p>
+      <div class="email-box">
+        <div class="email-body">
+          <em>Weak:</em> "We'll see what we can do and get back to you."<br><br>
+          <em>Strong:</em> "I'll send you the revised proposal by Thursday. If you could review it with your team and come back to me by next Tuesday, we can schedule a decision call for the following week — does that work for you?"
+        </div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The difference between weak and strong closings is specificity. "We'll see what we can do" leaves the next step undefined — which means it may not happen. "I'll send you X by Thursday, and I'd like your feedback by Tuesday" creates accountability on both sides. At C1 level, your closing should sound like a professional who manages the process — not someone hoping it moves forward.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 10: EMAIL FOLLOW-UP -->
+  <section class="slide" data-slide="10">
+    <div class="card glass">
+      <div class="part-badge">Key Component 6</div>
+      <h2 class="glow-text">Writing the Follow-Up Email</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Within 24 hours of the meeting, send a follow-up email. It confirms what was agreed, sets expectations, and keeps the momentum. The email is the bridge between the meeting and the next step.</p>
+
+      <p style="margin-top:10px"><strong style="color:var(--cs-accent)">Annotated example — read the comments in italics:</strong></p>
+
+      <div class="email-box">
+        <div><span class="email-from">From:</span> [Your Name], Plant Tour Ambassador, ItalChimica S.p.A.</div>
+        <div><span class="email-from">To:</span> US Procurement Director · UK Operations Manager</div>
+        <div><span class="email-subject">Subject:</span> Follow-up — ItalChimica Supply Agreement Discussion, [Date]</div>
+        <br>
+        <div class="email-body">
+          <em style="color:var(--cs-text-muted)">[Opening — warm, referencing the tour to maintain continuity:]</em><br>
+          Dear [Names],<br><br>
+          Thank you both for coming back to ItalChimica today. It was valuable to continue the conversation we started during the plant tour last week, and I hope the discussion gave you a clear picture of how we can support your hydrogen supply needs.<br><br>
+          <em style="color:var(--cs-text-muted)">[Summary — factual, neutral, confirming what was agreed:]</em><br>
+          To confirm where we stand: we agreed on a target delivery window of thirteen weeks from order, subject to a firm commitment this week. The quarterly volume commitment remains under discussion, and I proposed a framework of 200 tonnes per quarter for the first year, with a pricing review at month nine.<br><br>
+          <em style="color:var(--cs-text-muted)">[Next steps — specific, with deadlines and ownership:]</em><br>
+          As agreed, I will send you a revised proposal by Thursday afternoon. I would be grateful if you could review it with your teams and come back to me by next Tuesday, so that we can schedule a decision call for the following week.<br><br>
+          <em style="color:var(--cs-text-muted)">[Closing — professional, forward-looking, leaving the door open:]</em><br>
+          Please don't hesitate to reach out if any questions come up in the meantime. I look forward to hearing from you.<br><br>
+          Best regards,<br>
+          [Your Name]<br>
+          Plant Tour Ambassador<br>
+          ItalChimica S.p.A.
+        </div>
+      </div>
+
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The follow-up email is not a summary for the sender — it is a document the recipient will share with colleagues who were not in the meeting. Write it so that someone who was not there can understand exactly what was discussed and what happens next. Include dates, names, and numbers. Ambiguity in the email becomes ambiguity in the relationship.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 11: ANALYSIS — WHAT MAKES A FOLLOW-UP MEETING EFFECTIVE? -->
+  <section class="slide" data-slide="11">
+    <div class="card glass">
+      <div class="part-badge">Analysis</div>
+      <h2 class="glow-text">What Makes a Follow-Up Meeting Effective?</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">A great follow-up meeting builds on the tour rather than repeating it. Which of these checks would your meeting pass?</p>
+
+      <div class="question">Connected — the meeting references the tour explicitly, so participants feel the conversation is continuous, not reset.</div>
+      <div class="question">Structured — there is a clear agenda, announced at the start, and the meeting follows it without drifting.</div>
+      <div class="question">Specific — capabilities are stated with numbers, timelines with dates, and proposals with conditions.</div>
+      <div class="question">Diplomatic — disagreement is handled with acknowledgment, reframing, and constructive questions rather than flat refusal.</div>
+      <div class="question">Accountable — next steps have owners and deadlines, and the follow-up email confirms them in writing.</div>
+      <div class="question">Credible — the guide speaks with the confidence of someone who knows their plant, their process, and their limits.</div>
+
+      <button class="reveal-btn">Show checklist</button>
+      <div class="hidden-answer">Test your meeting with one question: "If a colleague who was not in the room read my follow-up email, would they understand exactly what was agreed and what happens next?" If the answer is yes, the meeting was effective. If not, the closing needs more specificity. At C1 level, the standard is not just to hold a meeting — it is to move the relationship forward.</div>
+    </div>
+  </section>
+
+  <!-- SLIDE 12: PRACTICE — WEAK VS STRONG -->
+  <section class="slide" data-slide="12">
+    <div class="card glass">
+      <div class="part-badge">Practice</div>
+      <h2 class="glow-text">Weak vs Strong — Meeting Language</h2>
+      <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Improve these weak meeting phrases. What makes each one weak, and how would you say it at C1 level?</p>
+
+      <div class="question">1. Weak: "We can do twelve weeks, I think. Maybe." — Why is this weak, and what should it sound like instead?</div>
+      <div class="hidden-answer">It sounds uncertain and uncommitted. The visitor hears "maybe" and wonders whether the guide even knows their own plant's capacity. A C1-level response is precise and honest: "Under normal operating conditions, our standard lead time is fifteen weeks. If we lock in a firm order this week, I believe we can expedite the first batch to thirteen weeks by running a dedicated shift — but I want to be transparent that this would require a deviation from our standard schedule."</div>
+
+      <div class="question">2. Weak: "Linde is cheaper than us. That's true." — How do you respond without sounding defensive?</div>
+      <div class="hidden-answer">A flat concession surrenders the argument without adding value. A C1 response acknowledges the comparison, reframes it, and redirects: "If I may push back gently — Linde's unit price is indeed lower. However, their proposal does not include the logistical support, purity certification, and 48-hour response commitment that are built into ours. So the question is not what the number is, but what you're getting for it. I'd encourage us to compare total cost of ownership rather than headline price."</div>
+
+      <div class="question">3. Weak: "We'll send you something soon." — What is missing, and how do you fix it?</div>
+      <div class="hidden-answer">"Something" and "soon" are vague — they create no accountability and no expectation. A C1 closing is specific: "I will send you a revised proposal by Thursday afternoon. If you could review it with your teams and come back to me by next Tuesday, we can schedule a decision call for the following week — does that work for you?"</div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+  <!-- SLIDE 13: VOCABULARY & HOMEWORK -->
+  <section class="slide" data-slide="13">
+    <div class="card glass" style="padding:30px 28px">
+      <div class="part-badge">Vocabulary &amp; Homework</div>
+      <h2 class="glow-text">Key Vocabulary &amp; Homework</h2>
+
+      <p><strong style="color:var(--cs-accent)">to benchmark</strong> — to compare your performance or standards against those of industry leaders</p>
+      <p><strong style="color:var(--cs-accent)">leverage</strong> — to use an advantage or resource to gain a better outcome in a negotiation</p>
+      <p><strong style="color:var(--cs-accent)">to expedite</strong> — to speed up a process, especially a delivery or approval, without compromising quality</p>
+      <p><strong style="color:var(--cs-accent)">a sticking point</strong> — an issue or detail that is preventing agreement and needs to be resolved</p>
+      <p><strong style="color:var(--cs-accent)">to concede</strong> — to admit that the other party has a valid point, or to give up something in a negotiation</p>
+      <p><strong style="color:var(--cs-accent)">actionable</strong> — specific and clear enough to act on immediately, without further interpretation</p>
+      <p><strong style="color:var(--cs-accent)">to play devil's advocate</strong> — to raise an opposing view deliberately, in order to test the strength of an argument</p>
+      <p><strong style="color:var(--cs-accent)">total cost of ownership</strong> — the full cost of a product or service over its lifetime, including maintenance, support, and risk — not just the purchase price</p>
+
+      <div class="question" style="margin-top:18px">Homework</div>
+      <p>Prepare a 10-minute opening statement for a follow-up meeting after a plant tour. It should include: (1) a warm acknowledgment of the tour, (2) a clear statement of the meeting's purpose, (3) a proposed agenda with time allocations, (4) one capability statement with specific numbers from your plant, and (5) a diplomatic response to a likely concern. Record yourself delivering it and listen back — do you sound connected, confident, and specific? Bring the recording to class.</p>
+
+      <div class="question" style="margin-top:14px">Extension task</div>
+      <p>Write the follow-up email that would be sent within 24 hours of the meeting. Use the annotated example on Slide 10 as a model. Include an opening that references the tour, a factual summary of what was agreed, specific next steps with owners and deadlines, and a professional closing. Send the draft to your teacher for feedback before the next class.</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="nav-btns">
+  <button onclick="prev()" id="prevBtn">← Back</button>
+  <span class="timer" id="slideCounter">1 / 14</span>
+  <button onclick="next()" id="nextBtn">Next →</button>
+</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+
+var current=0, slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){
+  if(n<0||n>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('modelAnswersBtn').classList.toggle('show',n===1);
+  document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;
+  document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('nextBtn').disabled=current===slides.length-1;
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    progress['meetings-after-tour']=current;
+    localStorage.setItem('fce-progress',JSON.stringify(progress));
+  }catch(e){}
+}
+function next(){goTo(current+1);}
+function prev(){goTo(current-1);}
+document.getElementById('modelAnswersBtn').addEventListener('click',function(){
+  var slide=slides[current]; if(!slide) return;
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  this.textContent=allOpen?'Reveal model answers':'Hide model answers';
+});
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.reveal-btn');
+  if(btn){
+    var ans=btn.parentElement.querySelector('.hidden-answer');
+    if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
+  }
+});
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
+var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
+function matchClick(el,side){
+  if(el.classList.contains('matched')) return;
+  var grid=el.closest('.match-grid');
+  grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+  if(matchA && matchA!==el){
+    var aSide=matchA.dataset.side, bSide=el.dataset.side;
+    if(aSide!==bSide && matchA.dataset.pair===el.dataset.pair){
+      matchA.classList.remove('selected'); matchA.classList.add('matched');
+      el.classList.remove('selected'); el.classList.add('matched');
+      matchA=null;
+      var total=grid.querySelectorAll('.match-cell').length;
+      var done=grid.querySelectorAll('.match-cell.matched').length;
+      var st=grid.parentElement.querySelector('.match-status');
+      if(st) st.textContent='Matched '+done+' / '+(total/2)+' pairs';
+      if(done>=total && st){ st.innerHTML='<strong>All matched!</strong> Well done.'; }
+    }else{
+      matchA.classList.add('wrong'); el.classList.add('wrong');
+      var prev=matchA;
+      setTimeout(function(){ prev.classList.remove('wrong','selected'); el.classList.remove('wrong','selected'); matchA=null; },500);
+    }
+  }else{ matchA=el; }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var saved=progress['meetings-after-tour'];
+    if(typeof saved==='number' && saved>=0) goTo(saved);
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m){ document.getElementById('loadingScreen').classList.add('hidden'); document.getElementById('slides').classList.remove('hidden'); return; }
+  var img=new Image();
+  img.onload=img.onerror=function(){
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('slides').classList.remove('hidden');
+  };
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
