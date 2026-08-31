@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Plant Tour: Inside the Machines — Articulate Professional English B2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:8px 16px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.75rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.proposal{background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:16px 18px;font-size:.95rem;line-height:1.65}
+.proposal-head{border-bottom:1px solid var(--cs-border);padding-bottom:10px;margin-bottom:12px}
+.proposal-head .p-title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;letter-spacing:.02em}
+.proposal-head .p-meta{font-size:.78rem;color:var(--cs-text-muted);margin-top:4px}
+.proposal .sec{margin-bottom:10px}
+.proposal .sec b{color:var(--cs-accent);font-weight:700}
+.proposal ul{margin:4px 0 4px 18px;padding:0;list-style:none}
+.proposal ul li::before{content:'— ';color:var(--cs-accent)}
+.proposal .p-cost{display:inline-block;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);border-radius:8px;padding:1px 8px;font-weight:700;color:var(--cs-accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.95rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.85rem;color:var(--cs-text-muted)}
+.diagram-box{background:color-mix(in srgb,var(--cs-bg) 50%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:18px;margin:14px 0;overflow-x:auto}
+.diagram-box svg{max-width:100%;height:auto}
+.diagram-caption{font-size:.8rem;color:var(--cs-text-muted);margin-top:10px;font-style:italic}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}.nav-btns button{padding:6px 12px;font-size:.95rem}.model-answers-btn{bottom:5.5em;right:.5em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Professional English · B2</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Plant Tour: Inside the Machines</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Describe every machine in a chemical plant with confidence — what it does, how it works, and why it matters.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+  <div class="card glass">
+    <div class="part-badge">Warm-Up</div>
+    <h2 class="glow-text">Warm-Up — The Machines</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
+<div class="question">1. Have you ever worked with a machine you found difficult to explain to others? What made it hard?</div>
+<div class="hidden-answer">Many people struggle when a machine has invisible processes — things happening inside a sealed unit. The key is to focus on inputs and outputs: what goes in, what comes out, and what transformation happens in between.</div>
+<div class="question">2. What makes a machine description clear and useful for a visitor?</div>
+<div class="hidden-answer">A clear description covers three things: the purpose (what it does), the process (how it works), and the result (what comes out). It avoids unexplained jargon and uses comparisons to familiar things.</div>
+<div class="question">3. Why is it important to describe machines accurately in a professional setting?</div>
+<div class="hidden-answer">Inaccurate descriptions can confuse visitors, create safety risks, or damage your company's reputation. Precision shows expertise. If you say a machine produces 500 cubic metres per hour, that number must be correct.</div>
+<div class="question">4. How would you describe a machine you have never seen before, using only its name and its position in a process?</div>
+<div class="hidden-answer">Use context clues. If the machine comes after the purifier and before the cold box, it likely compresses or cools the gas. The name often hints at the function — a compressor compresses, a condenser condenses. Combine the name with the process flow to make an educated guess.</div>
+<div style="margin-top:18px"><strong style="color:var(--cs-accent)">Useful phrases:</strong><br><span class="phrase-chip">This machine is responsible for…</span><span class="phrase-chip">The purpose of this unit is to…</span><span class="phrase-chip">What happens inside is…</span><span class="phrase-chip">The key component to notice is…</span><span class="phrase-chip">This stage prepares the gas for…</span></div>
+
+  </div>
+</section>
+<section class="slide" data-slide="2">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 1</div>
+    <h2 class="glow-text">Match the Word — Machine Parts &amp; Functions</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">electrolyser</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">cools the gas until it becomes a liquid</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">purifier</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">the unit that splits water into hydrogen and oxygen</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">compressor</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">prevents heat transfer by removing air from the space between walls</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">condenser</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">increases the pressure of the gas to 20 bar</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">expansion turbine</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">removes moisture and oxygen from the gas stream</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">vacuum insulation</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">reduces temperature by letting gas expand rapidly</div>
+    </div>
+    <div class="match-status" id="matchStatus1">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns1">1 electrolyser — the unit that splits water into hydrogen and oxygen · 2 purifier — removes moisture and oxygen from the gas stream · 3 compressor — increases the pressure of the gas to 20 bar · 4 condenser — cools the gas until it becomes a liquid · 5 expansion turbine — reduces temperature by letting gas expand rapidly · 6 vacuum insulation — prevents heat transfer by removing air from the space between walls</div>
+  </div>
+</section>
+<section class="slide" data-slide="3">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 2</div>
+    <h2 class="glow-text">Match the Phrase — Describing Machines</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">This machine is responsible for…</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">Directing attention to the most important part</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">The purpose of this unit is to…</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">Introducing the machine's main function</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">What happens inside is…</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">Pointing out a visible feature to the visitor</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">The key component to notice is…</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">Describing the internal process in simple terms</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">This stage prepares the gas for…</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">Explaining why the machine exists in the process</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">You can see the… on the left/right.</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">Explaining how this machine fits into the next step</div>
+    </div>
+    <div class="match-status" id="matchStatus2">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns2">1 This machine is responsible for — introducing the machine's main function · 2 The purpose of this unit is to — explaining why the machine exists in the process · 3 What happens inside is — describing the internal process in simple terms · 4 The key component to notice is — directing attention to the most important part · 5 This stage prepares the gas for — explaining how this machine fits into the next step · 6 You can see the… on the left/right — pointing out a visible feature to the visitor</div>
+  </div>
+</section>
+<section class="slide" data-slide="4">
+  <div class="card glass">
+    <div class="part-badge">Reading</div>
+    <h2 class="glow-text">Machine Descriptions from ItalChimica</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Read these machine descriptions from the ItalChimica hydrogen plant. Notice how each description covers purpose, process, and result.</p>
+<div class="proposal">
+  <div class="proposal-head">
+    <div class="p-title">ItalChimica S.p.A. — Machine Descriptions</div>
+    <div class="p-meta">Hydrogen Production Plant &nbsp;·&nbsp; 6 Machines in Sequence</div>
+  </div>
+  <div class="sec"><b>1. Electrolyser</b> — "This machine is responsible for splitting water into hydrogen and oxygen. What happens inside is a controlled electric current passing through an alkaline solution. The hydrogen collects at the cathode, and the oxygen collects at the anode. The key component to notice is the membrane in the centre — it allows ions to pass through but keeps the two gases completely separate. This stage produces 500 cubic metres of hydrogen per hour."</div>
+  <div class="sec"><b>2. Purifier</b> — "The purpose of this unit is to remove any remaining moisture and oxygen from the hydrogen gas. What happens inside is a chemical reaction that binds the impurities to a special material, which is then filtered out. The result is hydrogen at 99.9% purity. This stage prepares the gas for compression."</div>
+  <div class="sec"><b>3. Compressor</b> — "This machine is responsible for increasing the pressure of the hydrogen gas from atmospheric pressure to 20 bar. What happens inside is a series of pistons that squeeze the gas into a smaller volume. The key component to notice is the cooling system — compression generates heat, and the cooling system removes it before the gas moves on. This stage prepares the gas for liquefaction."</div>
+  <div class="sec"><b>4. Cold Box — Precooler</b> — "The purpose of this unit is to cool the hydrogen gas from ambient temperature down to 80 Kelvin. What happens inside is a heat exchanger that uses liquid nitrogen as a coolant. You can see the nitrogen inlet pipes on the left. This stage prepares the gas for deep cooling."</div>
+  <div class="sec"><b>5. Cold Box — Deep Cooler</b> — "This machine is responsible for cooling the hydrogen from 80 Kelvin down to just 20 Kelvin — 20 degrees above absolute zero. What happens inside is an expansion turbine: the gas is allowed to expand rapidly, which reduces its temperature dramatically. The key component to notice is the turbine blade — it spins at over 100,000 revolutions per minute."</div>
+  <div class="sec"><b>6. Storage Tank</b> — "The purpose of this unit is to store liquid hydrogen at atmospheric pressure. What happens inside is nothing — the tank is a passive container. The key component to notice is the vacuum insulation between the inner and outer walls. This prevents heat from entering and keeps the hydrogen in liquid form. Our storage capacity is 200 tonnes."</div>
+</div>
+<button class="reveal-btn">Show answer</button>
+<div class="hidden-answer">Each machine description follows the same structure: purpose (what it does), process (how it works), and result (what comes out). This consistency makes it easy for visitors to follow the process flow. The descriptions also use sequencing language to show how each machine connects to the next — preparing the gas for the next stage.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="5">
+  <div class="card glass">
+    <div class="part-badge">Machine 1</div>
+    <h2 class="glow-text">The Electrolyser</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Splits water (H2O) into hydrogen and oxygen using a controlled electric current.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> Water enters the electrolyser. An electric current passes through an alkaline solution. Hydrogen gas collects at the cathode (negative electrode). Oxygen gas collects at the anode (positive electrode). A membrane in the centre keeps the two gases separate.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key numbers:</strong> 500 cubic metres of hydrogen per hour. 99.9% pure.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">When describing the electrolyser, always mention the membrane — it is the key component that makes the process safe. Without it, the two gases would mix and create an explosion risk. Say: "The membrane allows ions to pass through but keeps the two gases completely separate."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="6">
+  <div class="card glass">
+    <div class="part-badge">Machine 2</div>
+    <h2 class="glow-text">The Purifier</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Removes remaining moisture and oxygen from the hydrogen gas after electrolysis.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> The gas passes through a chemical binder that traps impurities. The binder material is periodically replaced. The result is hydrogen at 99.9% purity — essential for the next stage.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Impurities in the gas would damage the compressor and reduce the efficiency of liquefaction. Purification protects the downstream equipment.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use the phrase "this stage prepares the gas for…" to connect the purifier to the next machine. This shows visitors that each machine has a purpose in the sequence — nothing is there by accident. Say: "This stage prepares the gas for compression."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="7">
+  <div class="card glass">
+    <div class="part-badge">Machine 3</div>
+    <h2 class="glow-text">The Compressor</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Increases the pressure of the hydrogen gas from atmospheric pressure to 20 bar.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> A series of pistons squeezes the gas into a smaller volume. Compression generates heat, so a cooling system removes the excess temperature before the gas moves on.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Compressing the gas makes it easier to cool in the next stage. At higher pressure, the gas requires less energy to liquefy — making the process more efficient.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">When describing the compressor, mention the cooling system — it shows you understand that compression is not just about pressure. Say: "The key component to notice is the cooling system. Compression generates heat, and the cooling system removes it before the gas moves on."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="8">
+  <div class="card glass">
+    <div class="part-badge">Machine 4</div>
+    <h2 class="glow-text">The Cold Box — Precooler</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Cools the hydrogen gas from ambient temperature (25°C) down to 80 Kelvin (-193°C).</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> A heat exchanger uses liquid nitrogen as a coolant. The nitrogen flows through pipes around the hydrogen channel, absorbing heat. You can see the nitrogen inlet pipes on the left of the unit.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> This is the first of two cooling stages. Precooling to 80 Kelvin makes the deep cooling stage far more efficient — it is much easier to go from 80K to 20K than from 25°C to 20K.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use the phrase "you can see…" to point out visible features. This helps visitors connect your description to what they can actually see. Say: "You can see the nitrogen inlet pipes on the left. The nitrogen flows through these pipes to absorb heat from the hydrogen."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="9">
+  <div class="card glass">
+    <div class="part-badge">Machine 5</div>
+    <h2 class="glow-text">The Cold Box — Deep Cooler</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Cools the hydrogen from 80 Kelvin down to 20 Kelvin (-253°C) — just 20 degrees above absolute zero.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> An expansion turbine allows the gas to expand rapidly. This expansion reduces the temperature dramatically. The turbine blade spins at over 100,000 revolutions per minute.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> At 20 Kelvin, hydrogen condenses from a gas into a liquid. Liquid hydrogen takes up far less space than gas — making it practical to store and transport.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">The expansion turbine is the most impressive machine in the plant. Emphasise the speed: "over 100,000 revolutions per minute." Visitors remember dramatic numbers. Say: "The key component to notice is the turbine blade — it spins at over 100,000 revolutions per minute."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="10">
+  <div class="card glass">
+    <div class="part-badge">Machine 6</div>
+    <h2 class="glow-text">The Storage Tank</h2>
+<p><strong style="color:var(--cs-accent)">What it does:</strong> Stores liquid hydrogen at atmospheric pressure after liquefaction.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">How it works:</strong> The tank is a passive container — no moving parts. The key feature is the vacuum insulation between the inner and outer walls. This prevents heat from entering and keeps the hydrogen in liquid form.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Key numbers:</strong> 200 tonnes of liquid hydrogen. Zero incidents in over 10 years of operation.</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">The storage tank is the one machine with no moving parts — and that is its strength. Emphasise the vacuum insulation: "The key component to notice is the vacuum insulation between the inner and outer walls. This prevents heat from entering and keeps the hydrogen in liquid form." End with the safety record: "We've maintained zero incidents in over 10 years of operation."</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="11">
+  <div class="card glass">
+    <div class="part-badge">Analysis</div>
+    <h2 class="glow-text">What Makes a Great Machine Description?</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">A great machine description passes these six tests. Which ones would your descriptions pass?</p>
+<div class="question">Clear purpose — the visitor understands what the machine does and why it exists.</div>
+<div class="question">Simple process — the internal workings are explained in accessible language.</div>
+<div class="question">Visible features — the visitor can see the parts you are describing.</div>
+<div class="question">Key numbers — capacity, pressure, temperature, and purity are stated accurately.</div>
+<div class="question">Process connection — the description shows how this machine fits into the sequence.</div>
+<div class="question">Memorable detail — the visitor leaves with one impressive fact they will remember.</div>
+<button class="reveal-btn">Show checklist</button>
+<div class="hidden-answer">Test your description with one question: "If I knew nothing about this machine, would I understand what it does and why it matters?" If the answer is yes, you are ready. Practise aloud at least three times — confidence comes from repetition, and accuracy comes from preparation.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="12">
+  <div class="card glass">
+    <div class="part-badge">Practice</div>
+    <h2 class="glow-text">Weak vs Strong</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Improve these weak machine descriptions.</p>
+<div class="question">1. Weak: "This is the compressor. It compresses the gas." — What makes this weak?</div>
+<div class="hidden-answer">It is circular — it uses the word "compresses" to explain what a compressor does. It gives no useful information about the pressure, the purpose, or the result. The visitor learns nothing.</div>
+<div class="question">2. Rewrite: "This is the cold box. It's very cold inside." — Make this stronger.</div>
+<div class="hidden-answer">"This is our cold box — the deep cooler. It reduces the temperature of the hydrogen from 80 Kelvin down to just 20 Kelvin, which is 20 degrees above absolute zero. At this temperature, the gas condenses into a liquid, which is far easier to store and transport."</div>
+<div class="question">3. Which elements are missing here? "That's the storage tank. It stores hydrogen."</div>
+<div class="hidden-answer">The capacity, the insulation method, the safety record, and the purpose are all missing. A strong description adds value: "Our storage capacity is 200 tonnes, and the vacuum insulation between the walls keeps the hydrogen in liquid form. We've maintained zero incidents in over 10 years of operation."</div>
+<button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+
+  </div>
+</section>
+<section class="slide" data-slide="13">
+  <div class="card glass" style="padding:30px 28px">
+    <div class="part-badge">Vocabulary &amp; Homework</div>
+    <h2 class="glow-text">Key Vocabulary &amp; Homework</h2>
+<p><strong style="color:var(--cs-accent)">electrolyser</strong> — the unit that splits water into hydrogen and oxygen using an electric current</p>
+<p><strong style="color:var(--cs-accent)">purifier</strong> — a unit that removes impurities from a gas or liquid stream</p>
+<p><strong style="color:var(--cs-accent)">compressor</strong> — a machine that increases the pressure of a gas by reducing its volume</p>
+<p><strong style="color:var(--cs-accent)">condenser</strong> — a device that cools a gas until it becomes a liquid</p>
+<p><strong style="color:var(--cs-accent)">expansion turbine</strong> — a machine that reduces gas temperature by allowing it to expand rapidly</p>
+<p><strong style="color:var(--cs-accent)">vacuum insulation</strong> — a method of preventing heat transfer by removing air from a space between walls</p>
+<p><strong style="color:var(--cs-accent)">membrane</strong> — a thin barrier that allows some particles to pass through but blocks others</p>
+<div class="question" style="margin-top:14px">Homework</div>
+<p>Write a description of one machine at your plant. Include: (1) what it does, (2) how it works in simple terms, (3) one visible feature the visitor can see, (4) at least two key numbers, and (5) how it fits into the process sequence. Practise aloud at least three times. Bring the description to class ready to present in three minutes.</p>
+
+  </div>
+</section>
+</main>
+
+<div class="nav-btns">
+  <button onclick="prev()" id="prevBtn">← Back</button>
+  <span class="timer" id="slideCounter">1 / 14</span>
+  <button onclick="next()" id="nextBtn">Next →</button>
+</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length()]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+
+var current=0, slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){
+  if(n<0||n>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('modelAnswersBtn').classList.toggle('show',n===1);
+  document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;
+  document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('nextBtn').disabled=current===slides.length-1;
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    progress['plant-tour-machines']=current;
+    localStorage.setItem('fce-progress',JSON.stringify(progress));
+  }catch(e){}
+}
+function next(){goTo(current+1);}
+function prev(){goTo(current-1);}
+document.getElementById('modelAnswersBtn').addEventListener('click',function(){
+  var slide=slides[current]; if(!slide) return;
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  this.textContent=allOpen?'Reveal model answers':'Hide model answers';
+});
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.reveal-btn');
+  if(btn){
+    var ans=btn.parentElement.querySelector('.hidden-answer');
+    if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
+  }
+});
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
+var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
+function matchClick(el,side){
+  if(el.classList.contains('matched')) return;
+  var grid=el.closest('.match-grid');
+  grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+  if(matchA && matchA!==el){
+    var aSide=matchA.dataset.side, bSide=el.dataset.side;
+    if(aSide!==bSide && matchA.dataset.pair===el.dataset.pair){
+      matchA.classList.remove('selected'); matchA.classList.add('matched');
+      el.classList.remove('selected'); el.classList.add('matched');
+      matchA=null;
+      var total=grid.querySelectorAll('.match-cell').length;
+      var done=grid.querySelectorAll('.match-cell.matched').length;
+      var st=grid.parentElement.querySelector('.match-status');
+      if(st) st.textContent='Matched '+done+' / '+(total/2)+' pairs';
+      if(done>=total && st){ st.innerHTML='<strong>All matched!</strong> Well done.'; }
+    }else{
+      matchA.classList.add('wrong'); el.classList.add('wrong');
+      var prev=matchA;
+      setTimeout(function(){ prev.classList.remove('wrong','selected'); el.classList.remove('wrong','selected'); matchA=null; },500);
+    }
+  }else{ matchA=el; }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var saved=progress['plant-tour-machines'];
+    if(typeof saved==='number' && saved>=0) goTo(saved);
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m){ document.getElementById('loadingScreen').classList.add('hidden'); document.getElementById('slides').classList.remove('hidden'); return; }
+  var img=new Image();
+  img.onload=img.onerror=function(){
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('slides').classList.remove('hidden');
+  };
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
