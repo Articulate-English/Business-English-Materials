@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#060a14">
-<title>Phone English for Treasury — Articulate Business English B2</title>
+<title>Phone English for Business — Articulate Business English B2</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -96,8 +96,8 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
   <section class="slide active" data-slide="0">
     <div class="card glass" style="text-align:center;margin-top:10vh">
       <div class="part-badge">Business English · B2</div>
-      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Phone English for Treasury</h1>
-      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Professional telephone skills for treasury and supply — calling customers, suppliers and partners with confidence and clarity.</p>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Phone English for Business</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:520px;margin:0 auto 24px">Professional telephone skills for business — calling customers, suppliers and partners with confidence and clarity.</p>
       <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
     </div>
   </section>
@@ -109,8 +109,8 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
 <div class="question">1. What is the most difficult part of a business phone call for you?</div>
 <div class="hidden-answer">Many people find it hard to understand fast speakers, to explain numbers clearly, or to handle unexpected questions without visual cues. The good news is that all of these skills improve with practice and a few reliable phrases.</div>
-<div class="question">2. Why are phone skills especially important in treasury and supply roles?</div>
-<div class="hidden-answer">Treasury specialists discuss payments, invoices, delivery schedules and contracts — often with people in different time zones. A clear, professional phone call prevents costly misunderstandings and builds trust with suppliers and customers.</div>
+<div class="question">2. Why are phone skills especially important in business roles?</div>
+<div class="hidden-answer">Business professionals discuss payments, invoices, delivery schedules and contracts — often with people in different time zones. A clear, professional phone call prevents costly misunderstandings and builds trust with suppliers and customers.</div>
 <div class="question">3. What is the difference between a good phone call and a bad one?</div>
 <div class="hidden-answer">A good call has a clear purpose, a polite opening, confirmed details and a clear next step. A bad call lacks structure — the caller rambles, forgets key information, and both parties hang up unsure of what was agreed.</div>
 <div class="question">4. What should you prepare before making an important business call?</div>
@@ -146,7 +146,7 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 <section class="slide" data-slide="3">
   <div class="card glass">
     <div class="part-badge">Vocabulary Game 2</div>
-    <h2 class="glow-text">Match the Word — Treasury & Supply</h2>
+    <h2 class="glow-text">Match the Word — Business & Supply</h2>
     <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
     <div class="match-grid">
       <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">invoice</div>
@@ -175,7 +175,7 @@ h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
 <div class="proposal">
   <div class="proposal-head">
     <div class="p-title">Phone Call: Payment Confirmation</div>
-    <div class="p-meta">Caller: Nikos Papadopoulos, Treasury Specialist, Motor Oil Hellas SA &nbsp;·&nbsp; Recipient: Hans Mueller, Accounts, Brenntag GmbH &nbsp;·&nbsp; Date: 15 September 2026</div>
+    <div class="p-meta">Caller: Nikos Papadopoulos, Finance Specialist, Motor Oil Hellas SA &nbsp;·&nbsp; Recipient: Hans Mueller, Accounts, Brenntag GmbH &nbsp;·&nbsp; Date: 15 September 2026</div>
   </div>
   <div class="sec"><b>Opening</b> — "Good morning, this is Nikos Papadopoulos from Motor Oil Hellas SA. Could I speak to Hans Mueller in Accounts, please?"</div>
   <div class="sec"><b>Purpose</b> — "I'm calling about invoice 4712, which was due on 10 September. Our records show it is still outstanding. Could you please confirm whether the payment has been processed?"</div>
@@ -372,7 +372,7 @@ function goTo(n){
   document.getElementById('nextBtn').disabled=current===slides.length-1;
   try{
     var progress=JSON.parse(localStorage.getItem('fce-progress')||'{');
-    progress['phone-english-treasury']=current;
+    progress['phone-english-business']=current;
     localStorage.setItem('fce-progress',JSON.stringify(progress));
   }catch(e){}
 }
@@ -456,7 +456,7 @@ document.addEventListener('keydown',function(e){
 (function(){
   try{
     var progress=JSON.parse(localStorage.getItem('fce-progress')||'{');
-    var saved=progress['phone-english-treasury'];
+    var saved=progress['phone-english-business'];
     if(typeof saved==='number' && saved>=0) goTo(saved);
   }catch(e){}
 })();
