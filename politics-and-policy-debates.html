@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Politics & Policy Debates — Articulate Management Training B2/C1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden;font-size:17px;background-image:radial-gradient(circle at 20% 50%,rgba(251,191,36,.02) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(251,191,36,.015) 0%,transparent 50%)}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04);background-image:linear-gradient(135deg,rgba(251,191,36,.03) 0%,rgba(251,191,36,.02) 50%,transparent 100%);background-blend-mode:overlay}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:1rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1.1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.6rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:5px 12px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.15rem;font-weight:600;margin-bottom:14px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:12px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:44px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:12px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:44px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:14px;padding:16px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:1rem;padding:4px 10px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:3px}
+.phrase-chip strong{color:var(--cs-accent)}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:240px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.85rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.formula-box{background:linear-gradient(135deg,var(--cs-accent-dim),var(--cs-bg));border:2px solid var(--cs-accent-glow);border-radius:14px;padding:1.2em 1.6em;margin:1em 0;text-align:center}
+.formula-main{font-weight:700;color:var(--cs-accent);font-size:1.2rem}
+.formula-note{font-size:1.05rem;color:var(--cs-text-muted);margin-top:.4em}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.8em 1em;cursor:pointer;text-align:center;font-size:1rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:1rem;color:var(--cs-text-muted)}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1em 0}
+.pv-card{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:1em}
+.pv-word{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.1rem;margin-bottom:6px}
+.pv-def{font-size:1.05rem;color:var(--cs-text);margin-bottom:8px}
+.pv-ex{font-size:1rem;color:var(--cs-text-muted);font-style:italic}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1.05rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.9rem;color:var(--cs-text-muted)}
+@media(max-width:640px){
+  .slide h2{font-size:1.3rem}
+  .card{padding:16px}
+  .match-grid{grid-template-columns:1fr}
+  .pv-grid{grid-template-columns:1fr}
+  .nav-btns{bottom:12px;padding:8px 16px;gap:.6em}
+  .nav-btns button{padding:6px 12px;font-size:.95rem}
+  .model-answers-btn{bottom:5.5em;right:.5em;font-size:.8rem}
+}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Business English · B2 / C1</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Politics &amp; Policy Debates</h1>
+      <p style="color:var(--cs-text-muted);font-size:1.05rem;max-width:520px;margin:0 auto 24px">Navigate the geopolitical questions that shape business — tariffs, social media vs. state power, superpower shifts, populism, and the fate of international institutions. Learn to argue both sides with vocabulary and phrases used in real diplomatic and executive discourse.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+    <div class="card glass">
+      <div class="part-badge">Warm-Up</div>
+      <h2 class="glow-text">How Do You Argue About Policy?</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:16px">Policy debates in business contexts — trade negotiations, regulatory affairs, investor briefings — require a specific tone. Click each question to reveal the model answer.</p>
+
+      <div class="question">1. How do you disagree with a powerful stakeholder (a minister, a regulator, a client executive) without damaging the relationship?</div>
+      <div class="hidden-answer">You concede the parts you agree with first (<span class="phrase-chip">Admittedly, the security concerns are valid</span>), then pivot to your counter with evidence (<span class="phrase-chip">However, the data from the last three trade rounds shows…</span>). You never say <span class="phrase-chip">You're wrong</span> — instead, you say <span class="phrase-chip">The evidence points in another direction</span> or <span class="phrase-chip">From my experience, the outcome differs</span>. This shows respect for their position while maintaining your ground.</div>
+
+      <div class="question">2. How do you signal that a policy position is your informed view, not just an opinion?</div>
+      <div class="hidden-answer">You cite sources (<span class="phrase-chip">The WTO report shows…</span>), reference precedent (<span class="phrase-chip">We saw this in the EU-US trade tensions of 2019…</span>), and use measured language (<span class="phrase-chip">The evidence suggests…</span> rather than <span class="phrase-chip">It's clear that…</span>). In business settings, you tie the policy to operational impact: <span class="phrase-chip">This regulation will add 4% to compliance costs — here's the calculation.</span></div>
+
+      <div class="question">3. When you're representing your company's view on a policy, how do you acknowledge broader stakeholder interests?</div>
+      <div class="hidden-answer">You frame your position as one stakeholder among many, not the final authority (<span class="phrase-chip">From our vantage point as a mid-sized manufacturer…</span> or <span class="phrase-chip">In our sector's experience…</span>). This gives you credibility because you're not claiming universal truth — you're describing your specific context with data, and then showing how it connects to wider impacts: <span class="phrase-chip">While this policy protects local jobs, our analysis suggests it will increase input costs for downstream manufacturers, affecting competitiveness.</span></div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game</div>
+      <h2 class="glow-text">Match the Word — Policy &amp; Trade</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">Tap a word on the left, then its definition on the right. These B2/C1 terms appear in the debate questions and model answers ahead.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">tariff</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">a tax on imported goods</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">protectionism</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">the policy of shielding domestic industries from foreign competition</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">sovereignty</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">a nation's right to self-govern without external interference</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">echo chamber</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">an environment where beliefs are reinforced by repetition from like-minded sources</div>
+        <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">multilateral</div>
+        <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">involving three or more countries or parties in agreement</div>
+        <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">veto power</div>
+        <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">the right to reject a decision in a multi-party body (e.g. UN Security Council)</div>
+      </div>
+      <div class="match-status">Tap a word, then its matching definition.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer">1 tariff = tax on imports. 2 protectionism = shielding domestic industries. 3 sovereignty = self-governance. 4 echo chamber = reinforced by like-minded sources. 5 multilateral = involving three+ parties. 6 veto power = right to reject a UN decision.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="card glass">
+      <div class="part-badge">Debate Phrases</div>
+      <h2 class="glow-text">Arguing Both Sides</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">In business diplomacy, you often need to present multiple perspectives. These phrases let you hold two ideas at once.</p>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">On the one hand … on the other hand …</div><div class="pv-def">The classic structure for holding two opposing views in tension — essential in boardrooms and diplomatic briefings.</div><div class="pv-ex">Example: "On the one hand, tariffs protect domestic jobs. On the other hand, they raise costs for downstream manufacturers."</div></div>
+        <div class="pv-card"><div class="pv-word">While X is true, the evidence suggests…</div><div class="pv-def">Concedes a point gracefully before pivoting to your counter-evidence.</div><div class="pv-ex">Example: "While tariffs do protect infant industries, the evidence suggests they invite retaliation that hurts exports."</div></div>
+        <div class="pv-card"><div class="pv-word">From a broader perspective…</div><div class="pv-def">Elevates the debate from immediate to systemic — used by strategists and C-suite.</div><div class="pv-ex">Example: "From a broader perspective, the real risk isn't this policy — it's the precedent it sets for future trade wars."</div></div>
+        <div class="pv-card"><div class="pv-word">The data points in a different direction</div><div class="pv-def">A diplomatic way to contradict — focuses on evidence, not the person.</div><div class="pv-ex">Example: "I don't dispute your concern. But the WTO trade data points in a different direction: retaliation cycles cost member states 0.8% of GDP on average."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The strongest policy arguments never start with contradiction. They start with concession (While X is true), then evidence pivot (the evidence suggests). This makes you sound like an analyst, not an advocate. The phrase "the data points in a different direction" is especially useful in business settings — it's softer than "you're wrong" but still decisive.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="card glass">
+      <div class="part-badge">Debate Phrases</div>
+      <h2 class="glow-text">Backing Your Position</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">Use these phrases to introduce evidence, cite sources, and make your argument feel institutional rather than personal.</p>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">According to [source]…</div><div class="pv-def">The gold standard for citing authority — always pair with a recent, credible source.</div><div class="pv-ex">Example: "According to the IMF's 2024 Global Economic Outlook, trade-restrictive measures reduced global GDP by 0.4% last year."</div></div>
+        <div class="pv-card"><div class="pv-word">The precedent this sets is…</div><div class="pv-def">Shifts from immediate impact to long-term consequence — powerful in policy debates.</div><div class="pv-ex">Example: "The precedent this sets is that economic disputes can be resolved via tariffs rather than multilateral frameworks."</div></div>
+        <div class="pv-card"><div class="pv-word">From our vantage point…</div><div class="pv-def">Frames your view as one stakeholder's perspective — essential when you represent a company or sector.</div><div class="pv-ex">Example: "From our vantage point as a European supplier, this policy creates a competitive disadvantage against subsidized Asian competitors."</div></div>
+        <div class="pv-card"><div class="pv-word">The operational impact is…</div><div class="pv-def">Translates abstract policy into concrete business outcomes — the language executives use.</div><div class="pv-ex">Example: "The operational impact is a 4% increase in input costs, which margins out over the next two quarters."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">In policy debates, "I think" is dangerous. Replace it with "The data suggests" or "According to [source]". The moment you cite an external authority, you stop sounding like an advocate and start sounding like an analyst. And "the operational impact is" is how you make policy relevant to business audiences — it translates abstract rules into P&L effects.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game 2</div>
+      <h2 class="glow-text">Match the Word — Institutions &amp; Power</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">Tap a word on the left, then its definition on the right.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">hegemony</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">dominance of one state over others in a region or system</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">sanctions</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">economic or diplomatic penalties imposed by one nation on another</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">soft power</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">influence through culture, values, and attraction rather than force</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">deadlock</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">a situation where no progress is possible due to opposing votes</div>
+      </div>
+      <div class="match-status">Tap a word, then its matching definition.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer">1 hegemony = state dominance. 2 sanctions = economic penalties. 3 soft power = cultural influence. 4 deadlock = no progress due to opposition.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="card glass">
+      <div class="part-badge">Exercise</div>
+      <h2 class="glow-text">Choose the Right Phrase</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:16px">Three scenarios. For each, decide which phrase from slides 3-4 fits best — then reveal the full model answer.</p>
+
+      <div class="question">1. Your boss says tariffs always protect jobs, period. You have WTO data showing retaliation costs. How do you respond?</div>
+      <div class="hidden-answer">Concede the principle, pivot to the evidence: <span class="phrase-chip">I don't dispute that tariffs protect domestic jobs in the short term.</span> <span class="phrase-chip">However, the data points in a different direction:</span> <span class="phrase-chip">the WTO reports show that retaliation cycles cost member states 0.8% of GDP on average.</span> <span class="phrase-chip">The operational impact is that downstream exports lose 3% in value within two quarters.</span> You've used the concession phrase to avoid a direct clash, then shifted to hard data.</div>
+
+      <div class="question">2. A stakeholder argues that the UN is irrelevant because major powers ignore it. You want to defend multilateralism. Which phrases help?</div>
+      <div class="hidden-answer">Acknowledge the criticism, reframe the question: <span class="phrase-chip">That's a fair concern about UN deadlock.</span> <span class="phrase-chip">However, the UN coordinates 60% of global humanitarian aid </span> <span class="phrase-chip">and peacekeeping budgets that bilateral deals cannot replicate.</span> <span class="phrase-chip">From a broader perspective, the real risk isn't irrelevance — it's that without the UN, we lose the forum where small nations have a voice.</span> You've moved from their narrow critique (irrelevant) to the systemic value (forum for small nations).</div>
+
+      <div class="question">3. You're briefing your CEO on a new social-media regulation. How do you frame both the risk and the opportunity?</div>
+      <div class="hidden-answer">Use both-sides framing, then close with your recommendation: <span class="phrase-chip">On the one hand, this regulation increases compliance costs by 5%.</span> <span class="phrase-chip">On the other hand, it creates a competitive advantage for companies that adapt early.</span> <span class="phrase-chip">From our vantage point, the precedent this sets is that regulators will prioritise accountability over growth — </span> <span class="phrase-chip">so our recommendation is to position the company as a compliance leader now.</span> You've presented both sides, then used "from our vantage point" to make the recommendation sound strategic, not reactive.</div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <div class="card glass">
+      <div class="part-badge">Key Phrases</div>
+      <h2 class="glow-text">Conceding Without Losing</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">In high-stakes policy debates, the skill isn't never giving ground — it's giving ground strategically. These phrases let you concede a point while keeping your overall position intact.</p>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">I accept that premise, but the scope is narrower</div><div class="pv-def">A master concession — you agree with their principle but narrow its application to your favour.</div><div class="pv-ex">Example: "I accept that tariffs can protect infant industries — but the scope is narrower than the proposal suggests. This specific tariff targets 200 product categories, not the whole sector."</div></div>
+        <div class="pv-card"><div class="pv-word">The question isn't whether, but how</div><div class="pv-def">Reframes a binary debate into a design discussion — takes you from defender to solution-provider.</div><div class="pv-ex">Example: "The question isn't whether AI should be regulated — it's how. And the EU AI Act's risk-tiered approach offers a workable model."</div></div>
+        <div class="pv-card"><div class="pv-word">I'd propose a nuanced approach</div><div class="pv-def">Shifts from opposition to contribution — you're not blocking, you're improving.</div><div class="pv-ex">Example: "I'd propose a nuanced approach: sunset clauses on protectionist measures, tied to a domestic-industry competitiveness review."</div></div>
+        <div class="pv-card"><div class="pv-word">The evidence suggests a middle ground</div><div class="pv-def">Ends the concession by steering toward compromise — you're the reasonable one in the room.</div><div class="pv-ex">Example: "The evidence suggests a middle ground between full autonomy and complete integration — a managed-standards partnership."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The best policy debaters don't win every point — they win the framing. "I accept that premise, but the scope is narrower" is a masterstroke: you've conceded the principle while limiting the application. And "The question isn't whether, but how" shifts the entire frame from opposition to design — you become the solution-provider, not the obstacle.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="8">
+    <div class="card glass">
+      <div class="part-badge">Homework</div>
+      <h2 class="glow-text">Write Your Position</h2>
+      <p style="color:var(--cs-text-muted);font-size:1.05rem;margin-bottom:16px">Choose <strong>one</strong> of the four debate topics from the source page. Write a 3-minute position speech — at least 200 words. Use at least 4 phrases from this deck (slides 3-4 and slide 7). Record yourself speaking.</p>
+
+      <div class="formula-box">
+        <div class="formula-main">The four topics:</div>
+        <div class="formula-note" style="margin-top:10px">
+          <span class="phrase-chip">1. Tariffs are an effective policy</span>
+          <span class="phrase-chip">2. Social media algorithms threaten democracy more than state censorship</span>
+          <span class="phrase-chip">3. The US is no longer a reliable EU ally</span>
+          <span class="phrase-chip">4. Populism is a symptom, not a threat</span>
+        </div>
+      </div>
+
+      <div class="question">Full structure suggestion:</div>
+      <div class="hidden-answer">
+        <strong>Opening (30s):</strong> On balance, I believe… Admittedly, there are valid concerns… From my perspective, the evidence points to…<br>
+        <strong>Evidence (60s):</strong> According to [source]… The data suggests… The operational impact is… From a broader perspective…<br>
+        <strong>Counter-concession (60s):</strong> I accept that premise, but the scope is narrower… The question isn't whether, but how… I'd propose a nuanced approach…<br>
+        <strong>Conclusion (30s):</strong> The evidence suggests a middle ground… I'd argue the balanced path forward is…
+      </div>
+
+      <div class="question">Full model answer — Topic 1 (tariffs on the auto industry):</div>
+      <div class="hidden-answer">
+        "Colleagues, I'm going to argue that targeted tariffs on Chinese EV imports are justified — but only as a temporary bridge to domestic manufacturing capacity, not as a permanent policy. <br><br>
+        On balance, I believe <span class="phrase-chip">the data points in a different direction</span> from those who say tariffs always harm competition. <span class="phrase-chip">According to the Peterson Institute's 2024 study,</span> the EU's temporary safeguard duties on Chinese solar panels increased domestic production by 18% without raising consumer prices — because the tariffs were paired with a clear sunset clause. <br><br>
+        <span class="phrase-chip">However, the precedent this sets is dangerous</span> if applied broadly. <span class="phrase-chip">From a broader perspective,</span> the real threat isn't protecting infant industries — it's the retaliatory spiral that damages everyone. The US–China trade tensions of 2019 cost both economies over $12 billion in lost output. <br><br>
+        <span class="phrase-chip">I accept that premise, but the scope is narrower</span> than a blanket tariff policy. These specific tariffs target electric vehicles above 25% import duty, not the entire automotive supply chain. <br><br>
+        <span class="phrase-chip">The question isn't whether to protect domestic manufacturing — it's how.</span> And <span class="phrase-chip">I'd propose a nuanced approach:</span> temporary tariffs tied to a domestic production review in 18 months. <span class="phrase-chip">The evidence suggests a middle ground</span> between protection and free trade — a managed transition."
+ </div>
+
+ <div class="question">Full model answer — Topic 2 (Social media vs. State Censorship):</div>
+ <div class="hidden-answer">
+ "Distinguished delegates, <span class="phrase-chip">the data points in a different direction</span> from those who frame this as a simple freedom vs. control debate. <span class="phrase-chip">According to the UN's 2024 report on digital rights,</span> state censorship directly suppresses 164 million users annually — but social media algorithms indirectly suppress an estimated 492 million, through engagement-driven filtering that amplifies divisive content.<br><br>
+
+ <span class="phrase-chip">However, the precedent this sets is critical.</span> <span class="phrase-chip">From a broader perspective,</span> the real risk isn't the platform's algorithm — it's that treating content moderation as state censorship gives authoritarian regimes cover to suppress legitimate dissent. Three years ago, Russia used the "social media is just like state censorship" framing to justify its own platform bans — and 70% of surveyed activists reported being surveilled as a result.<br><br>
+
+ <span class="phrase-chip">I accept that premise, but the scope is narrower</span> than a blanket regulatory approach. <span class="phrase-chip">The question isn't whether platforms shape discourse — it's how.</span> <span class="phrase-chip">I'd propose a nuanced approach:</span> algorithmic transparency requirements — not content bans — paired with public interest data audits. <span class="phrase-chip">The evidence suggests a middle ground</span> between free expression and harm prevention: transparent algorithms, not government censors."
+ </div>
+
+ <div class="question">Full model answer — Topic 3 (US as Reliable Ally):</div>
+ <div class="hidden-answer">
+ "Ambassador, <span class="phrase-chip">on balance, I believe</span> the transatlantic relationship remains structurally resilient — but the optics of unreliability are real and must be addressed.<br><br>
+
+ <span class="phrase-chip">The operational impact is</span> measurable: the US has invoked Article 5 once in NATO history (2001), responded to 89% of EU crisis consultations since 2017, and committed $65 billion in military aid to Ukraine — more than any other ally. <span class="phrase-chip">Admittedly, that's only true</span> when assessing concrete commitments, not diplomatic tone. <span class="phrase-chip">From my experience,</span> the volatility in US foreign policy rhetoric scares European capitals more than the actual policy shifts.<br><br>
+
+ <span class="phrase-chip">That said, the evidence points in a different direction</span> than the "America First is permanent" narrative. <span class="phrase-chip">According to the Chicago Council's 2024 survey,</span> 68% of Americans now favour maintaining NATO, and 72% support continued EU cooperation on tech standards. <span class="phrase-chip">The precedent this sets</span> — that alliances are transactional — is dangerous if unaddressed. <span class="phrase-chip">I'd argue the middle path is</span> institutionalising ties at the bureaucratic level (trade accords, data sharing, joint supply chains) so that relationship continuity doesn't depend on electoral cycles."
+ </div>
+
+ <div class="question">Full model answer — Topic 4 (Populism as Symptom):</div>
+ <div class="hidden-answer">
+ "Esteemed panel, <span class="phrase-chip">the question isn't whether populism is a threat — it's how we read what it's telling us.</span> <span class="phrase-chip">On the one hand,</span> the surge in populist movements from 2010 to 2024 correlates with a 22% decline in real median wages across OECD nations and a 31% rise in wealth inequality. <span class="phrase-chip">On the other hand,</span> dismissing populism as mere xenophobia misses the structural grievance: communities hollowed out by deindustrialisation vote with desperation, not ideology.<br><br>
+
+ <span class="phrase-chip">While this is true,</span> the evidence suggests that addressing root causes — regional economic decline, labour displacement, digital alienation — reduces populist appeal by 40% in comparative studies. <span class="phrase-chip">From a broader perspective,</span> populism is the symptom; globalisation's uneven gains are the disease. <span class="phrase-chip">However, the precedent this sets</span> — treating economic anxiety as inherently irrational — only deepens the divide. <span class="phrase-chip">The evidence suggests a middle ground</span> between technocratic dismissal and populist pandering: acknowledge the grievance, address the inequality, but refuse the scapegoat."
+ </div>
+
+ <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+</main>
+<div class="nav-btns"><button onclick="prev()" id="prevBtn">Back</button><span class="timer" id="slideCounter">1 / 9</span><button onclick="next()" id="nextBtn">Next</button></div>
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={classic:{accent:'#fbbf24',bg:'#060a14',text:'#f2f0f8',card:'#10131f',border:'#3d3a2e'},forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#0d1a13',border:'#1f4a3a'},violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#17122e',border:'#3b3563'},gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1f150a',border:'#4a3a1e'},rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#2b1218',border:'#5a2a38'},ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#0a1f28',border:'#1f4a5a'},indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#121233',border:'#2e2e5e'}};
+function applyTheme(n){var t=THEMES[n];if(!t)return;var r=document.documentElement;r.style.setProperty('--cs-accent',t.accent);r.style.setProperty('--cs-bg',t.bg);r.style.setProperty('--cs-text',t.text);r.style.setProperty('--cs-bg-card',t.card);r.style.setProperty('--cs-border',t.border);r.style.setProperty('--cs-text-muted',t.text+'99');r.style.setProperty('--cs-accent-glow',t.accent+'38');r.style.setProperty('--cs-accent-dim',t.accent+'1a');try{localStorage.setItem('fce-theme',n);}catch(e){}}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){var s=localStorage.getItem('fce-theme')||'classic';var i=THEME_ORDER.indexOf(s);if(i<0)i=0;applyTheme(THEME_ORDER[(i+1)%THEME_ORDER.length]);});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+var current=0,slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){if(n<0||n>=slides.length)return;slides[current].classList.remove('active');current=n;slides[current].classList.add('active');document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';document.getElementById('prevBtn').disabled=current===0;document.getElementById('nextBtn').disabled=current===slides.length-1;if(current===1||current===6||current===8)document.getElementById('modelAnswersBtn').classList.add('show');else document.getElementById('modelAnswersBtn').classList.remove('show');try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');p['politics-and-policy-debates']=current;localStorage.setItem('fce-progress',JSON.stringify(p));}catch(e){}}
+function next(){goTo(current+1);}function prev(){goTo(current-1);}
+document.addEventListener('click',function(e){var b=e.target.closest('.reveal-btn');if(b){var a=b.parentElement.querySelector('.hidden-answer');if(a){a.classList.toggle('open');b.textContent=a.classList.contains('open')?'Hide answer':'Show answer';}}var m=e.target.closest('#modelAnswersBtn');if(m){var s=document.querySelector('.slide.active');var ah=s.querySelectorAll('.hidden-answer');var allOpen=true;for(var i=0;i<ah.length;i++){if(!ah[i].classList.contains('open')){allOpen=false;break;}}for(var i=0;i<ah.length;i++){ah[i].classList.toggle('open',!allOpen);}m.textContent=allOpen?'Reveal model answers':'Hide answers';}});
+function toggleSlideAnswers(btn){var s=btn.closest('.slide');var a=s.querySelectorAll('.hidden-answer');var o=true;for(var i=0;i<a.length;i++){if(!a[i].classList.contains('open')){o=false;break;}}for(var i=0;i<a.length;i++){a[i].classList.toggle('open',!o);}btn.textContent=o?'Reveal answers':'Hide answers';}
+var matchA=null;function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+(function(){var g=document.querySelectorAll('.match-grid');for(var i=0;i<g.length;i++){var grid=g[i];var L=[],R=[];var c=grid.querySelectorAll('.match-cell');for(var j=0;j<c.length;j++){if(c[j].dataset.side==='L')L.push(c[j]);else R.push(c[j]);}shuffleArray(L);shuffleArray(R);for(var k=0;k<L.length;k++){grid.appendChild(L[k]);grid.appendChild(R[k]);}}})();
+function matchClick(el,side){if(el.classList.contains('matched'))return;var grid=el.closest('.match-grid');grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});el.classList.add('selected');if(matchA&&matchA!==el){var a=matchA.dataset.side,b=el.dataset.side;if(a!==b&&matchA.dataset.pair===el.dataset.pair){matchA.classList.remove('selected');matchA.classList.add('matched');el.classList.remove('selected');el.classList.add('matched');matchA=null;var total=grid.querySelectorAll('.match-cell').length;var done=grid.querySelectorAll('.match-cell.matched').length;var st=grid.parentElement.querySelector('.match-status');if(st)st.textContent='Matched '+done+' / '+(total/2)+' pairs';if(done>=total&&st)st.innerHTML='<strong>All matched!</strong> Well done.';}else{matchA.classList.add('wrong');el.classList.add('wrong');var st=grid.parentElement.querySelector('.match-status');if(st)st.textContent='Not a match. Try again.';var prev=matchA;setTimeout(function(){prev.classList.remove('wrong','selected');el.classList.remove('wrong','selected');matchA=null;if(st)st.textContent='Tap a word, then its matching definition.';},500);}}else{matchA=el;}}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}if(e.key==='ArrowLeft'){e.preventDefault();prev();}});
+(function(){try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');var s=p['politics-and-policy-debates'];if(typeof s==='number'&&s>=0)goTo(s);}catch(e){}})();
+(function(){var style=document.getElementById('bgLayer').getAttribute('style')||'';var m=style.match(/background-image:\s*url\(([^)]+)\)/);if(!m){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');return;}var img=new Image();img.onload=img.onerror=function(){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');};img.src=m[1].replace(/[\"']/g,'');})();
+</script>
+</body>
+</html>

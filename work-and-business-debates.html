@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Work & Business Debates — Articulate Management Training B2/C1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:17px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden;font-size:17px;background-image:radial-gradient(circle at 20% 50%,rgba(251,191,36,.02) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(251,191,36,.015) 0%,transparent 50%)}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04);background-image:linear-gradient(135deg,rgba(251,191,36,.03) 0%,rgba(251,191,36,.02) 50%,transparent 100%);background-blend-mode:overlay}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:1rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1.1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.6rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:5px 12px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.15rem;font-weight:600;margin-bottom:14px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:12px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:44px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:700;padding:12px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:44px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:14px;padding:16px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:1rem;padding:4px 10px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:3px}
+.phrase-chip strong{color:var(--cs-accent)}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:240px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.85rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.formula-box{background:linear-gradient(135deg,var(--cs-accent-dim),var(--cs-bg));border:2px solid var(--cs-accent-glow);border-radius:14px;padding:1.2em 1.6em;margin:1em 0;text-align:center}
+.formula-main{font-weight:700;color:var(--cs-accent);font-size:1.2rem}
+.formula-note{font-size:1rem;color:var(--cs-text-muted);margin-top:.4em}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.8em 1em;cursor:pointer;text-align:center;font-size:1rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:1rem;color:var(--cs-text-muted)}
+.pv-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:1em 0}
+.pv-card{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:1em}
+.pv-word{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.1rem;margin-bottom:6px}
+.pv-def{font-size:1.05rem;color:var(--cs-text);margin-bottom:8px}
+.pv-ex{font-size:1rem;color:var(--cs-text-muted);font-style:italic}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1.05rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.9rem;color:var(--cs-text-muted)}
+@media(max-width:640px){
+  .slide h2{font-size:1.3rem}
+  .card{padding:16px}
+  .match-grid{grid-template-columns:1fr}
+  .pv-grid{grid-template-columns:1fr}
+  .nav-btns{bottom:12px;padding:8px 16px;gap:.6em}
+  .nav-btns button{padding:6px 12px;font-size:.95rem}
+  .model-answers-btn{bottom:5.5em;right:.5em;font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Business English · B2 / C1</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Work &amp; Business Debates</h1>
+      <p style="color:var(--cs-text-muted);font-size:1.05rem;max-width:520px;margin:0 auto 24px">Tackle the big questions in the modern workplace — four-day weeks, AI hiring, diversity programs, and retirement. Practice taking a clear position, backing it with evidence, and conceding fairly.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+    <div class="card glass">
+      <div class="part-badge">Warm-Up</div>
+      <h2 class="glow-text">How Do You Debate?</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:16px">Before diving into the topics, practise the basics of a strong debate argument. Click each question to reveal the answer.</p>
+
+      <div class="question">1. What makes a debate argument sound confident rather than aggressive?</div>
+      <div class="hidden-answer">Use concession phrases (<span class="phrase-chip"><strong>Admittedly,</strong> …</span>, <span class="phrase-chip"><strong>That said,</strong> …</span>) and linkers (<span class="phrase-chip"><strong>Furthermore</strong></span>, <span class="phrase-chip"><strong>However</strong></span>). Lower your voice on strong points — volume signals control, not volume. A confident speaker sounds measured, not loud.</div>
+
+      <div class="question">2. Why should you acknowledge the opposite side before stating your position?</div>
+      <div class="hidden-answer">It builds credibility. A phrase like <span class="phrase-chip"><strong>Admittedly, …</strong></span> or <span class="phrase-chip"><strong>From my perspective, …</strong></span> shows you've considered complexity. When you then hit them with <span class="phrase-chip"><strong>I'd argue that …</strong></span> or <span class="phrase-chip"><strong>On balance, I believe …</strong></span>, your own point lands harder because the listener knows you're not ignoring the other side.</div>
+
+      <div class="question">3. How do you handle it when you disagree with the whole room?</div>
+      <div class="hidden-answer">Find a sliver of common ground first (<span class="phrase-chip"><strong>I think we all agree that …</strong></span>), then introduce your counter with a softener (<span class="phrase-chip"><strong>From my experience, …</strong></span> or <span class="phrase-chip"><strong>With respect, …</strong></span>). Never contradict outright. <span class="phrase-chip"><strong>That said, …</strong></span> is your bridge: it acknowledges them while pivoting to you.</div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game</div>
+      <h2 class="glow-text">Match the Word — Workplace Debates</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">Tap a word on the left, then its definition on the right. These B2/C1 words appear in the debate questions and model answers ahead.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">productivity</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">output per hour, not hours worked</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">burnout</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">chronic workplace stress leading to exhaustion</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">work-life balance</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">time boundaries between job and personal life</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">compressed hours</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">spreading 40h over 4 days instead of 5</div>
+        <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">bias</div>
+        <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">systematic prejudice in data or decision-making</div>
+        <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">human judgment</div>
+        <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">intuition/experience-based decision a person makes</div>
+      </div>
+      <div class="match-status">Tap a word, then its matching definition.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer">1 productivity = output per hour. 2 burnout = chronic workplace stress. 3 work-life balance = time boundaries. 4 compressed hours = 40h over 4 days. 5 bias = systematic prejudice. 6 human judgment = personal intuition-based decision.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="card glass">
+      <div class="part-badge">Debate Phrases</div>
+      <h2 class="glow-text">Opening &amp; Taking a Position</h2>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">On balance, I believe…</div><div class="pv-def">Use this to state your overall position clearly at the start.</div><div class="pv-ex">Example: "On balance, I believe the four-day week benefits knowledge workers, though not manufacturing."</div></div>
+        <div class="pv-card"><div class="pv-word">I couldn't agree more</div><div class="pv-def">Strong agreement — use when you want to align with a point before building on it.</div><div class="pv-ex">Example: "I couldn't agree more. The evidence clearly shows New Zealand trials increased output by 22%."</div></div>
+        <div class="pv-card"><div class="pv-word">Admittedly, …</div><div class="pv-def">Concession opener — acknowledge the opposing view without losing your ground.</div><div class="pv-ex">Example: "Admittedly, not every industry can adapt — but the evidence suggests service sectors can."</div></div>
+        <div class="pv-card"><div class="pv-word">From my perspective, …</div><div class="pv-def">Soft entry to a counter-argument — less confrontational than "I disagree".</div><div class="pv-ex">Example: "From my perspective, algorithmic hiring introduces a different set of risks — but they are auditable."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">The strongest opening does three things: states your position (On balance), acknowledges complexity (Admittedly), then pivots to your evidence (The evidence shows). Never lead with disagreement — always lead with common ground or shared facts.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="card glass">
+      <div class="part-badge">Debate Phrases</div>
+      <h2 class="glow-text">Pushback &amp; Concession</h2>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">That said, …</div><div class="pv-def">Bridge phrase — acknowledges but pivots. Your Swiss Army knife of debate.</div><div class="pv-ex">Example: "That's a fair point. That said, the bigger issue is whether we can audit algorithms more easily than human bias."</div></div>
+        <div class="pv-card"><div class="pv-word">With respect, I'd counter that…</div><div class="pv-def">Polite disagreement — essential when challenging a stronger speaker.</div><div class="pv-ex">Example: "With respect, I'd counter that human interviews are themselves biased — we just can't trace the decision tree."</div></div>
+        <div class="pv-card"><div class="pv-word">But isn't the real question…?</div><div class="pv-def">Redirects to the core issue instead of arguing side points.</div><div class="pv-ex">Example: "But isn't the real question whether we can audit an outcome more easily than a conversation?"</div></div>
+        <div class="pv-card"><div class="pv-word">I'd argue the middle path is…</div><div class="pv-def">Ends a concession with your own forward motion — keeps you in control.</div><div class="pv-ex">Example: "I'd argue the middle path is letting AI assist with hiring while keeping firing human."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">Concede small points, not the whole argument. When someone says "bias is bad," agree — then say "The question is which bias we can better control: algorithmic or human." This makes you sound reasonable, not defensive. Never say "You're wrong" — reframe to "The data shows another angle."</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="card glass">
+      <div class="part-badge">Vocabulary Game 2</div>
+      <h2 class="glow-text">Match the Word — Deeper Into the Topics</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">Tap a word on the left, then its definition on the right.</p>
+      <div class="match-grid">
+        <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">algorithmic hiring</div>
+        <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">using AI to screen or select candidates</div>
+        <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">transparency</div>
+        <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">openness about how a decision was made</div>
+        <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">tokenism</div>
+        <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">surface-level diversity without real inclusion or power</div>
+        <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">pension system</div>
+        <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">the framework that collects and pays out retirement funds</div>
+      </div>
+      <div class="match-status">Tap a word, then its matching definition.</div>
+      <button class="reveal-btn">Show answers</button>
+      <div class="hidden-answer">1 algorithmic hiring = AI screening candidates. 2 transparency = openness about decisions. 3 tokenism = surface-level diversity without power. 4 pension system = retirement fund framework.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="card glass">
+      <div class="part-badge">Exercise</div>
+      <h2 class="glow-text">Choose the Right Phrase</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:16px">Three scenarios. For each, pick the debate phrase that would work best — then reveal the full model answer.</p>
+
+      <div class="question">1. Your colleague says four-day weeks won't work because employees will slack off.</div>
+      <div class="hidden-answer">Start with acknowledgment, then pivot with evidence: <span class="phrase-chip">That's a fair concern about productivity.</span> <span class="phrase-chip">However, the trials in New Zealand showed output actually increased</span> <span class="phrase-chip">because people focused more intensely during their working hours.</span> The key word here is <span class="phrase-chip">however</span> — it signals you're not agreeing, you're redirecting with data.</div>
+
+      <div class="question">2. Someone argues AI hiring is biased, so we shouldn't use it at all.</div>
+      <div class="hidden-answer">Concede the bias point, then reframe the question: <span class="phrase-chip">You're absolutely right that bias exists — </span> <span class="phrase-chip">no system is neutral by default.</span> <span class="phrase-chip">But the question is whether we can audit an algorithm's bias</span> <span class="phrase-chip">more easily than we can an interviewer's unconscious preferences.</span> You're not denying the problem — you're widening the lens.</div>
+
+      <div class="question">3. A classmate says D&amp;I programs are "just box-ticking."</div>
+      <div class="hidden-answer">Acknowledge the risk, then hit with the business case: <span class="phrase-chip">If we're purely transactional about it, </span> <span class="phrase-chip">sure — D\&I can become performative.</span> <span class="phrase-chip">But companies with diverse leadership consistently outperform </span> <span class="phrase-chip">their peers by 35%.</span> <span class="phrase-chip">The business case makes tokenism irrelevant.</span> You've used <span class="phrase-chip">if we're purely transactional</span> to concede their framing, then <span class="phrase-chip">but</span> to flip it.</div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="7">
+    <div class="card glass">
+      <div class="part-badge">Key Phrases</div>
+      <h2 class="glow-text">Concluding Your Argument</h2>
+      <p style="color:var(--cs-text-muted);font-size:1rem;margin-bottom:14px">The strongest debates end with a path forward, not just a summary. These phrases help you close cleanly.</p>
+      <div class="pv-grid">
+        <div class="pv-card"><div class="pv-word">I'd argue the middle path is…</div><div class="pv-def">Summarises your compromise position without sounding like you gave up.</div><div class="pv-ex">Example: "I'd argue the middle path is letting AI assist with hiring while keeping firing human."</div></div>
+        <div class="pv-card"><div class="pv-word">To wrap up, the evidence shows…</div><div class="pv-def">Signals conclusion while circling back to data, not emotion.</div><div class="pv-ex">Example: "To wrap up, the evidence shows diverse teams make better decisions — but only if inclusion is real, not performative."</div></div>
+        <div class="pv-card"><div class="pv-word">The bottom line is…</div><div class="pv-def">Cuts through clutter — use it when you have one final point that must stick.</div><div class="pv-ex">Example: "The bottom line is that work should enhance human dignity, not replace it."</div></div>
+        <div class="pv-card"><div class="pv-word">What we should take away from this is…</div><div class="pv-def">Frames your conclusion as a shared insight, not just your opinion.</div><div class="pv-ex">Example: "What we should take away is that regulation, not banning, is the path forward."</div></div>
+      </div>
+      <button class="reveal-btn">Show tip</button>
+      <div class="hidden-answer">Never end with a restatement — end with a call to the shared reality. "The bottom line" and "What we should take away" both assume the listener can follow your logic. If you've lost them, no closing phrase rescues the argument. That's why the whole debate matters: each concession you make on slides 3-4 earns you the right to close.</div>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="8">
+    <div class="card glass">
+      <div class="part-badge">Homework</div>
+      <h2 class="glow-text">Write Your Own Position</h2>
+      <p style="color:var(--cs-text-muted);font-size:1.05rem;margin-bottom:16px">Choose one of the four debate questions below. Write a 3-minute position speech — at least 150 words. Use at least 4 phrases from this deck (slides 3-4). Record yourself speaking.</p>
+
+      <div class="formula-box">
+        <div class="formula-main">Choose your topic:</div>
+        <div class="formula-note" style="margin-top:10px"><span class="phrase-chip">1. Four-day work week as global standard</span><span class="phrase-chip">2. AI in hiring and firing</span><span class="phrase-chip">3. D&amp;I programs are effective</span><span class="phrase-chip">4. Retirement age should be 70</span></div>
+      </div>
+
+      <div class="question">Suggested structure for your speech:</div>
+      <div class="hidden-answer">
+        <strong>1. Opening (30s):</strong> On balance, I believe… Admittedly, … From my perspective, …<br><br>
+        <strong>2. Main argument + evidence (90s):</strong> Use data, acknowledge a counter-point, then pivot with However / That said, …<br><br>
+        <strong>3. Concession (30s):</strong> I see it differently. With respect, I'd counter that… The question is whether…<br><br>
+        <strong>4. Conclusion (30s):</strong> To wrap up, the evidence shows… The bottom line is… I'd argue the middle path is…
+      </div>
+
+      <div class="question">Full model answer — Topic 2 (AI in hiring/firing):</div>
+      <div class="hidden-answer">
+        "Good morning. I'm going to argue that companies <span class="phrase-chip">should be allowed to use AI for hiring, but not for firing.</span><br><br>
+        <span class="phrase-chip">On balance, algorithmic hiring tools can reduce bias</span> — if they're audited. When Unilever introduced AI screening, it increased diverse candidate shortlists by 16%. That's because humans carry unconscious bias into interviews that algorithms, at their best, can flag.<br><br>
+        <span class="phrase-chip">Admittedly, that's only true if the training data itself is fair.</span> But here's the thing: <span class="phrase-chip">human judgment is also biased</span> — we just can't audit it as easily as we can an algorithm. <span class="phrase-chip">At least with AI, we can trace the decision tree.</span><br><br>
+        <span class="phrase-chip">That said, firing is different.</span> When an algorithm tells someone they've lost their job, with no human explanation, we've crossed an ethical line. Employment isn't just about efficiency — it's about dignity. A human manager must be in the loop for termination decisions.<br><br>
+        <span class="phrase-chip">I'd argue the middle path:</span> let AI assist with hiring (with oversight), but keep firing human. The technology should augment human judgment, not replace the human element entirely."
+      </div>
+
+      <div class="question">Full model answer — Topic 1 (Four-day work week):</div>
+      <div class="hidden-answer">
+        "Colleagues, <span class="phrase-chip">on balance, I believe</span> the four-day week is viable for knowledge work, though not universally applicable.<br><br>
+
+        <span class="phrase-chip">The evidence from Microsoft Japan's 2019 trial</span> showed a 40% increase in productivity — but that was in a high-margin tech sector, not manufacturing or retail. <span class="phrase-chip">Admittedly,</span> not every industry can adapt: call centres need coverage, hospitals need staffing. <span class="phrase-chip">However,</span> the UK's 2022 national trial covered 60 companies across sectors — and 92% reported either improved or unchanged productivity.<br><br>
+
+        <span class="phrase-chip">From my perspective,</span> the question isn't whether people work less — it's whether <span class="phrase-chip">the question isn't whether, but how</span> we redesign work. <span class="phrase-chip">That said,</span> the real risk isn't slacking off — it's the transition cost: training staff to be more efficient in fewer hours.<br><br>
+
+        <span class="phrase-chip">I'd argue the middle path is</span> a phased rollout: start with a 32-hour, 4-day week at 100% pay for knowledge workers, paired with productivity metrics. <span class="phrase-chip">To wrap up, the evidence shows</span> this isn't about working less — it's about working smarter. <span class="phrase-chip">The bottom line is</span> that productivity gains from a four-day week fund the transition itself."
+      </div>
+
+      <div class="question">Full model answer — Topic 3 (D&amp;I programs):</div>
+      <div class="hidden-answer">
+        "I'm going to argue that <span class="phrase-chip">on balance, I believe</span> D&amp;I programs deliver measurable business value — when they go beyond box-ticking.<br><br>
+
+        <span class="phrase-chip">The data from McKinsey's 2023 Diversity Matters report</span> shows companies in the top quartile for ethnic diversity are 39% more likely to outperform peers in profitability. <span class="phrase-chip">Admittedly,</span> many programs are performative: a one-time unconscious bias workshop followed by no structural change isn't enough. <span class="phrase-chip">With respect, I'd counter that</span> the criticism isn't of D&amp;I itself — it's of lazy implementation.<br><br>
+
+        <span class="phrase-chip">But the question isn't whether D&amp;I works — it's how.</span> Companies like Accenture tied 30% of executive bonuses to inclusion goals — and their diverse leadership representation rose from 18% to 42% in five years. <span class="phrase-chip">I'd propose a nuanced approach:</span> measure inclusion through retention rates, promotion parity, and pay equity — not just headcount.<br><br>
+
+        <span class="phrase-chip">I'd argue the middle path is</span> outcome-based diversity: set targets on representation at senior levels, tie them to compensation, and audit quarterly. <span class="phrase-chip">To wrap up, the evidence shows</span> that diversity without inclusion is just optics — but with accountability, it drives real performance. <span class="phrase-chip">The bottom line is</span> that D&amp;I done right is the single most reliable lever for improving decision-making quality."
+      </div>
+
+      <div class="question">Full model answer — Topic 4 (Retirement age):</div>
+      <div class="hidden-answer">
+        "Colleagues, <span class="phrase-chip">on balance, I believe</span> raising the retirement age to 70 is the right direction — but at different speeds by sector.<br><br>
+
+        <span class="phrase-chip">The operational impact is</span> clear: Japan's gradual raise from 60 to 65 saved $32 billion in pension liabilities over a decade. <span class="phrase-chip">Admittedly,</span> that figure matters less than quality of life for workers in physically demanding jobs. <span class="phrase-chip">From my perspective,</span> the question isn't whether people can work longer — it's whether <span class="phrase-chip">the question isn't whether, but how</span> we make work sustainable for older employees.<br><br>
+
+        <span class="phrase-chip">That said,</span> the real issue isn't the retirement age — it's that many 70-year-olds today are in roles designed for 40-year-olds. <span class="phrase-chip">However,</span> countries like Sweden already offer flexible retirement: you can claim partial pension at 62, full at 67, and work part-time or in advisory roles until 70.<br><br>
+
+        <span class="phrase-chip">I'd argue the middle path is</span> sector-adjusted retirement: raise the age to 70 for sedentary work (with health check-ins), keep it at 65 for manual labour. <span class="phrase-chip">To wrap up, the evidence suggests a middle ground</span> between extending careers and protecting the vulnerable. <span class="phrase-chip">What we should take away from this is</span> that retirement isn't about age — it's about capability and contribution."
+      </div>
+
+      <button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+    </div>
+  </section>
+
+</main>
+<div class="nav-btns"><button onclick="prev()" id="prevBtn">Back</button><span class="timer" id="slideCounter">1 / 9</span><button onclick="next()" id="nextBtn">Next</button></div>
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={classic:{accent:'#fbbf24',bg:'#060a14',text:'#f2f0f8',card:'#10131f',border:'#3d3a2e'},forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#0d1a13',border:'#1f4a3a'},violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#17122e',border:'#3b3563'},gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1f150a',border:'#4a3a1e'},rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#2b1218',border:'#5a2a38'},ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#0a1f28',border:'#1f4a5a'},indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#121233',border:'#2e2e5e'}};
+function applyTheme(n){var t=THEMES[n];if(!t)return;var r=document.documentElement;r.style.setProperty('--cs-accent',t.accent);r.style.setProperty('--cs-bg',t.bg);r.style.setProperty('--cs-text',t.text);r.style.setProperty('--cs-bg-card',t.card);r.style.setProperty('--cs-border',t.border);r.style.setProperty('--cs-text-muted',t.text+'99');r.style.setProperty('--cs-accent-glow',t.accent+'38');r.style.setProperty('--cs-accent-dim',t.accent+'1a');try{localStorage.setItem('fce-theme',n);}catch(e){}}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){var s=localStorage.getItem('fce-theme')||'classic';var i=THEME_ORDER.indexOf(s);if(i<0)i=0;applyTheme(THEME_ORDER[(i+1)%THEME_ORDER.length]);});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+var current=0,slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){if(n<0||n>=slides.length)return;slides[current].classList.remove('active');current=n;slides[current].classList.add('active');document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';document.getElementById('prevBtn').disabled=current===0;document.getElementById('nextBtn').disabled=current===slides.length-1;var mb=document.getElementById('modelAnswersBtn');if(mb){if(current===1||current===6||current===8)mb.classList.add('show');else mb.classList.remove('show');}try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');p['work-and-business-debates']=current;localStorage.setItem('fce-progress',JSON.stringify(p));}catch(e){}}
+function next(){goTo(current+1);}function prev(){goTo(current-1);}
+document.addEventListener('click',function(e){var b=e.target.closest('.reveal-btn');if(b){var a=b.parentElement.querySelector('.hidden-answer');if(a){a.classList.toggle('open');b.textContent=a.classList.contains('open')?'Hide answer':'Show answer';}}var m=e.target.closest('#modelAnswersBtn');if(m){var s=document.querySelector('.slide.active');var ah=s.querySelectorAll('.hidden-answer');var allOpen=true;for(var i=0;i<ah.length;i++){if(!ah[i].classList.contains('open')){allOpen=false;break;}}for(var i=0;i<ah.length;i++){ah[i].classList.toggle('open',!allOpen);}m.textContent=allOpen?'Reveal model answers':'Hide answers';}});
+function toggleSlideAnswers(btn){var s=btn.closest('.slide');var a=s.querySelectorAll('.hidden-answer');var o=true;for(var i=0;i<a.length;i++){if(!a[i].classList.contains('open')){o=false;break;}}for(var i=0;i<a.length;i++){a[i].classList.toggle('open',!o);}btn.textContent=o?'Reveal answers':'Hide answers';}
+var matchA=null;function shuffleArray(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+(function(){var g=document.querySelectorAll('.match-grid');for(var i=0;i<g.length;i++){var grid=g[i];var L=[],R=[];var c=grid.querySelectorAll('.match-cell');for(var j=0;j<c.length;j++){if(c[j].dataset.side==='L')L.push(c[j]);else R.push(c[j]);}shuffleArray(L);shuffleArray(R);for(var k=0;k<L.length;k++){grid.appendChild(L[k]);grid.appendChild(R[k]);}}})();
+function matchClick(el,side){if(el.classList.contains('matched'))return;var grid=el.closest('.match-grid');grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});el.classList.add('selected');if(matchA&&matchA!==el){var a=matchA.dataset.side,b=el.dataset.side;if(a!==b&&matchA.dataset.pair===el.dataset.pair){matchA.classList.remove('selected');matchA.classList.add('matched');el.classList.remove('selected');el.classList.add('matched');matchA=null;var total=grid.querySelectorAll('.match-cell').length;var done=grid.querySelectorAll('.match-cell.matched').length;var st=grid.parentElement.querySelector('.match-status');if(st)st.textContent='Matched '+done+' / '+(total/2)+' pairs';if(done>=total&&st)st.innerHTML='<strong>All matched!</strong> Well done.';}else{matchA.classList.add('wrong');el.classList.add('wrong');var st=grid.parentElement.querySelector('.match-status');if(st)st.textContent='Not a match. Try again.';var prev=matchA;setTimeout(function(){prev.classList.remove('wrong','selected');el.classList.remove('wrong','selected');matchA=null;if(st)st.textContent='Tap a word, then its matching definition.';},500);}}else{matchA=el;}}
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}if(e.key==='ArrowLeft'){e.preventDefault();prev();}});
+(function(){try{var p=JSON.parse(localStorage.getItem('fce-progress')||'{}');var s=p['work-and-business-debates'];if(typeof s==='number'&&s>=0)goTo(s);}catch(e){}})();
+(function(){var style=document.getElementById('bgLayer').getAttribute('style')||'';var m=style.match(/background-image:\s*url\(([^)]+)\)/);if(!m){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');return;}var img=new Image();img.onload=img.onerror=function(){document.getElementById('loadingScreen').classList.add('hidden');document.getElementById('slides').classList.remove('hidden');};img.src=m[1].replace(/[\"']/g,'');})();
+</script>
+</body>
+</html>
