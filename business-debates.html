@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https: data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'unsafe-inline'; connect-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#060a14">
+<title>Business Debates — Articulate Business English B2/C1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cs-accent:#fbbf24;--cs-bg:#060a14;--cs-text:#f2f0f8;--cs-bg-card:#10131f;
+  --cs-border:#3d3a2e;--cs-text-muted:#b0bec5;--cs-green:#34d399;
+  --cs-accent-glow:rgba(251,191,36,.22);--cs-accent-dim:rgba(251,191,36,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cs-bg);color:var(--cs-text);line-height:1.6;min-height:100vh;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+.glass{background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 68%,var(--cs-accent) 32%) 55%,transparent);border:1px solid var(--cs-accent-glow);border-radius:16px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 25px var(--cs-accent-glow),0 0 60px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04)}
+.glow-text{text-shadow:0 0 12px var(--cs-accent-glow),0 0 24px var(--cs-accent-dim)}
+.home-link{position:fixed;top:1em;left:1em;z-index:300;color:var(--cs-accent);text-decoration:none;font-size:.95rem;padding:6px 12px;border-radius:16px;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.home-link:hover{background:var(--cs-accent-glow);box-shadow:0 0 12px var(--cs-accent-glow)}
+.theme-btn{position:fixed;top:1em;right:1em;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--cs-accent-dim);border:1.5px solid var(--cs-accent-glow);cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;color:var(--cs-accent);transition:transform .15s ease}
+.theme-btn:hover{transform:scale(1.1);background:rgba(255,255,255,.08)}
+.theme-btn:active{transform:scale(.93)}
+.theme-btn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 6px var(--cs-accent-glow))}
+.model-answers-btn{position:fixed;bottom:1em;right:1em;z-index:290;display:none;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:8px 16px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.model-answers-btn:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.model-answers-btn:active{transform:scale(.94)}
+.model-answers-btn.show{display:inline-block}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:var(--cs-bg);color:var(--cs-accent);font-family:'Montserrat',sans-serif;font-size:1rem;letter-spacing:1px}
+.loading.hidden{display:none}
+#slides{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:30px 16px 100px;min-height:100vh}
+#slides.hidden{display:none}
+.bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;background-color:var(--cs-bg)}
+.bg-layer::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,color-mix(in srgb,var(--cs-bg) 78%,transparent) 0%,color-mix(in srgb,var(--cs-bg) 45%,transparent) 45%,color-mix(in srgb,var(--cs-bg) 18%,transparent) 100%);pointer-events:none}
+.slide{display:none}
+.slide.active{display:block}
+.slide h2{font-size:1.5rem;margin-bottom:16px;color:var(--cs-accent);text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.card{position:relative;z-index:1;padding:22px;margin-bottom:18px}
+.part-badge{display:inline-block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:4px 10px;border-radius:10px;background:var(--cs-accent-dim);color:var(--cs-accent);margin-bottom:12px;box-shadow:0 0 10px var(--cs-accent-glow)}
+.question{font-size:1.05rem;font-weight:600;margin-bottom:12px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+.reveal-btn{font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:11px 20px;border-radius:10px;border:1px solid var(--cs-accent);background:transparent;color:var(--cs-accent);cursor:pointer;transition:all .15s;min-height:42px;margin-top:14px}
+.reveal-btn:hover{background:var(--cs-accent);color:var(--cs-bg)}
+.reveal-all-btn{display:block;margin:22px 0 0 auto;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;padding:10px 20px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;transition:all .2s;min-height:42px}
+.reveal-all-btn:hover{background:var(--cs-accent);color:var(--cs-bg);box-shadow:0 0 15px var(--cs-accent-glow)}
+.hidden-answer{display:none;margin-top:12px;padding:14px;border-left:3px solid var(--cs-accent);background:var(--cs-accent-dim);border-radius:0 10px 10px 0}
+.hidden-answer.open{display:block}
+.phrase-chip{display:inline-block;font-size:.7rem;padding:3px 8px;border-radius:6px;background:var(--cs-bg-card);border:1px solid var(--cs-border);color:var(--cs-text-muted);margin:2px}
+.tooltip{position:relative;border-bottom:1px dotted var(--cs-accent);cursor:help}
+.tooltip::after{content:attr(data-def);position:absolute;bottom:120%;left:50%;transform:translateX(-50%);width:220px;padding:8px 10px;border-radius:8px;background:var(--cs-bg-card);border:1px solid var(--cs-accent);color:var(--cs-text);font-size:.75rem;line-height:1.4;opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.tooltip:hover::after{opacity:1}
+.proposal{background:color-mix(in srgb,var(--cs-bg) 60%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:16px 18px;font-size:.95rem;line-height:1.65}
+.proposal-head{border-bottom:1px solid var(--cs-border);padding-bottom:10px;margin-bottom:12px}
+.proposal-head .p-title{font-family:'Montserrat',sans-serif;font-weight:800;color:var(--cs-accent);font-size:1.05rem;letter-spacing:.02em}
+.proposal-head .p-meta{font-size:.78rem;color:var(--cs-text-muted);margin-top:4px}
+.proposal .sec{margin-bottom:10px}
+.proposal .sec b{color:var(--cs-accent);font-weight:700}
+.proposal ul{margin:4px 0 4px 18px;padding:0;list-style:none}
+.proposal ul li::before{content:'— ';color:var(--cs-accent)}
+.proposal .p-cost{display:inline-block;background:var(--cs-accent-dim);border:1px solid var(--cs-accent-glow);border-radius:8px;padding:1px 8px;font-weight:700;color:var(--cs-accent)}
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:1em 0}
+.match-cell{background:color-mix(in srgb,var(--cs-bg) 72%,transparent);border:1px solid var(--cs-border);border-radius:10px;padding:.7em 1em;cursor:pointer;text-align:center;font-size:.95rem;min-height:50px;display:flex;align-items:center;justify-content:center;transition:all .2s;user-select:none}
+.match-cell:hover{background:var(--cs-accent-dim);transform:scale(1.02)}
+.match-cell.selected{background:var(--cs-accent-dim);border-color:var(--cs-accent);box-shadow:0 0 12px var(--cs-accent-glow)}
+.match-cell.matched{background:rgba(52,211,153,.2);border-color:rgba(52,211,153,.7);color:var(--cs-green);cursor:default}
+.match-cell.matched:hover{transform:none}
+.match-cell.wrong{background:rgba(248,113,113,.2);border-color:rgba(248,113,113,.7);animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.match-status{margin-top:.8em;font-size:.9rem;color:var(--cs-text-muted)}
+.nav-btns{display:flex;align-items:center;justify-content:center;gap:1.2em;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;background:color-mix(in srgb,color-mix(in srgb,var(--cs-bg) 62%,var(--cs-accent) 38%) 85%,transparent);border:1px solid var(--cs-accent-glow);border-radius:40px;padding:10px 24px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.nav-btns button{font-family:'Inter',sans-serif;font-size:1rem;padding:8px 18px;border-radius:24px;border:1px solid var(--cs-accent);background:var(--cs-accent-dim);color:var(--cs-accent);cursor:pointer;min-width:44px;min-height:44px;transition:transform .15s ease,box-shadow .2s}
+.nav-btns button:hover{background:var(--cs-accent-glow);box-shadow:0 0 15px var(--cs-accent-glow);transform:scale(1.05)}
+.nav-btns button:active{transform:scale(.94)}
+.nav-btns button:disabled{opacity:.4;cursor:default;transform:none}
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:200}
+.progress-fill{height:100%;width:0;background:var(--cs-accent);transition:width .3s;box-shadow:0 0 10px var(--cs-accent-glow)}
+.timer{font-family:'Inter',monospace;font-size:.85rem;color:var(--cs-text-muted)}
+.roleplay{background:color-mix(in srgb,var(--cs-bg) 70%,transparent);border:1px solid var(--cs-border);border-radius:12px;padding:14px 16px;margin-bottom:16px}
+.roleplay .rp-label{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--cs-accent);font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}
+.roleplay .rp-task{font-size:.95rem;margin-bottom:6px}
+@media(max-width:640px){.slide h2{font-size:1.25rem}.card{padding:16px}.match-grid{grid-template-columns:1fr}.nav-btns{bottom:12px;padding:8px 16px;gap:.6em}.nav-btns button{padding:6px 12px;font-size:.95rem}.model-answers-btn{bottom:5.5em;right:.5em}}
+</style>
+</head>
+<body>
+<div class="bg-layer" id="bgLayer" style="background-image:url('https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1920&q=80')"></div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+<div class="loading" id="loadingScreen">Loading deck…</div>
+<a href="index.html" class="home-link">Back</a>
+<button class="theme-btn" id="themeCycleBtn" title="Cycle theme" aria-label="Cycle color theme">
+  <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+</button>
+<button class="model-answers-btn" id="modelAnswersBtn" title="Reveal model answers" aria-label="Reveal model answers">Reveal model answers</button>
+
+<main id="slides" class="hidden">
+  <section class="slide active" data-slide="0">
+    <div class="card glass" style="text-align:center;margin-top:10vh">
+      <div class="part-badge">Business English · B2/C1</div>
+      <h1 class="glow-text" style="font-size:2.4rem;margin-bottom:12px">Business Debates</h1>
+      <p style="color:var(--cs-text-muted);font-size:1rem;max-width:560px;margin:0 auto 24px">How to state a position, agree and disagree, handle objections and argue without damaging the relationship — for meetings, negotiations and presentations.</p>
+      <button class="reveal-btn" onclick="goTo(1)">Start Deck</button>
+    </div>
+  </section>
+
+  <section class="slide" data-slide="1">
+  <div class="card glass">
+    <div class="part-badge">Warm-Up</div>
+    <h2 class="glow-text">Warm-Up — Arguing in Business</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Discuss these questions, then reveal the model answers.</p>
+<div class="question">1. What makes a business argument convincing — data, emotion, or the speaker's authority?</div>
+<div class="hidden-answer">Usually data first, then framing. A claim backed by a number is harder to dismiss than an opinion, but numbers alone rarely persuade: you have to connect them to something the listener cares about. Authority helps at the start and hurts if it is used instead of evidence — "because I said so" closes down discussion rather than winning it.</div>
+<div class="question">2. When you disagree with a colleague in a meeting, what is the best way to say it?</div>
+<div class="hidden-answer">Acknowledge the part you accept first, then separate the person from the point: "I see why that works, and I'm concerned about the timeline." Avoid "You're wrong" and avoid "With all due respect" — both signal a personal attack. Aim for a disagreement that leaves the relationship intact, because you will need that colleague's support on the next decision.</div>
+<div class="question">3. Why do negotiations often fail even when both sides want a deal?</div>
+<div class="hidden-answer">Because each side argues its own position instead of testing the other side's constraints. Most failed deals collapse on an issue neither party has actually asked about — budget timing, internal sign-off, risk allocation. Asking "what has to be true for this to work for you?" surfaces the real blocker faster than any amount of counter-argument.</div>
+<div class="question">4. Is it better to be direct or diplomatic in business? Give an example.</div>
+<div class="hidden-answer">Neither, on its own. Direct about the substance, diplomatic about the delivery. Say "We cannot absorb that cost" rather than "That's fine" when you mean no — and say it with a reason the other side can repeat to their own boss. Indirect language protects the relationship but hides the message; blunt language delivers the message but burns the relationship. Skilled negotiators do both at once.</div>
+<div style="margin-top:18px"><strong style="color:var(--cs-accent)">Useful phrases:</strong><br><span class="phrase-chip">The data suggests…</span><span class="phrase-chip">I take your point, but…</span><span class="phrase-chip">Where I have concerns is…</span><span class="phrase-chip">Help me understand…</span><span class="phrase-chip">Could we explore an alternative?</span><span class="phrase-chip">Let me put that in context…</span></div>
+
+  </div>
+</section>
+
+<section class="slide" data-slide="2">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 1</div>
+    <h2 class="glow-text">Match the Word — Debate Fundamentals</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">motion</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">the proposal being argued for or against</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">stance</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">the position you choose to argue</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">rebuttal</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">a counter-argument that answers the other side's point</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">evidence</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">facts, data or examples that support a claim</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">concession</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">accepting part of the other side's argument</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">to hedge</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">to soften a claim so it is less absolute</div>
+    </div>
+    <div class="match-status" id="matchStatus1">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns1">1 motion — the proposal being argued for or against · 2 stance — the position you choose to argue · 3 rebuttal — a counter-argument that answers the other side's point · 4 evidence — facts, data or examples that support a claim · 5 concession — accepting part of the other side's argument · 6 to hedge — to soften a claim so it is less absolute</div>
+  </div>
+</section>
+<section class="slide" data-slide="3">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary Game 2</div>
+    <h2 class="glow-text">Match the Word — Positions, Pushback &amp; Persuasion</h2>
+    <p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Tap one item on the left, then tap its match on the right. Correct pairs turn green.</p>
+    <div class="match-grid">
+      <div class="match-cell" data-side="L" data-pair="1" onclick="matchClick(this,'L')">to endorse</div>
+      <div class="match-cell" data-side="R" data-pair="1" onclick="matchClick(this,'R')">to publicly support a proposal</div>
+      <div class="match-cell" data-side="L" data-pair="2" onclick="matchClick(this,'L')">to push back</div>
+      <div class="match-cell" data-side="R" data-pair="2" onclick="matchClick(this,'R')">to resist or challenge a proposal</div>
+      <div class="match-cell" data-side="L" data-pair="3" onclick="matchClick(this,'L')">to table a proposal</div>
+      <div class="match-cell" data-side="R" data-pair="3" onclick="matchClick(this,'R')">to put it forward formally for discussion</div>
+      <div class="match-cell" data-side="L" data-pair="4" onclick="matchClick(this,'L')">to water down</div>
+      <div class="match-cell" data-side="R" data-pair="4" onclick="matchClick(this,'R')">to weaken a proposal with limits or exceptions</div>
+      <div class="match-cell" data-side="L" data-pair="5" onclick="matchClick(this,'L')">to rally support</div>
+      <div class="match-cell" data-side="R" data-pair="5" onclick="matchClick(this,'R')">to persuade others to back your position</div>
+      <div class="match-cell" data-side="L" data-pair="6" onclick="matchClick(this,'L')">a deal-breaker</div>
+      <div class="match-cell" data-side="R" data-pair="6" onclick="matchClick(this,'R')">an issue on which you will not compromise</div>
+    </div>
+    <div class="match-status" id="matchStatus2">Tap a word, then its matching definition.</div>
+    <button class="reveal-btn">Show answers</button>
+    <div class="hidden-answer" id="matchAns2">1 to endorse — to publicly support a proposal · 2 to push back — to resist or challenge a proposal · 3 to table a proposal — to put it forward formally for discussion · 4 to water down — to weaken a proposal with limits or exceptions · 5 to rally support — to persuade others to back your position · 6 a deal-breaker — an issue on which you will not compromise</div>
+  </div>
+</section>
+<section class="slide" data-slide="4">
+  <div class="card glass">
+    <div class="part-badge">Reading</div>
+    <h2 class="glow-text">A Real Business Case</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Read this proposal. Who is arguing, and what is each side's strongest point?</p>
+<div class="proposal">
+  <div class="proposal-head">
+    <div class="p-title">Proposal: A Permanent Hybrid-Working Policy</div>
+    <div class="p-meta">Prepared for: Executive Team &nbsp;·&nbsp; Prepared by: People Operations &nbsp;·&nbsp; Date: 12 October 2026</div>
+  </div>
+  <div class="sec"><b>1. Executive Summary</b> — We propose a permanent hybrid policy: every employee works from the office at least two days a week, with team-specific anchor days. Staff turnover has risen from 8% to 14% in two years, and exit interviews name flexibility as the top reason. <span class="p-cost">Estimated retention saving: 340,000 EUR</span> per year.</div>
+  <div class="sec"><b>2. Background &amp; Problem</b> — The fully remote arrangement introduced during the pandemic has run for four years. Productivity measures have held steady, but onboarding has weakened: new joiners take five months to reach full independence, against a historical average of three, and managers report that informal problem-solving has largely disappeared.</div>
+  <div class="sec"><b>3. Proposed Solution</b> — Two fixed office days per week, chosen per team rather than per individual; no change to contracts or pay. Departments with client-facing duties keep existing schedules.</div>
+  <div class="sec"><b>4. Risks &amp; Objections</b> — The strongest objection is that a two-day minimum penalises the people who asked for full remote work and have relocated. A second risk is inconsistent adoption: teams that treat anchor days as optional will lose the benefit. We propose an exemption route for both cases, with a six-month trial and a review.</div>
+  <div class="sec"><b>5. Timeline &amp; Decision Requested</b> — Pilot in two departments for six months, then a full roll-out. We ask the executive team to approve the pilot and the exemption criteria at this meeting.</div>
+</div>
+<button class="reveal-btn">Show answer</button>
+<div class="hidden-answer">The People Operations team argues for the two-day minimum, and their strongest point is evidence: a measurable rise in attrition and a 340,000 EUR retention saving. The opposing case is rights and precedent — staff were told remote work was permanent, and some have moved. Its strongest point is not emotion but fairness: the policy changes an arrangement employees planned their lives around. A strong debate on this motion therefore turns on the exemption route, not on whether flexibility is good.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="5">
+  <div class="card glass">
+    <div class="part-badge">Key Component 1</div>
+    <h2 class="glow-text">Stating a Position</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Saying clearly which side you are on and why, in one sentence, before you argue anything.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> A vague position forces the listener to guess, and people argue with the position they invented. A clear one lets them engage with the real argument.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "I support the two-day minimum because the cost of losing new joiners is now higher than the cost of asking people to travel twice a week."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use the form: position + because + reason. If you cannot fill in the "because" in one sentence, you do not have a position yet — you have a feeling. Test it by saying it out loud to a colleague and asking "what do you think I just argued for?"</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="6">
+  <div class="card glass">
+    <div class="part-badge">Key Component 2</div>
+    <h2 class="glow-text">Agreeing &amp; Supporting</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Backing another person's point in a way that adds to it, rather than simply repeating it.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Agreement builds coalitions. Empty agreement ("I agree") is forgotten; agreement with a reason ("I agree, because it also solves X") moves the discussion forward.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "I'd like to add to that — the two-day minimum also gives managers a predictable week, which was the second complaint in the survey."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Add, don't echo. Use "I'd like to add to that…", "If I could build on that…", or "That's right, and it also…". And name what you support specifically — "I agree with the exemption idea" is more useful to the room than "I agree with Sarah".</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="7">
+  <div class="card glass">
+    <div class="part-badge">Key Component 3</div>
+    <h2 class="glow-text">Disagreeing &amp; Challenging</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Opposing the idea while protecting the person — attacking the argument, never the colleague.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> In most meetings, disagreement delivered badly ends the debate. A challenge that is specific and evidence-based is accepted as a contribution; a general objection is read as hostility.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "I'm concerned about the six-month trial. If we measure retention but not team output, we will get a result we can't interpret — what metric would convince you either way?"</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Use the sandwich: accept something real, then the challenge, then the way forward. "The retention argument is strong, and I think the onboarding numbers need a baseline, so let's agree the metric before we agree the policy." Never "That won't work" with no next step.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="8">
+  <div class="card glass">
+    <div class="part-badge">Key Component 4</div>
+    <h2 class="glow-text">Hedging, Softening &amp; Saving Face</h2>
+<p><strong style="color:var(--cs-accent)">What it is:</strong> Softening absolute language so your point lands without cornering the other side.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Why it matters:</strong> Hard absolutes ("always", "never", "obviously") make the other side defend their intelligence instead of their position. Hedged language keeps them in the conversation — and lets them change their mind without losing face.</p>
+<p style="margin-top:10px"><strong style="color:var(--cs-accent)">Example:</strong> "It may be that the pilot needs a longer baseline than six months." instead of "Six months is useless."</p>
+<button class="reveal-btn">Show tip</button>
+<div class="hidden-answer">Swap absolutes for tentative verbs: "seems", "may", "tends to", "in my experience". Then hand the other side an exit: "I could be wrong, but have we considered…?" The goal is to win the argument, not the exchange — and an opponent who saves face will back your proposal next time.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="9">
+  <div class="card glass">
+    <div class="part-badge">Analysis</div>
+    <h2 class="glow-text">What Makes a Strong Argument?</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Use these six tests on any position you are about to defend.</p>
+<div class="question">1. Can you state it in one sentence with a reason attached?</div>
+<div class="question">2. Is it supported by evidence, not just by strong opinion?</div>
+<div class="question">3. Do you know the strongest version of the other side's case?</div>
+<div class="question">4. Have you separated the person from the point?</div>
+<div class="question">5. Is there a concession you could make without losing the core?</div>
+<div class="question">6. Have you given the other side a way to change their mind with dignity?</div>
+<button class="reveal-btn">Show checklist</button>
+<div class="hidden-answer">A strong argument answers all six. The two most often missed are 3 and 6: people prepare their own case and never rehearse the opposing one, and they win the point by cornering someone who then blocks them for the rest of the quarter. The best debaters argue the other side's case better than their opponents do — and say so.</div>
+
+  </div>
+</section>
+<section class="slide" data-slide="10">
+  <div class="card glass">
+    <div class="part-badge">Speaking Practice</div>
+    <h2 class="glow-text">Role-Plays &amp; Weak vs Strong</h2>
+<p style="color:var(--cs-text-muted);font-size:.85rem;margin-bottom:14px">Work in pairs. Take one role each, then swap. Reveal the model answers when you are ready.</p>
+<div class="roleplay">
+  <div class="rp-label">Part A — Weak vs Strong</div>
+  <div class="rp-task">Weak: "Your idea is too expensive and I don't like it." — Rewrite this into a strong business objection. What evidence do you add?</div>
+  <div class="hidden-answer">"I'm not convinced on the cost. The proposal adds 180,000 EUR a year and the retention saving you quote is an estimate, not a measured figure. I'd support a six-month pilot in one department, with the cost per retained employee calculated at the end — if it comes in under 20,000 EUR, I'd back the full roll-out."</div>
+</div>
+<div class="roleplay">
+  <div class="rp-label">Part B — The personal objection</div>
+  <div class="rp-task">A colleague says: "You only oppose this because you don't like the person who proposed it." Respond — without getting defensive.</div>
+  <div class="hidden-answer">"That's not the case, and I'd ask you to test it rather than assume it. My objection is the timeline: three months to recruit and train 40 people is tight. If you can show a realistic plan for that, I'll change my position — and if the objection were personal, the timeline argument wouldn't be one I'd need to make."</div>
+</div>
+<div class="roleplay">
+  <div class="rp-label">Part C — The concession</div>
+  <div class="rp-task">You are losing the argument on cost but winning on risk. Concede something real and pivot to the point you can win. Use the phrases below.</div>
+  <div class="hidden-answer">"You're right on the cost, and I'll accept the 180,000 EUR figure as a realistic estimate. Where I still have concerns is the risk side: if the pilot fails, we carry the cost and the reversal at the same time. So I'd like to propose a smaller pilot — one department, four months, with a decision gate at month 2. That keeps the cost argument you won and tests the risk argument I'm making."</div>
+</div>
+<div class="roleplay">
+  <div class="rp-label">Part D — Saving face</div>
+  <div class="rp-task">A senior manager has backed the wrong option in public and the numbers now show it. Raise it so they can change course without losing authority.</div>
+  <div class="hidden-answer">"Could I put a figure to this that I think changes the picture? The pilot came in at 240,000 EUR against a 180,000 estimate, which is a 33% variance. Given the direction you set at the start, I think the honest move is to widen the trial rather than roll out — that protects the original decision and the team's credibility at the same time."</div>
+</div>
+<div style="margin-top:6px"><strong style="color:var(--cs-accent)">Useful speaking phrases:</strong><br><span class="phrase-chip">I take your point, but…</span><span class="phrase-chip">Where I have concerns is…</span><span class="phrase-chip">Could we explore an alternative?</span><span class="phrase-chip">I'd like to add to that…</span><span class="phrase-chip">Help me understand…</span><span class="phrase-chip">Let me put that in context…</span></div>
+<button class="reveal-all-btn" onclick="toggleSlideAnswers(this)">Reveal answers</button>
+
+  </div>
+</section>
+<section class="slide" data-slide="11">
+  <div class="card glass">
+    <div class="part-badge">Vocabulary &amp; Homework</div>
+    <h2 class="glow-text">Key Vocabulary &amp; Homework</h2>
+<p><strong style="color:var(--cs-accent)">motion</strong> — the proposal being argued for or against</p>
+<p><strong style="color:var(--cs-accent)">stance</strong> — the position you choose to argue</p>
+<p><strong style="color:var(--cs-accent)">rebuttal</strong> — a counter-argument that answers the other side's point</p>
+<p><strong style="color:var(--cs-accent)">concession</strong> — accepting part of the other side's argument</p>
+<p><strong style="color:var(--cs-accent)">to hedge</strong> — to soften a claim so it is less absolute</p>
+<p><strong style="color:var(--cs-accent)">to push back</strong> — to resist or challenge a proposal</p>
+<p><strong style="color:var(--cs-accent)">a deal-breaker</strong> — an issue on which you will not compromise</p>
+<div class="question" style="margin-top:14px">Homework</div>
+<p>Choose a real decision in your workplace or a current news story. Write two 150-word statements: one arguing for, one against. Then write a third paragraph — of no more than 80 words — conceding the strongest point on the other side and explaining why you still hold your position. Record yourself delivering the third paragraph and bring the recording and the three written versions to class.</p>
+
+  </div>
+</section>
+</main>
+
+<div class="nav-btns">
+  <button onclick="prev()" id="prevBtn">← Back</button>
+  <span class="timer" id="slideCounter">1 / 12</span>
+  <button onclick="next()" id="nextBtn">Next →</button>
+</div>
+
+<script>
+var THEME_ORDER=['classic','forest','violet','gold','rose','ocean','indigo'];
+var THEMES={
+  classic:{accent:'#fbbf24',bg:'#191207',text:'#f2f0f8',card:'#191207',border:'#4a3a1e'},
+  forest:{accent:'#34d399',bg:'#081710',text:'#f2f0f8',card:'#081710',border:'#1f4a3a'},
+  violet:{accent:'#a78bfa',bg:'#120e22',text:'#f2f0f8',card:'#120e22',border:'#3b3563'},
+  gold:{accent:'#f59e0b',bg:'#1a1206',text:'#f2f0f8',card:'#1a1206',border:'#4a3a1e'},
+  rose:{accent:'#fb7185',bg:'#1e0d13',text:'#f2f0f8',card:'#1e0d13',border:'#5a2a38'},
+  ocean:{accent:'#22d3ee',bg:'#061620',text:'#f2f0f8',card:'#061620',border:'#1f4a5a'},
+  indigo:{accent:'#818cf8',bg:'#0a0a24',text:'#eef0ff',card:'#0a0a24',border:'#2e2e5e'}
+};
+var themeIcons={
+  1:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+  2:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>',
+  3:'<path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/>',
+  4:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+  5:'<path d="M12 18.176a3 3 0 1 1 -4.953 -2.449l-.025 .023a4.502 4.502 0 0 1 1.483 -8.75c1.414 0 2.675 .652 3.5 1.671a4.5 4.5 0 1 1 4.983 7.079a3 3 0 1 1 -4.983 2.25l-.005 .176"/><path d="M12 19v-10"/><path d="M9 3l3 2l3 -2"/>',
+  6:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+  7:'<path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/><path d="M18 5h4"/><path d="M20 3v4"/>'
+};
+function applyTheme(name){
+  var t=THEMES[name]; if(!t) return;
+  var r=document.documentElement;
+  r.style.setProperty('--cs-accent',t.accent);
+  r.style.setProperty('--cs-bg',t.bg);
+  r.style.setProperty('--cs-text',t.text);
+  r.style.setProperty('--cs-bg-card',t.card);
+  r.style.setProperty('--cs-border',t.border);
+  r.style.setProperty('--cs-text-muted',t.text+'99');
+  r.style.setProperty('--cs-accent-glow',t.accent+'38');
+  r.style.setProperty('--cs-accent-dim',t.accent+'1a');
+  var icon=document.getElementById('themeIcon');
+  var ti=THEME_ORDER.indexOf(name)+1;
+  if(icon && themeIcons[ti]) icon.innerHTML=themeIcons[ti];
+  try{localStorage.setItem('fce-theme',name);}catch(e){}
+}
+document.getElementById('themeCycleBtn').addEventListener('click',function(){
+  var saved=localStorage.getItem('fce-theme')||'classic';
+  var idx=THEME_ORDER.indexOf(saved);
+  if(idx<0) idx=0;
+  applyTheme(THEME_ORDER[(idx+1)%THEME_ORDER.length]);
+});
+applyTheme(localStorage.getItem('fce-theme')||'classic');
+
+var current=0, slides=Array.from(document.querySelectorAll('.slide'));
+function goTo(n){
+  if(n<0||n>=slides.length) return;
+  slides[current].classList.remove('active');
+  current=n;
+  slides[current].classList.add('active');
+  document.getElementById('modelAnswersBtn').classList.toggle('show',n===1);
+  document.getElementById('slideCounter').textContent=(current+1)+' / '+slides.length;
+  document.getElementById('progressFill').style.width=((current+1)/slides.length*100)+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('nextBtn').disabled=current===slides.length-1;
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    progress['business-debates']=current;
+    localStorage.setItem('fce-progress',JSON.stringify(progress));
+  }catch(e){}
+}
+function next(){goTo(current+1);}
+function prev(){goTo(current-1);}
+document.getElementById('modelAnswersBtn').addEventListener('click',function(){
+  var slide=slides[current]; if(!slide) return;
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  this.textContent=allOpen?'Reveal model answers':'Hide model answers';
+});
+document.addEventListener('click',function(e){
+  var btn=e.target.closest('.reveal-btn');
+  if(btn){
+    var ans=btn.parentElement.querySelector('.hidden-answer');
+    if(ans){ ans.classList.toggle('open'); btn.textContent=ans.classList.contains('open')?'Hide answer':'Show answer'; }
+  }
+});
+function toggleSlideAnswers(btn){
+  var slide=btn.closest('.slide');
+  var ans=slide.querySelectorAll('.hidden-answer');
+  var allOpen=true;
+  for(var i=0;i<ans.length;i++){ if(!ans[i].classList.contains('open')){ allOpen=false; break; } }
+  for(var i=0;i<ans.length;i++){ ans[i].classList.toggle('open',!allOpen); }
+  btn.textContent=allOpen?'Reveal answers':'Hide answers';
+}
+var matchA=null;
+function shuffleArray(a){
+  for(var i=a.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=a[i];a[i]=a[j];a[j]=t;
+  }
+  return a;
+}
+(function(){
+  var grids=document.querySelectorAll('.match-grid');
+  for(var g=0;g<grids.length;g++){
+    var grid=grids[g];
+    var L=[],R=[];
+    var cells=grid.querySelectorAll('.match-cell');
+    for(var i=0;i<cells.length;i++){
+      if(cells[i].dataset.side==='L') L.push(cells[i]);
+      else R.push(cells[i]);
+    }
+    shuffleArray(L); shuffleArray(R);
+    for(var k=0;k<L.length;k++){
+      grid.appendChild(L[k]);
+      grid.appendChild(R[k]);
+    }
+  }
+})();
+function matchClick(el,side){
+  if(el.classList.contains('matched')) return;
+  var grid=el.closest('.match-grid');
+  grid.querySelectorAll('.match-cell.selected').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected');
+  if(matchA && matchA!==el){
+    var aSide=matchA.dataset.side, bSide=el.dataset.side;
+    if(aSide!==bSide && matchA.dataset.pair===el.dataset.pair){
+      matchA.classList.remove('selected'); matchA.classList.add('matched');
+      el.classList.remove('selected'); el.classList.add('matched');
+      matchA=null;
+      var total=grid.querySelectorAll('.match-cell').length;
+      var done=grid.querySelectorAll('.match-cell.matched').length;
+      var st=grid.parentElement.querySelector('.match-status');
+      if(st) st.textContent='Matched '+done+' / '+(total/2)+' pairs';
+      if(done>=total && st){ st.innerHTML='<strong>All matched!</strong> Well done.'; }
+    }else{
+      matchA.classList.add('wrong'); el.classList.add('wrong');
+      var prev=matchA;
+      setTimeout(function(){ prev.classList.remove('wrong','selected'); el.classList.remove('wrong','selected'); matchA=null; },500);
+    }
+  }else{ matchA=el; }
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key===' '){ e.preventDefault(); next(); }
+  if(e.key==='ArrowLeft'){ e.preventDefault(); prev(); }
+});
+(function(){
+  try{
+    var progress=JSON.parse(localStorage.getItem('fce-progress')||'{}');
+    var saved=progress['business-debates'];
+    if(typeof saved==='number' && saved>=0) goTo(saved);
+  }catch(e){}
+})();
+(function(){
+  var style=(document.getElementById('bgLayer').getAttribute('style')||'');
+  var m=style.match(/background-image:\s*url\(([^)]+)\)/);
+  if(!m){ document.getElementById('loadingScreen').classList.add('hidden'); document.getElementById('slides').classList.remove('hidden'); return; }
+  var img=new Image();
+  img.onload=img.onerror=function(){
+    document.getElementById('loadingScreen').classList.add('hidden');
+    document.getElementById('slides').classList.remove('hidden');
+  };
+  img.src=m[1].replace(/["']/g,'');
+})();
+</script>
+</body>
+</html>
