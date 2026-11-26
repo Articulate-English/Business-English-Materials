@@ -36,7 +36,7 @@
     '<div style="max-width:640px;background:#151d33;border:1px solid #2b3a5c;' +
     'border-radius:16px;padding:28px;color:#e2e8f0;font:400 17px/1.65 system-ui,sans-serif">' +
     '<h2 style="margin-top:0;color:#22d3ee">This lesson is part of the series</h2>' +
-    '<p>You completed this lesson with your teacher, so it is free. ' +
+    '<p>This lesson belongs to the teacher-led series and is available to you. ' +
     'Other lessons in the series are paid.</p>' +
     '<p><a id="be-paypal" class="btn primary" style="background:#22d3ee;color:#06202a;' +
     'padding:11px 16px;border-radius:9px;font-weight:700;text-decoration:none" ' +
@@ -67,11 +67,6 @@
       else document.getElementById('be-msg').textContent = 'That link does not unlock this lesson.';
     } catch (err) {
       document.getElementById('be-msg').textContent = 'Paste a full access link.';
-    }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && document.getElementById('be-gate')) {
-      document.getElementById('be-gate').style.display = 'none';
     }
   });
 })();
