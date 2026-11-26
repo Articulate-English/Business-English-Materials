@@ -9,13 +9,16 @@
   function valid(g, sig) {
     return G.some(function (x) { return x.slug === g && x.sig === sig; });
   }
-  function remember(g) { try { localStorage.setItem('be-free-' + g, '1'); } catch (e) {} }
-  function unlocked(g) { try { return localStorage.getItem('be-free-' + g) === '1'; } catch (e) { return false; } }
+  function remember(g, sig) { try { localStorage.setItem('be-free-' + g, sig); } catch (e) {} }
+  function unlocked(g) {
+    try { var s = localStorage.getItem('be-free-' + g); return !!s && valid(g, s); }
+    catch (e) { return false; }
+  }
 
   var q = new URLSearchParams(location.search);
   var g = q.get('grant'), sig = q.get('sig');
   if (g && sig && g === slug && valid(g, sig)) {
-    remember(g);
+    remember(g, sig);
     try { history.replaceState(null, '', location.pathname); } catch (e) {}
     return;
   }
@@ -60,7 +63,7 @@
     try {
       var u = new URL(e.target.value.trim(), location.origin);
       var gg = u.searchParams.get('grant'), ss = u.searchParams.get('sig');
-      if (gg && ss && gg === slug && valid(gg, ss)) { remember(gg); location.reload(); }
+      if (gg && ss && gg === slug && valid(gg, ss)) { remember(gg, ss); location.reload(); }
       else document.getElementById('be-msg').textContent = 'That link does not unlock this lesson.';
     } catch (err) {
       document.getElementById('be-msg').textContent = 'Paste a full access link.';

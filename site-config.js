@@ -8,7 +8,8 @@ window.BE_STUDENT = {
 window.BE_STUDENT.paypalLink = function (amount, cur) {
   var url = this.paypalUrl || '';
   if (!url) return '';
-  if (/paypal\.me/i.test(url) && amount && !/\d([A-Z]{3})?\/?$/.test(url)) {
+  var last = url.split('?')[0].split('/').filter(Boolean).pop() || '';
+  if (url.indexOf('paypal.me') !== -1 && amount && !/^[0-9]+([A-Z]{3})?$/.test(last)) {
     return url.replace(/\/?$/, '/') + amount + (cur || 'USD');
   }
   return url;
